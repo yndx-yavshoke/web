@@ -5,25 +5,9 @@ export const securityMiddleware = new Elysia()
   .onRequest(({ request, set }) => {
     const url = new URL(request.url);
     
-    // Relaxed CSP for Swagger UI endpoints
-    if (url.pathname.startsWith('/swagger')) {
-      set.headers['Content-Security-Policy'] = [
-        "default-src 'self'",
-        "style-src 'self' 'unsafe-inline' https://unpkg.com",
-        "script-src 'self' 'unsafe-inline' https://unpkg.com",
-        "img-src 'self' data: https:",
-        "font-src 'self' https://unpkg.com"
-      ].join('; ');
-    } else {
-      // Strict CSP for all other endpoints
-      set.headers['Content-Security-Policy'] = "default-src 'self'";
-    }
-
-    // Add other security headers
     set.headers['X-Content-Type-Options'] = 'nosniff';
     set.headers['X-Frame-Options'] = 'DENY';
     set.headers['X-XSS-Protection'] = '1; mode=block';
-    set.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin';
 
     // Check for suspicious patterns in URL
     const suspiciousPatterns = [

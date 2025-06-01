@@ -7,10 +7,6 @@ import { swagger } from "@elysiajs/swagger";
 import { SharedModel } from "./models/sharedModel";
 import cors from "@elysiajs/cors";
 import { 
-  globalRateLimit, 
-  authRateLimit, 
-  apiRateLimit, 
-  dbRateLimit, 
   publicRateLimit 
 } from "./utils/rateLimiter";
 import { securityMiddleware, requestLogger } from "./utils/security";
@@ -18,20 +14,15 @@ import { db, dbPool } from "./db";
 
 const app = new Elysia()
   .use(cors({
-    origin: [
-      'https://yavshok.ru',
-      'http://localhost:3000',
-      'http://localhost:5173',
-      'http://127.0.0.1:5173'
-    ],
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-    credentials: true
+    origin: /.*\.yavshok\.ru$/
   }))
+  .use(publicRateLimit) // Apply rate limit to experiments at root level
   .use(securityMiddleware) // Apply security middleware after CORS
   .use(requestLogger) // Log all requests for monitoring
-  .use(globalRateLimit) // Apply global rate limit to all routes
   .use(SharedModel)
+  .use(existController)
+  .use(userController)
+  .use(experimentsController) // Move experiments to root level
   .get("/health", async () => {
     try {
       // Test database connectivity
@@ -54,19 +45,8 @@ const app = new Elysia()
     }
   })
   .group("/auth", (app) => 
-    app.use(authRateLimit).use(authController)
+    app.use(authController)
   )
-  .group("/api", (app) => 
-    app
-      .use(apiRateLimit)
-      .use(userController)
-      .group("/db", (dbApp) => 
-        dbApp.use(dbRateLimit).use(existController)
-      )
-      .group("/public", (publicApp) => 
-        publicApp.use(publicRateLimit).use(experimentsController)
-      )
-  );
 
 app
   .use(
