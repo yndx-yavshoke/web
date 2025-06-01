@@ -9,7 +9,7 @@ import cors from "@elysiajs/cors";
 import { 
   publicRateLimit 
 } from "./utils/rateLimiter";
-import { securityMiddleware, requestLogger } from "./utils/security";
+import { requestLogger } from "./utils/security";
 import { db, dbPool } from "./db";
 
 const app = new Elysia()
@@ -17,7 +17,6 @@ const app = new Elysia()
     origin: /.*\.yavshok\.ru$/
   }))
   .use(publicRateLimit) // Apply rate limit to experiments at root level
-  .use(securityMiddleware) // Apply security middleware after CORS
   .use(requestLogger) // Log all requests for monitoring
   .use(SharedModel)
   .use(existController)
