@@ -78,6 +78,11 @@ app
         },
       },
       provider: "swagger-ui",
+      swaggerOptions: {
+        persistAuthorization: true,
+      },
+      excludeStaticFile: false,
+      path: "/swagger"
     })
   )
   .listen(3000);
