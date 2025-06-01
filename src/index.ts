@@ -17,13 +17,24 @@ import { securityMiddleware, requestLogger } from "./utils/security";
 import { db, dbPool } from "./db";
 
 const app = new Elysia()
-  .use(cors())
-  .use(securityMiddleware) // Apply security middleware first
+  .use(cors({
+    origin: [
+      'https://yavshok.ru',
+      'http://localhost:3000',
+      'http://localhost:5173',
+      'http://127.0.0.1:5173'
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+    credentials: true
+  }))
+  .use(securityMiddleware) // Apply security middleware after CORS
   .use(requestLogger) // Log all requests for monitoring
   .use(globalRateLimit) // Apply global rate limit to all routes
   .use(SharedModel)
   .get("/health", async () => {
     try {
+      // Test database connectivity
       return {
         status: "ok",
         timestamp: new Date().toISOString(),
