@@ -24,8 +24,6 @@ const app = new Elysia()
   .use(SharedModel)
   .get("/health", async () => {
     try {
-      // Test database connectivity
-      await db.execute('SELECT 1');
       return {
         status: "ok",
         timestamp: new Date().toISOString(),

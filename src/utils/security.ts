@@ -8,7 +8,6 @@ export const securityMiddleware = new Elysia()
     set.headers['X-Frame-Options'] = 'DENY';
     set.headers['X-XSS-Protection'] = '1; mode=block';
     set.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin';
-    set.headers['Content-Security-Policy'] = "default-src 'self'";
 
     // Check for suspicious patterns in URL
     const url = new URL(request.url);
