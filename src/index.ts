@@ -6,9 +6,6 @@ import { userController } from "./controllers/user";
 import { swagger } from "@elysiajs/swagger";
 import { SharedModel } from "./models/sharedModel";
 import cors from "@elysiajs/cors";
-import { 
-  publicRateLimit 
-} from "./utils/rateLimiter";
 import { requestLogger } from "./utils/security";
 import { db, dbPool } from "./db";
 
@@ -16,7 +13,6 @@ const app = new Elysia()
   .use(cors({
     origin: /.*\.yavshok\.ru$/
   }))
-  .use(publicRateLimit) // Apply rate limit to experiments at root level
   .use(requestLogger) // Log all requests for monitoring
   .use(SharedModel)
   .use(existController)
