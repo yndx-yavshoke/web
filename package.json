@@ -1,0 +1,35 @@
+{
+  "name": "server",
+  "version": "1.0.50",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "bun run --watch src/index.ts",
+    "db:push": "bun run drizzle-kit push",
+    "db:migrate": "bun run drizzle-kit migrate"
+  },
+  "dependencies": {
+    "@elysiajs/cors": "^1.2.0",
+    "@elysiajs/swagger": "^1.2.0",
+    "@node-rs/argon2": "^2.0.2",
+    "@node-rs/jsonwebtoken": "^0.5.9",
+    "dotenv": "^16.5.0",
+    "drizzle-orm": "^0.41.0",
+    "elysia": "^1.2.25",
+    "elysia-rate-limit": "^4.3.0",
+    "pg": "^8.14.1"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.11.11",
+    "@typescript-eslint/eslint-plugin": "^8.33.0",
+    "@typescript-eslint/parser": "^8.33.0",
+    "bun-types": "latest",
+    "drizzle-kit": "^0.30.6",
+    "eslint": "^9.28.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-prettier": "^5.4.1",
+    "prettier": "^3.5.3",
+    "tsx": "^4.19.3"
+  },
+  "module": "src/index.js"
+}
