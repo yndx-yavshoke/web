@@ -18,5 +18,10 @@ export const publicRateLimit = rateLimit({
     }
   ),
   scoping: "scoped",
-  headers: true
+  headers: true,
+  skip: (request) => {
+    const url = new URL(request.url);
+    // Skip rate limiting for Swagger UI paths
+    return url.pathname.startsWith('/swagger');
+  }
 }); 
