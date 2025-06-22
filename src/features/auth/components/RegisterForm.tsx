@@ -9,7 +9,6 @@ import { apiClient } from "@/src/shared/lib/apiClient/apiClient";
 import { useSession } from "@/src/features/auth/SessionProvider";
 import { useResponsiveStyles } from "@/src/shared/lib/responsive/responsiveStyles";
 import { useRouter } from "expo-router";
-import { useFormTestIds } from "@/src/shared/testing";
 
 interface RegisterFormData {
   email: string;
@@ -25,10 +24,6 @@ export const RegisterForm = () => {
   const {
     experiments: { flags },
   } = useExperiments();
-
-  // Add test IDs for form elements
-  const formElements = useFormTestIds('register', ['email', 'password', 'age', 'submit', 'back']);
-  const [emailInput, passwordInput, ageInput, submitButton, backButton] = formElements;
 
   const {
     control,
@@ -101,8 +96,7 @@ export const RegisterForm = () => {
         render={({ field: { onChange, value }, fieldState: { error } }) => (
           <>
             <TextInput
-              ref={emailInput.ref}
-              testID={emailInput.testID}
+              testID="register-email-input"
               style={[
                 styles.input,
                 errors.email && styles.inputError,
@@ -133,8 +127,7 @@ export const RegisterForm = () => {
         render={({ field: { onChange, value }, fieldState: { error } }) => (
           <>
             <TextInput
-              ref={passwordInput.ref}
-              testID={passwordInput.testID}
+              testID="register-password-input"
               style={[
                 styles.input,
                 error && styles.inputError,
@@ -165,8 +158,7 @@ export const RegisterForm = () => {
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <>
               <TextInput
-                ref={ageInput.ref}
-                testID={ageInput.testID}
+                testID="register-age-input"
                 style={[
                   styles.input,
                   error && styles.inputError,
@@ -187,8 +179,7 @@ export const RegisterForm = () => {
 
       <View style={[styles.buttonContainer, isDesktop && styles.desktopButtonContainer]}>
         <Button 
-          ref={submitButton.ref}
-          testID={submitButton.testID}
+          testID="register-submit-button"
           onPress={handleSubmit(onSubmit)}
           style={isDesktop && styles.desktopButton}
         >
@@ -196,8 +187,7 @@ export const RegisterForm = () => {
         </Button>
 
         <Button 
-          ref={backButton.ref}
-          testID={backButton.testID}
+          testID="register-back-button"
           variant="secondary" 
           onPress={handleGoBack}
           style={isDesktop && styles.desktopButton}

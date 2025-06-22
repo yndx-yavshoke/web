@@ -1,6 +1,3 @@
-// Hooks
-export { useTestId, useTestIds, useFormTestIds } from '../hooks/useTestId';
-
 // Types
 export interface TestIdProps {
   testID: string;

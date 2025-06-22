@@ -107,6 +107,7 @@ export const EditForm = () => {
             }}
             render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
+                testID="edit-name-input"
                 style={[
                   styles.input,
                   isDesktop && styles.desktopInput,
@@ -132,6 +133,7 @@ export const EditForm = () => {
 
         <View style={styles.buttonContainer}>
           <Button
+            testID="edit-save-button"
             onPress={handleSubmit(onSubmit)}
             disabled={isSubmitting}
             style={[styles.saveButton, isDesktop && styles.desktopButton]}
@@ -142,6 +144,7 @@ export const EditForm = () => {
           </Button>
 
           <Button
+            testID="edit-cancel-button"
             onPress={handleGoBack}
             disabled={isSubmitting}
             style={[styles.cancelButton, isDesktop && styles.desktopButton]}

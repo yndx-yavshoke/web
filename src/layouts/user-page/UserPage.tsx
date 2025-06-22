@@ -59,12 +59,14 @@ export const UserPage = memo(() => {
 
   const renderGalleryItem = ({ item }: { item: PhotoItem }) => (
     <TouchableOpacity 
+      testID={`gallery-item-${item.id}`}
       style={[
         styles.galleryItem, 
         { width: itemSize, height: itemSize }
       ]}
     >
       <Image
+        testID={`gallery-image-${item.id}`}
         source={item.image}
         contentFit="cover"
         style={styles.galleryImage}
@@ -132,6 +134,7 @@ export const UserPage = memo(() => {
           <View style={[styles.header, isDesktop && styles.desktopHeader]}>
             <View style={styles.profileSection}>
               <Image
+                testID="user-avatar"
                 source={require("../../../assets/images/profile.gif")}
                 style={[styles.avatar, isDesktop && styles.desktopAvatar]}
               />
@@ -144,6 +147,7 @@ export const UserPage = memo(() => {
                 </Text>
                 {isDesktop && (
                   <TouchableOpacity 
+                    testID="user-edit-profile-button"
                     style={styles.editProfileButton}
                     onPress={handleEditProfile}
                   >
@@ -158,6 +162,7 @@ export const UserPage = memo(() => {
           <View style={[styles.headerActions, isDesktop && {justifyContent: 'flex-end'}]}>
             {!isDesktop && statsContent}
             <TouchableOpacity 
+              testID="user-logout-button"
               style={styles.logoutButton} 
               hitSlop={5} 
               onPress={handleLogout}
@@ -171,6 +176,7 @@ export const UserPage = memo(() => {
         {!isDesktop && (
           <View style={styles.profileInfo}>
             <TouchableOpacity 
+              testID="user-edit-profile-button-mobile"
               style={styles.editProfileButton}
               onPress={handleEditProfile}
             >

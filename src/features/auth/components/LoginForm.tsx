@@ -7,7 +7,6 @@ import { Button } from "@/src/shared/ui/button/Button";
 import { useRouter } from "expo-router";
 import { useSession } from "@/src/features/auth/SessionProvider";
 import { apiClient } from "@/src/shared/lib/apiClient/apiClient";
-import { useFormTestIds } from "@/src/shared/testing";
 
 interface LoginFormData {
   email: string;
@@ -19,10 +18,6 @@ export const LoginForm = () => {
   const navigation = useNavigation();
   const router = useRouter();
   const { setAuthToken, setUserData } = useSession();
-
-  // Add test IDs for form elements
-  const formElements = useFormTestIds('login', ['email', 'password', 'submit', 'back', 'register']);
-  const [emailInput, passwordInput, submitButton, backButton, registerButton] = formElements;
 
   const {
     control,
@@ -89,8 +84,7 @@ export const LoginForm = () => {
         render={({ field: { onChange, value }, fieldState: { error } }) => (
           <>
             <TextInput
-              ref={emailInput.ref}
-              testID={emailInput.testID}
+              testID="login-email-input"
               style={[
                 styles.input,
                 (errors.email || errors.root) && styles.inputError,
@@ -116,8 +110,7 @@ export const LoginForm = () => {
         render={({ field: { onChange, value }, fieldState: { error } }) => (
           <>
             <TextInput
-              ref={passwordInput.ref}
-              testID={passwordInput.testID}
+              testID="login-password-input"
               style={[
                 styles.input,
                 (errors.email || errors.root) && styles.inputError,
@@ -141,8 +134,7 @@ export const LoginForm = () => {
       <View style={styles.actionsContainer}>
         <View style={styles.buttonContainer}>
           <Button 
-            ref={submitButton.ref}
-            testID={submitButton.testID}
+            testID="login-submit-button"
             style={styles.buttonFlex} 
             onPress={handleSubmit(onSubmit)}
           >
@@ -150,8 +142,7 @@ export const LoginForm = () => {
           </Button>
 
           <Button
-            ref={backButton.ref}
-            testID={backButton.testID}
+            testID="login-back-button"
             variant="secondary"
             style={styles.buttonFlex}
             onPress={handleGoBack}
@@ -160,8 +151,7 @@ export const LoginForm = () => {
           </Button>
         </View>
         <Button 
-          ref={registerButton.ref}
-          testID={registerButton.testID}
+          testID="login-register-button"
           onPress={handleOpenRegistration} 
           fullWidth
         >

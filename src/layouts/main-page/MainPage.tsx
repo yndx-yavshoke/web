@@ -35,6 +35,7 @@ export const MainPage = () => {
         <Text style={[styles.title, isDesktop && styles.desktopTitle]}>Я в ШОКе</Text>
 
         <TextInput
+          testID="main-email-input"
           style={[styles.input, isDesktop && styles.desktopInput]}
           placeholder="Введите email"
           value={email}
@@ -67,6 +68,7 @@ export const MainPage = () => {
 
         <View style={{width: isDesktop ? 300 : "100%"}}>
             <Button
+              testID="main-check-button"
               disabled={email.length === 0}
               onPress={checkExist}
               variant="secondary"
@@ -79,6 +81,7 @@ export const MainPage = () => {
 
         <View style={{width: isDesktop ? 300 : "100%"}}>
           <Button 
+            testID="main-login-button"
             onPress={() => router.push("/login")} 
             fullWidth={true}
             style={isDesktop && styles.desktopButton}

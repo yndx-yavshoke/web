@@ -25,6 +25,7 @@
     "@react-navigation/native": "^7.0.14",
     "@sinclair/typebox": "^0.34.33",
     "@types/bun": "^1.2.9",
+    "@yndx-yavshoke/backend": "^1.0.6",
     "elysia": "^1.2.25",
     "expo": "~52.0.43",
     "expo-asset": "~11.0.5",
