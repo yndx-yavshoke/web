@@ -57,11 +57,21 @@ export const authController = new Elysia().guard(
         {
           body: t.Object(
             {
-              email: t.String(),
-              password: t.String(),
+              email: t.String({ 
+                format: "email",
+                maxLength: 50,
+                description: "User email (max 50 characters)"
+              }),
+              password: t.String({
+                minLength: 5,
+                maxLength: 20,
+                description: "User password (5-20 characters)"
+              }),
               age: t.Optional(
                 t.Number({
-                  description: "Users age (optional)",
+                  minimum: 0,
+                  maximum: 99,
+                  description: "User age (0-99, optional)",
                 })
               ),
             },

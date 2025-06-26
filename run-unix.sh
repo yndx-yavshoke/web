@@ -14,7 +14,7 @@ NC='\033[0m' # No Color
 # Default values
 ACTION="up"
 BUILD_FLAG=""
-DETACH_FLAG=""
+DETACH_FLAG="-d"
 SHOW_HELP=false
 
 # Function to display colored output

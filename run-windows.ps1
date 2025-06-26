@@ -4,7 +4,7 @@
 param(
     [string]$Action = "up",
     [switch]$Build = $false,
-    [switch]$Detach = $false,
+    [switch]$Detach = $true,
     [switch]$Help = $false
 )
 
