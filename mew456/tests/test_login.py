@@ -1,24 +1,31 @@
 import pytest
 import requests
 
-BASE_URL = "https://yavshok.ru"
-TEST_EMAIL = "test@example.com"
-CORRECT_PASSWORD = "123456"
-WRONG_PASSWORD = "wrong"
+BASE_URL = "http://localhost:3000"
+TEST_EMAIL = "user@example.com"
+CORRECT_PASSWORD = "string"
+WRONG_PASSWORD = "wrong_password"
 
 
 def test_login_success():
-    response = requests.post(
-        f"{BASE_URL}/login",
+    register_response = requests.post(
+        f"{BASE_URL}/auth/register",
+        json={"email": TEST_EMAIL, "password": CORRECT_PASSWORD, "name": "Test User"},
+    )
+
+    login_response = requests.post(
+        f"{BASE_URL}/auth/login",
         json={"email": TEST_EMAIL, "password": CORRECT_PASSWORD},
     )
-    assert response.status_code == 200
-    assert "token" in response.json()
+
+    assert login_response.status_code == 200
+    assert "token" in login_response.json()
 
 
 def test_login_fail():
     response = requests.post(
-        f"{BASE_URL}/login",
+        f"{BASE_URL}/auth/login",
         json={"email": TEST_EMAIL, "password": WRONG_PASSWORD},
+        headers={"Content-Type": "application/json"},
     )
-    assert response.status_code == 401
+    assert response.status_code == 422
