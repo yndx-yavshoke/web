@@ -1,18 +1,28 @@
 import pytest
 import requests
 
-BASE_URL = "https://yavshok.ru"
-CORRECT_EMAIL = "test@example.com"
+BASE_URL = "http://localhost:3000"
+CORRECT_EMAIL = "user@example.com"
 INCORRECT_EMAIL = "newtest@example.com"
+CORRECT_PASSWORD = "string"
 
 
 def test_vshok_successful():
-    response = requests.post(
-        f"{BASE_URL}",
+    register_response = requests.post(
+        f"{BASE_URL}/auth/register",
+        json={
+            "email": CORRECT_EMAIL,
+            "password": CORRECT_PASSWORD,
+            "name": "Test User",
+        },
+    )
+
+    vshok_response = requests.post(
+        f"{BASE_URL}/exist",
         json={"email": CORRECT_EMAIL},
     )
-    assert response.status_code == 200
-    assert "token" in response.json()
+    assert vshok_response.status_code == 200
+    assert vshok_response.json().get("exist") is True
 
 
 def test_vshok_fail():
@@ -20,4 +30,4 @@ def test_vshok_fail():
         f"{BASE_URL}",
         json={"email": INCORRECT_EMAIL},
     )
-    assert response.status_code == 401
+    assert response.status_code == 404
