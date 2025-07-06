@@ -2,10 +2,10 @@ package utils
 
 import client.ShokClient
 import io.restassured.RestAssured
+import model.TestUser
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import java.time.LocalDateTime
-import java.time.LocalTime
 
 open class baseTest {
 
@@ -21,6 +21,7 @@ open class baseTest {
             println("===Начало выполнения тестов===")
             RestAssured.enableLoggingOfRequestAndResponseIfValidationFails()
             shokClient = ShokClient()
+            println("Мы подключиличь к серверу: ${Config.baseUrl}")
         }
 
         @AfterAll

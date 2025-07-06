@@ -1,8 +1,11 @@
 package client
 
 import io.restassured.RestAssured
+import io.restassured.builder.RequestSpecBuilder
+import utils.Config
 import io.restassured.response.Response
 import io.restassured.http.ContentType
+import io.restassured.specification.RequestSpecification
 import model.ErrorLogin
 import model.ErrorMessage
 import model.Exist
@@ -12,29 +15,39 @@ import model.RegisterUser
 import model.UserLogIn
 import model.UserMe
 import model.UserName
-import org.apache.http.HttpStatus
 import utils.JsonUtils
 
 
 open class ShokClient {
 
-    private val baseUrl = "http://localhost:3000"  // "https://api.yavshok.ru"
+    // private val baseUrl = "http://localhost:3000"  // "https://api.yavshok.ru"
 
+    private val baseSpec: RequestSpecification = RequestSpecBuilder()
+        .setBaseUri(Config.baseUrl)
+        .setContentType(ContentType.JSON)
+        .build()
+
+    private fun aurhSpec(token: String): RequestSpecification{
+        return RequestSpecBuilder()
+            .addRequestSpecification(baseSpec)
+            .addHeader("Authorization", "Bearer $token")
+            .build()
+    }
 
     fun existUser(existUserData: ExistUserData) : Exist{
         val response: Response = RestAssured.given()
-            .contentType(ContentType.JSON)
+            .spec(baseSpec)
             .body(JsonUtils.toJson(existUserData))
-            .post("${baseUrl}/exist")
+            .post("/exist")
 
         return JsonUtils.fromJson<Exist>(response.body.asString())
     }
 
     fun loginUser(userLogIn: UserLogIn) : LoggedUser{
         val response: Response = RestAssured.given()
-            .contentType(ContentType.JSON)
+            .spec(baseSpec)
             .body(JsonUtils.toJson(userLogIn))
-            .post("${baseUrl}/auth/login")
+            .post("/auth/login")
             .then()
             .extract()
             .response()
@@ -44,32 +57,32 @@ open class ShokClient {
 
     fun renameUser(name: UserName, token: String) : UserMe {
         val response: Response = RestAssured.given()
-            .contentType(ContentType.JSON)
-            .auth().oauth2(token)
+            .spec(aurhSpec(token))
             .body(JsonUtils.toJson(name))
-            .patch("${baseUrl}/user/name")
+            .patch("/user/name")
+
         return JsonUtils.fromJson<UserMe>(response.body.asString())
     }
 
     fun registerUser(registerUser: RegisterUser) : LoggedUser {
         val response: Response = RestAssured.given()
-            .contentType(ContentType.JSON)
+            .spec(baseSpec)
             .body(JsonUtils.toJson(registerUser))
-            .post("${baseUrl}/auth/register")
+            .post("/auth/register")
         return JsonUtils.fromJson<LoggedUser>(response.body.asString())
     }
 
     fun userMe(token: String) : UserMe {
         val response: Response = RestAssured.given()
-            .auth().oauth2(token)
-            .get("${baseUrl}/user/me")
+            .spec(aurhSpec(token))
+            .get("/user/me")
         return JsonUtils.fromJson<UserMe>(response.body.asString())
     }
 
     fun userMeInvalid(token: String) : Pair<Int, ErrorMessage> {
         val response: Response = RestAssured.given()
-            .auth().oauth2(token)
-            .get("${baseUrl}/user/me")
+            .spec(aurhSpec(token))
+            .get("/user/me")
             .then()
             .extract()
             .response()
@@ -79,9 +92,9 @@ open class ShokClient {
 
     fun errorLoginUser(userLogIn: UserLogIn) : Pair<Int, ErrorLogin> {
         val response: Response = RestAssured.given()
-            .contentType(ContentType.JSON)
+            .spec(baseSpec)
             .body(JsonUtils.toJson(userLogIn))
-            .post("${baseUrl}/auth/login")
+            .post("/auth/login")
             .then()
             .extract()
             .response()

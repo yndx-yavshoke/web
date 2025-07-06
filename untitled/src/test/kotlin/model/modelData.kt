@@ -65,3 +65,9 @@ data class ErrorPassword(
     val password: String
 )
 
+@Serializable
+data class TestUser(
+    val email: String,
+    val password: String
+)
+

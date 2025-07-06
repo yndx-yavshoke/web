@@ -22,11 +22,12 @@ fun randomPassword(): String{
         .joinToString("")
 }
 
-fun randomAge(people: String): Int{
+fun randomAge(people: String = "Any"): Int{
     return when (people) {
         "yang" -> Random.nextInt(0, 22)
         "adult" -> Random.nextInt(22, 69)
-        else -> Random.nextInt(69, 100)
+        "old" -> Random.nextInt(69, 100)
+        else -> Random.nextInt(0, 99)
     }
 }
 
