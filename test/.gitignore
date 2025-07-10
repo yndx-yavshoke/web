@@ -1,0 +1,13 @@
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+tests/fixture/login/auth/setup/authData.ts
+tests/fixture/login/auth/setup/user.json
+allure-report/
+allure-results/
+html-report/
+test-results/
