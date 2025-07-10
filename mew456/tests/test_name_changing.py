@@ -27,3 +27,4 @@ def test_name_changing():
     assert update_response.status_code == 200
 
     response_json = update_response.json()
+
