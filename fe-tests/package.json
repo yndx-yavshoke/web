@@ -1,0 +1,30 @@
+{
+  "name": "fe-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:report": "playwright show-report",
+    "allure:generate": "allure generate allure-results --clean",
+    "allure:open": "allure open allure-report",
+    "testplane": "testplane",
+    "testplane:gui": "testplane gui",
+    "testplane:report": "testplane --reporter html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.53.2",
+    "@types/node": "^24.0.10",
+    "allure-playwright": "^3.3.0",
+    "html-reporter": "^10.18.7"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^9.9.0"
+  }
+}
