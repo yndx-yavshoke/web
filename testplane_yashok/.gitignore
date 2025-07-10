@@ -1,0 +1,14 @@
+node_modules/
+
+testplane-report/
+.testplane/
+
+*.log
+
+.vscode/
+.idea/
+.DS_Store
+
+dist/
+build/
+.cache/ 
