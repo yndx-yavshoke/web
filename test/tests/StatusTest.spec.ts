@@ -29,7 +29,7 @@ test('Young status is showed', async ({ page }) => {
     });
 
     await test.step('Checking young status is showed', async () => {
-        expect(page.getByText('Ты молоденький котик')).toBeVisible();
+        await expect(page.getByText('Ты молоденький котик')).toBeVisible();
     });
 });
 
@@ -92,6 +92,6 @@ test('Old status is showed', async ({ page }) => {
     });
 
     await test.step('Checking adult status is showed', async () => {
-        expect(page.getByText('Ты старый котик')).toBeVisible();
+        await expect(page.getByText('Ты старый котик')).toBeVisible();
     });
 });
