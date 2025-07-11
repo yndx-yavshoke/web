@@ -3,6 +3,7 @@ import { test } from '../fixtures/index';
 import { TEST_UNREGISTERED_EMAIL, TEST_RANDOM_PASSWORD } from '../constants/env';
 import { COLORS } from '../constants/colors';
 import { AUTH_MSG, MSG } from '../constants/messages';
+import { expectAuthPageUI } from '../utils/testHelpers';
 
 test.describe('Авторизация зарегистрированного пользователя', () => {
   test('Succesfull auth with valid user credentials', async ({ authPage, testEmail, testPassword, page }) => {
@@ -55,17 +56,7 @@ test.describe('Проверка UI элементов страницы авто�
   });
 
   test('All main elements are visible and correct', async ({ authPage }) => {
-    await expect(authPage.title).toBeVisible();
-
-    await expect(authPage.emailInput).toBeVisible();
-    await expect(authPage.emailPlaceholder).toBeVisible();
-
-    await expect(authPage.passwordInput).toBeVisible();
-    await expect(authPage.passwordPlaceholder).toBeVisible();
-
-    await expect(authPage.toLoginButton).toBeVisible();
-    await expect(authPage.toBackButton).toBeVisible();
-    await expect(authPage.toRegisterButton).toBeVisible();
+    await expectAuthPageUI(authPage);
   });
 
   test('Navigate to registration page on clicking "Register" button', async ({ authPage, page }) => {

@@ -1,7 +1,7 @@
 import { Page, Locator, expect } from '@playwright/test';
 import { REG_MSG, MSG } from '../../constants/messages';
 
-export class ShockRegisterPage {
+export class ShokRegisterPage {
   public title: Locator;
 
   public emailInput: Locator;

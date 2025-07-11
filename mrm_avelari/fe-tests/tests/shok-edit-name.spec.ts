@@ -1,6 +1,7 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/index';
 import { faker } from '@faker-js/faker';
+import { expectEditProfilePageUI } from '../utils/testHelpers';
 
 test.describe('Проверка UI элементов страницы редактирования профиля', () => {
   test.beforeEach(async ({ editProfilePage }) => {
@@ -8,17 +9,7 @@ test.describe('Проверка UI элементов страницы реда�
   });
 
   test('All main elements are visible and correct', async ({ editProfilePage }) => {
-    await expect(editProfilePage.title).toBeVisible();
-
-    await expect(editProfilePage.labelName).toBeVisible();
-    await expect(editProfilePage.inputPlaceholder).toBeVisible();
-    await expect(editProfilePage.input).toBeVisible();
-
-    await expect(editProfilePage.saveButtonLabel).toBeVisible();
-    await expect(editProfilePage.toSaveButton).toBeVisible();
-
-    await expect(editProfilePage.cancelButtonLabel).toBeVisible();
-    await expect(editProfilePage.toCancelButton).toBeVisible();
+    await expectEditProfilePageUI(editProfilePage);
   });
 
   test('Successful name change', async ({ editProfilePage }) => {

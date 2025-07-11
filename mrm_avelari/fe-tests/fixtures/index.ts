@@ -2,7 +2,7 @@ import { ShokMainPage } from './pages/ShokMainPage';
 import { ShokAuthPage } from './pages/ShokAuthPage';
 import { ShokProfilePage } from './pages/ShokProfilePage';
 import { ShokEditProfilePage } from './pages/ShokEditProfilePage';
-import { ShockRegisterPage } from './pages/ShokRegisterPage';
+import { ShokRegisterPage } from './pages/ShokRegisterPage';
 import { TEST_USER_EMAIL, TEST_USER_PASSWORD } from '../constants/env';
 import { test as base } from '@playwright/test';
 
@@ -11,7 +11,7 @@ type ShokFixtures = {
   authPage: ShokAuthPage;
   profilePage: ShokProfilePage;
   editProfilePage: ShokEditProfilePage;
-  registerPage: ShockRegisterPage;
+  registerPage: ShokRegisterPage;
   testEmail: string;
   testPassword: string;
 };
@@ -24,7 +24,7 @@ export const test = base.extend<ShokFixtures>({
   },
 
   registerPage: async ({ page }, use) => {
-    const registerPage = new ShockRegisterPage(page);
+    const registerPage = new ShokRegisterPage(page);
     await use(registerPage);
   },
 

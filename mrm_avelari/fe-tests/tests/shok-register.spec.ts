@@ -3,6 +3,7 @@ import { test } from '../fixtures';
 import { faker } from '@faker-js/faker';
 import { TEST_USER_EMAIL } from '../constants/env';
 import { REG_MSG } from '../constants/messages';
+import { expectRegisterPageUI } from '../utils/testHelpers';
 
 test.describe('Регистрация пользователя', () => {
   test.skip('Succesfull registration with valid user credentials', async ({ registerPage }) => {
@@ -38,21 +39,7 @@ test.describe('Проверка UI элементов страницы реги�
   });
 
   test('All main elements are visible and correct', async ({ registerPage }) => {
-    await expect(registerPage.title).toBeVisible();
-
-    await expect(registerPage.emailInput).toBeVisible();
-    await expect(registerPage.emailPlaceholder).toBeVisible();
-
-    await expect(registerPage.passwordInput).toBeVisible();
-    await expect(registerPage.passwordPlaceholder).toBeVisible();
-
-    await expect(registerPage.ageInput).toBeVisible();
-    await expect(registerPage.agePlaceholder).toBeVisible();
-
-    await expect(registerPage.toRegisterButton).toBeVisible();
-    await expect(registerPage.registerButtonLabel).toBeVisible();
-    await expect(registerPage.toBackButton).toBeVisible();
-    await expect(registerPage.backButtonLabel).toBeVisible();
+    await expectRegisterPageUI(registerPage);
   });
 
   test('Navigate back on clicking "Back" button', async ({ registerPage, page }) => {

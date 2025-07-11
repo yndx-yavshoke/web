@@ -2,6 +2,7 @@ import { test } from '../fixtures/index';
 import { expect, Page } from '@playwright/test';
 import { YOUNG_MOCK, ADULT_MOCK, OLD_MOCK } from '../constants/mocks';
 import { API } from '../constants/api';
+import { expectProfilePageUI } from '../utils/testHelpers';
 
 export const mockAge = async (page: Page, mock: unknown) => {
   await page.route(API.EXPERIMENTS, (route) => {
@@ -18,28 +19,7 @@ test.describe('Проверка UI элементов страницы проф�
   });
 
   test('All main UI elements are visible and correct', async ({ profilePage }) => {
-    await expect(profilePage.avatar).toBeVisible();
-    await expect(profilePage.name).toBeVisible();
-    await expect(profilePage.status).toBeVisible();
-
-    await expect(profilePage.toEditProfileButton).toBeVisible();
-    await expect(profilePage.editProfileLabel).toBeVisible();
-
-    await expect(profilePage.toLogoutButton).toBeVisible();
-    await expect(profilePage.logoutLabel).toBeVisible();
-
-    await expect(profilePage.galleryImageFirst).toBeVisible();
-    await expect(profilePage.galleryImageSecond).toBeVisible();
-    await expect(profilePage.galleryImageThird).toBeVisible();
-    await expect(profilePage.galleryImageFourth).toBeVisible();
-
-    await expect(profilePage.postsLabel).toBeVisible();
-    await expect(profilePage.followersLabel).toBeVisible();
-    await expect(profilePage.likesLabel).toBeVisible();
-
-    await expect(profilePage.postsCount).toBeVisible();
-    await expect(profilePage.followersCount).toBeVisible();
-    await expect(profilePage.likesCount).toBeVisible();
+    await expectProfilePageUI(profilePage);
   });
 
   test('Clicking "Edit Profile" button navigates to edit page', async ({ profilePage, page }) => {

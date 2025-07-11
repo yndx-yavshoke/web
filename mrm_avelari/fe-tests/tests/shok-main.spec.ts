@@ -2,6 +2,7 @@ import { expect } from '@playwright/test';
 import { test } from '../fixtures/index';
 import { TEST_USER_EMAIL, TEST_UNREGISTERED_EMAIL } from '../constants/env';
 import { COLORS } from '../constants/colors';
+import { expectMainPageUI } from '../utils/testHelpers';
 
 test.describe('Проверка UI элементов главной страницы и навигации', () => {
   test.beforeEach(async ({ mainPage }) => {
@@ -9,11 +10,7 @@ test.describe('Проверка UI элементов главной стран�
   });
 
   test('All main elements are visible and correct', async ({ mainPage }) => {
-    await expect(mainPage.title).toBeVisible();
-    await expect(mainPage.input).toBeVisible();
-    await expect(mainPage.inputPlaceholder).toBeVisible();
-    await expect(mainPage.checkButton).toBeVisible();
-    await expect(mainPage.toLoginButton).toBeVisible();
+    await expectMainPageUI(mainPage);
   });
 
   test('Navigate to login page on clicking "Login" button', async ({ mainPage, page }) => {
