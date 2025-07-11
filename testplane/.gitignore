@@ -1,0 +1,16 @@
+.testplane/
+testplane-report/
+
+node_modules/
+
+.DS_Store
+Thumbs.db
+*.log
+
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+
+.env
+.env.local
