@@ -21,6 +21,6 @@ export class NameEditor {
     public async changeName(name: string) {
         await this.input.fill(name);
         await this.saveButton.click();
-        await this.page.waitForTimeout(500);
+        await this.page.getByText('Save Changes').waitFor();
     }
 } 
