@@ -1,0 +1,20 @@
+{
+  "name": "fe-tests",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@faker-js/faker": "^9.9.0",
+    "@playwright/test": "^1.53.2",
+    "@types/node": "^24.0.12"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.0",
+    "faker": "^6.6.6",
+    "faker-js": "^1.0.0"
+  }
+}
