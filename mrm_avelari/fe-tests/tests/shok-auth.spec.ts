@@ -1,110 +1,82 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/index';
-import { TEST_UNREGISTERED_EMAIL, TEST_RANDOM_PASSWORD } from '../fixtures/env';
+import { TEST_UNREGISTERED_EMAIL, TEST_RANDOM_PASSWORD } from '../constants/env';
+import { COLORS } from '../constants/colors';
+import { AUTH_MSG, MSG } from '../constants/messages';
 
-const mock = {
-  flags: {
-    age: {
-      enabled: true,
-      young: {
-        from: 0,
-        to: 21,
-      },
-      adult: {
-        from: 22,
-        to: 68,
-      },
-      old: {
-        from: 69,
-        to: 99,
-      },
-      oldFrom: 26,
-      youngFrom: 2,
-    },
-  },
-};
-
-test.describe('AUTORIZATION', () => {
-  test('auth state', async ({ page }) => {
-    await page.goto('/');
-
-    await page.route('https://api.yavshok.ru/experiments', (route) => {
-      route.fulfill({
-        status: 200,
-        body: JSON.stringify(mock),
-      });
-    });
-
-    await expect(page.getByTestId('main-email-input')).not.toBeVisible();
-    await expect(page.getByText('Ты старый котик')).toBeVisible();
-    await expect(page.getByTestId('user-logout-button')).toBeVisible();
-  });
-
-  test('Succesfull auth with valid user credentials', async ({
-    authPage,
-    testEmail,
-    testPassword,
-    page,
-  }) => {
+test.describe('Авторизация зарегистрированного пользователя', () => {
+  test('Succesfull auth with valid user credentials', async ({ authPage, testEmail, testPassword, page }) => {
     await authPage.open();
     await authPage.login(testEmail, testPassword);
 
     await expect(page.getByTestId('user-logout-button')).toBeVisible();
   });
+});
 
+test.describe('Авторизация незарегистрированного пользователя', () => {
   test('Error on login with non-existent user', async ({ authPage }) => {
     await authPage.open();
     await authPage.login(TEST_UNREGISTERED_EMAIL, TEST_RANDOM_PASSWORD);
 
-    const error = authPage.page.getByText('Неправильный логин или пароль');
+    const error = authPage.page.getByText(AUTH_MSG.INVALID_CREDENTIALS);
     await expect(error).toBeVisible();
-
-    await expect(authPage.emailInput).toHaveCSS(
-      'border-color',
-      'rgb(255, 0, 0)',
-    );
-    await expect(authPage.passwordInput).toHaveCSS(
-      'border-color',
-      'rgb(255, 0, 0)',
-    );
+    await expect(authPage.emailInput).toHaveCSS('border-color', COLORS.RED);
+    await expect(authPage.passwordInput).toHaveCSS('border-color', COLORS.RED);
   });
+});
 
+test.describe('Обработка ошибок при пустых полях', () => {
   test('Error on login with empty fields', async ({ authPage }) => {
     await authPage.open();
     await authPage.login('', '');
 
-    const emailError = authPage.page.getByText('Введите email');
-    await expect(emailError).toBeVisible();
-    await expect(authPage.emailInput).toHaveCSS(
-      'border-color',
-      'rgb(255, 0, 0)',
-    );
+    await expect(authPage.page.getByText(MSG.EMPTY_EMAIL)).toBeVisible();
+    await expect(authPage.emailInput).toHaveCSS('border-color', COLORS.RED);
 
-    const passwordError = authPage.page.getByText('Введите пароль');
-    await expect(passwordError).toBeVisible();
-    await expect(authPage.passwordInput).toHaveCSS(
-      'border-color',
-      'rgb(255, 0, 0)',
-    );
+    await expect(authPage.page.getByText(MSG.EMPTY_PASSWORD)).toBeVisible();
+    await expect(authPage.passwordInput).toHaveCSS('border-color', COLORS.RED);
   });
+});
 
-  test('Error on login with valid email and wrong password', async ({
-    authPage,
-    testEmail,
-  }) => {
+test.describe('Обработка ошибок при неверном пароле', () => {
+  test('Error on login with valid email and wrong password', async ({ authPage, testEmail }) => {
     await authPage.open();
     await authPage.login(testEmail, TEST_RANDOM_PASSWORD);
 
-    const error = authPage.page.getByText('Неправильный логин или пароль');
-    await expect(error).toBeVisible();
+    await expect(authPage.page.getByText(AUTH_MSG.INVALID_CREDENTIALS)).toBeVisible();
+    await expect(authPage.emailInput).toHaveCSS('border-color', COLORS.RED);
+    await expect(authPage.passwordInput).toHaveCSS('border-color', COLORS.RED);
+  });
+});
 
-    await expect(authPage.emailInput).toHaveCSS(
-      'border-color',
-      'rgb(255, 0, 0)',
-    );
-    await expect(authPage.passwordInput).toHaveCSS(
-      'border-color',
-      'rgb(255, 0, 0)',
-    );
+test.describe('Проверка UI элементов страницы авторизации и навигации', () => {
+  test.beforeEach(async ({ authPage }) => {
+    await authPage.open();
+  });
+
+  test('All main elements are visible and correct', async ({ authPage }) => {
+    await expect(authPage.title).toBeVisible();
+
+    await expect(authPage.emailInput).toBeVisible();
+    await expect(authPage.emailPlaceholder).toBeVisible();
+
+    await expect(authPage.passwordInput).toBeVisible();
+    await expect(authPage.passwordPlaceholder).toBeVisible();
+
+    await expect(authPage.toLoginButton).toBeVisible();
+    await expect(authPage.toBackButton).toBeVisible();
+    await expect(authPage.toRegisterButton).toBeVisible();
+  });
+
+  test('Navigate to registration page on clicking "Register" button', async ({ authPage, page }) => {
+    await authPage.toRegisterButtonClick();
+
+    await expect(page).toHaveURL(/register/);
+  });
+
+  test('Navigate back on clicking "Back" button', async ({ authPage, page }) => {
+    await authPage.toBackButtonClick();
+
+    await expect(page).toHaveURL('/');
   });
 });

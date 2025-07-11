@@ -37,6 +37,7 @@ export class ShokMainPage {
 
   public async checkEmail(email: string, valid: boolean) {
     await this.input.fill(email);
+    await expect(this.input).toHaveValue(email);
     await this.checkButton.click();
 
     if (valid) {

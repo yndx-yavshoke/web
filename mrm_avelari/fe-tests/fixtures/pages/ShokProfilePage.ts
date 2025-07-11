@@ -25,35 +25,21 @@ export class ShokProfilePage {
   constructor(public readonly page: Page) {
     this.avatar = this.page.getByTestId('user-avatar').getByRole('img');
     this.name = this.page
-      .locator(
-        '[data-testid="user-avatar"] + div div.css-146c3p1.r-vw2c0b.r-15zivkp.r-evnaw',
-      )
+      .locator('[data-testid="user-avatar"] + div div.css-146c3p1.r-vw2c0b.r-15zivkp.r-evnaw')
       .first(); //нужен id хоть какой-нибуудь((
 
-    this.status = this.page.getByText(
-      /Ты молоденький котик|Ты взрослый котик|Ты старый котик/,
-    );
-    this.toEditProfileButton = this.page.getByTestId(
-      'user-edit-profile-button',
-    );
+    this.status = this.page.getByText(/Ты молоденький котик|Ты взрослый котик|Ты старый котик/);
+    this.toEditProfileButton = this.page.getByTestId('user-edit-profile-button');
     this.editProfileLabel = this.page.getByText('Edit Profile', {
       exact: true,
     });
     this.toLogoutButton = this.page.getByTestId('user-logout-button');
     this.logoutLabel = this.page.getByText('Logout', { exact: true });
 
-    this.galleryImageFirst = this.page
-      .getByTestId('gallery-image-0')
-      .getByRole('img');
-    this.galleryImageSecond = this.page
-      .getByTestId('gallery-image-1')
-      .getByRole('img');
-    this.galleryImageThird = this.page
-      .getByTestId('gallery-image-2')
-      .getByRole('img');
-    this.galleryImageFourth = this.page
-      .getByTestId('gallery-image-3')
-      .getByRole('img');
+    this.galleryImageFirst = this.page.getByTestId('gallery-image-0').getByRole('img');
+    this.galleryImageSecond = this.page.getByTestId('gallery-image-1').getByRole('img');
+    this.galleryImageThird = this.page.getByTestId('gallery-image-2').getByRole('img');
+    this.galleryImageFourth = this.page.getByTestId('gallery-image-3').getByRole('img');
 
     this.postsLabel = this.page.getByText('Постов', { exact: true });
     this.followersLabel = this.page.getByText('Подписчиков', { exact: true });

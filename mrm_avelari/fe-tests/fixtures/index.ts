@@ -1,9 +1,9 @@
-import { ShokMainPage } from './ShokMainPage';
-import { ShokAuthPage } from './ShokAuthPage';
-import { ShokProfilePage } from './ShokProfilePage';
-import { ShokEditProfilePage } from './ShokEditProfilePage';
-import { ShockRegisterPage } from './ShokRegisterPage';
-import { TEST_USER_EMAIL, TEST_USER_PASSWORD } from './env';
+import { ShokMainPage } from './pages/ShokMainPage';
+import { ShokAuthPage } from './pages/ShokAuthPage';
+import { ShokProfilePage } from './pages/ShokProfilePage';
+import { ShokEditProfilePage } from './pages/ShokEditProfilePage';
+import { ShockRegisterPage } from './pages/ShokRegisterPage';
+import { TEST_USER_EMAIL, TEST_USER_PASSWORD } from '../constants/env';
 import { test as base } from '@playwright/test';
 
 type ShokFixtures = {

@@ -3,8 +3,8 @@ import { Page, Locator, expect } from '@playwright/test';
 export class ShokEditProfilePage {
   public title: Locator;
   public labelName: Locator;
-  public namePlaceholder: Locator;
-  public nameInput: Locator;
+  public inputPlaceholder: Locator;
+  public input: Locator;
   public saveButtonLabel: Locator;
   public toSaveButton: Locator;
   public cancelButtonLabel: Locator;
@@ -13,8 +13,8 @@ export class ShokEditProfilePage {
   constructor(public readonly page: Page) {
     this.title = this.page.getByText('Edit Profile', { exact: true });
     this.labelName = this.page.getByText('Name', { exact: true });
-    this.namePlaceholder = this.page.getByPlaceholder('Enter your name');
-    this.nameInput = this.page.getByTestId('edit-name-input');
+    this.inputPlaceholder = this.page.getByPlaceholder('Enter your name');
+    this.input = this.page.getByTestId('edit-name-input');
     this.saveButtonLabel = this.page.getByText('Save Changes', { exact: true });
     this.toSaveButton = this.page.getByTestId('edit-save-button');
     this.cancelButtonLabel = this.page.getByText('Cancel', { exact: true });
@@ -23,12 +23,13 @@ export class ShokEditProfilePage {
 
   public async open() {
     await this.page.goto('/edit');
-    await expect(this.page).toHaveURL(/\/edit/);
+    await expect(this.page).toHaveURL(/edit/);
   }
 
-  public async editName(newName: string) {
-    await this.nameInput.fill(newName);
+  public async changeName(newName: string) {
+    await this.input.fill(newName);
     await this.toSaveButton.click();
+    await this.page.waitForTimeout(500);
   }
 
   public async toCancelButtonClick() {

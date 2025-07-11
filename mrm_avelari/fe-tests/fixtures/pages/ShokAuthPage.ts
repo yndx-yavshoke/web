@@ -12,13 +12,13 @@ export class ShokAuthPage {
   public toLoginButton: Locator;
   public toBackButton: Locator;
   public toRegisterButton: Locator;
-  
+
   public errorInvalidCredentials: Locator;
   public errorEmailRequired: Locator;
   public errorPasswordRequired: Locator;
 
   constructor(public readonly page: Page) {
-    this.title = this.page.getByText('Я в ШОКе', { exact: true });
+    this.title = this.page.getByText('Войти в ШОК', { exact: true });
 
     this.emailInput = this.page.getByTestId('login-email-input');
     this.emailPlaceholder = this.page.getByPlaceholder('Email');
@@ -30,10 +30,7 @@ export class ShokAuthPage {
     this.toBackButton = this.page.getByTestId('login-back-button');
     this.toRegisterButton = this.page.getByTestId('login-register-button');
 
-    this.errorInvalidCredentials = this.page.getByText(
-      'Неверный логин или пароль',
-      { exact: true },
-    );
+    this.errorInvalidCredentials = this.page.getByText('Неверный логин или пароль', { exact: true });
     this.errorEmailRequired = this.page.getByText('Введите email', {
       exact: true,
     });
