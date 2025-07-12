@@ -1,0 +1,16 @@
+{
+  "name": "fe-tests",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {"test": "npx playwright test",
+  "allure:generate": "allure generate ./allure-results --clean -o ./allure-report",
+  "allure:open": "allure open ./allure-report"},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.53.2",
+    "@types/node": "^24.0.12"
+  }
+}
