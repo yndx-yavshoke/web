@@ -14,7 +14,7 @@ test.describe("Profile age status validation", () => {
       });
     });
     await expect(loginPage.emailInput).not.toBeVisible();
-    await expect(userPage.userStatusOld).toBeVisible();
+    await expect(userPage.userStatus.filter({ hasText: "старый" })).toBeVisible();
   });
 
   test("Check 'young' status", async ({ page, userPage, loginPage }) => {
@@ -26,7 +26,7 @@ test.describe("Profile age status validation", () => {
       });
     });
     await expect(loginPage.emailInput).not.toBeVisible();
-    await expect(userPage.userStatusYoung).toBeVisible();
+    await expect(userPage.userStatus.filter({ hasText: "молоденький" })).toBeVisible();
   });
 
   test.skip("Check 'adult' status", async ({ page, userPage, loginPage }) => {
@@ -38,7 +38,7 @@ test.describe("Profile age status validation", () => {
       });
     });
     await expect(loginPage.emailInput).not.toBeVisible();
-    await expect(userPage.userStatusAdult).toBeVisible();
+    await expect(userPage.userStatus.filter({ hasText: "взрослый" })).toBeVisible();
   });
 });
 
