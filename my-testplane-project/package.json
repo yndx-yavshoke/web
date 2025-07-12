@@ -1,0 +1,19 @@
+{
+  "name": "my-test-project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@testplane/storybook": "^1.7.1",
+    "html-reporter": "^10.18.7",
+    "testplane": "^8.29.5",
+    "ts-node": "^10.9.2",
+    "webdriverio": "^9.17.0"
+  }
+}
