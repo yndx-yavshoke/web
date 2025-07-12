@@ -1,0 +1,12 @@
+node_modules/
+allure-report/
+allure-results/
+html-report/
+playwright-report/
+.DS_Store
+.idea/
+../.DS_Store
+./
+../Playwright/
+../Yandex_vshoke/
+../test_js/
