@@ -1,0 +1,23 @@
+{
+  "flags": {
+    "age": {
+      "enabled": true,
+      "young": {
+        "from": 0,
+        "to": 9
+      },
+      "adult": {
+        "from": 10,
+        "to": 19
+      },
+      "old": {
+        "from": 20,
+        "to": 99
+      },
+      "oldFrom": 20,
+      "adultFrom": 10,
+      "youngFrom": 0
+    }
+  }
+}
+
