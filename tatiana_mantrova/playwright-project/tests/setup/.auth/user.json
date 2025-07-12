@@ -1,0 +1,18 @@
+{
+  "cookies": [],
+  "origins": [
+    {
+      "origin": "https://yavshok.ru",
+      "localStorage": [
+        {
+          "name": "UserData",
+          "value": "{\"id\":1562,\"email\":\"tatiana.mantrova@gmail.com\",\"name\":\"Imani\",\"age\":22}"
+        },
+        {
+          "name": "AuthToken",
+          "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjE1NjIsImlhdCI6MTc1MjE0MDEyOCwiZXhwIjoxNzUyMjI2NTI4fQ.keTJ3BWn0a8dNFnlLeZM_ge-s9ldxRIe2G6Dc-WRu1M"
+        }
+      ]
+    }
+  ]
+}
