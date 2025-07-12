@@ -62,35 +62,35 @@ export class ShokProfilePage {
 
   public async expectUI() {
     await test.step('Проверить видимость аватара, имени и статуса пользователя', async () => {
-      await expect(this.avatar).toBeVisible();
-      await expect(this.userName).toBeVisible();
-      await expect(this.ageStatusText).toBeVisible();
+      await expect(this.avatar, 'Аватар пользователя должен быть видимым').toBeVisible();
+      await expect(this.userName, 'Имя пользователя должно быть видимым').toBeVisible();
+      await expect(this.ageStatusText, 'Статус возраста должен быть видимым').toBeVisible();
     });
 
     await test.step('Проверить видимость кнопок редактирования профиля и выхода и их надписи', async () => {
-      await expect(this.editProfileButton).toBeVisible();
-      await expect(this.editProfileLabel).toBeVisible();
-      await expect(this.logoutButton).toBeVisible();
-      await expect(this.logoutLabel).toBeVisible();
+      await expect(this.editProfileButton, 'Кнопка редактирования профиля должна быть видимой').toBeVisible();
+      await expect(this.editProfileLabel, 'Надпись кнопки редактирования должна быть видимой').toBeVisible();
+      await expect(this.logoutButton, 'Кнопка выхода должна быть видимой').toBeVisible();
+      await expect(this.logoutLabel, 'Надпись кнопки выхода должна быть видимой').toBeVisible();
     });
 
     await test.step('Проверить видимость изображений галереи', async () => {
-      await expect(this.galleryImage0).toBeVisible();
-      await expect(this.galleryImage1).toBeVisible();
-      await expect(this.galleryImage2).toBeVisible();
-      await expect(this.galleryImage3).toBeVisible();
+      await expect(this.galleryImage0, 'Изображение 0 в галерее должно быть видимым').toBeVisible();
+      await expect(this.galleryImage1, 'Изображение 1 в галерее должно быть видимым').toBeVisible();
+      await expect(this.galleryImage2, 'Изображение 2 в галерее должно быть видимым').toBeVisible();
+      await expect(this.galleryImage3, 'Изображение 3 в галерее должно быть видимым').toBeVisible();
     });
 
-    await test.step('Проверить видимость лейблов постов, подписчиков и лайков', async () => {
-      await expect(this.postsLabel).toBeVisible();
-      await expect(this.followersLabel).toBeVisible();
-      await expect(this.likesLabel).toBeVisible();
+    await test.step('Проверить видимость подписей постов, подписчиков и лайков', async () => {
+      await expect(this.postsLabel, 'Подпись постов должна  быть видимым').toBeVisible();
+      await expect(this.followersLabel, 'Подпись подписчиков должна  быть видимым').toBeVisible();
+      await expect(this.likesLabel, 'Подпись лайков должна  быть видимым').toBeVisible();
     });
 
     await test.step('Проверить видимость счётчиков постов, подписчиков и лайков', async () => {
-      await expect(this.postsCount).toBeVisible();
-      await expect(this.followersCount).toBeVisible();
-      await expect(this.likesCount).toBeVisible();
+      await expect(this.postsCount, 'Счётчик постов должен быть видимым').toBeVisible();
+      await expect(this.followersCount, 'Счётчик подписчиков должен быть видимым').toBeVisible();
+      await expect(this.likesCount, 'Счётчик лайков должен быть видимым').toBeVisible();
     });
   }
 }

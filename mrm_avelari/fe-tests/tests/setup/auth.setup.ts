@@ -14,7 +14,7 @@ test('login once and save storage', async ({ authPage, testEmail, testPassword, 
   });
 
   await test.step('Проверить, что пользователь залогинен (наличие кнопки выхода)', async () => {
-    await expect(page.getByTestId('user-logout-button')).toBeVisible();
+    await expect(page.getByTestId('user-logout-button'), 'Кнопка выхода должна быть видимой после успешного входа').toBeVisible();
   });
 
   await test.step('Сохранение данных в storage', async () => {

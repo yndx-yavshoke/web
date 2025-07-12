@@ -34,7 +34,7 @@ test.describe('Проверка UI элементов страницы проф�
     });
 
     await test.step('Проверить URL содержит /edit', async () => {
-      await expect(profilePage.page).toHaveURL(/\/edit/);
+      await expect(profilePage.page, 'Ожидается переход на страницу редактирования профиля').toHaveURL(/\/edit/);
     });
   });
 
@@ -44,7 +44,7 @@ test.describe('Проверка UI элементов страницы проф�
     });
 
     await test.step(`Проверить, что URL соответствует корню ${BASE_URL}`, async () => {
-      await expect(profilePage.page).toHaveURL('/');
+      await expect(profilePage.page, `Ожидается переход на главную страницу после выхода ${BASE_URL}`).toHaveURL('/');
     });
   });
 });
@@ -59,16 +59,16 @@ test.describe('Отображение возрастных статусов по
       await profilePage.open();
     });
 
-    await test.step('Проверить, что email input не виден', async () => {
-      await expect(profilePage.page.getByTestId('main-email-input')).not.toBeVisible();
+    await test.step('Проверить, что поле email не видно', async () => {
+      await expect(profilePage.page.getByTestId('main-email-input'), 'Поле Email не должно отображаться для молодого котика').not.toBeVisible();
     });
 
     await test.step('Проверить отображение статуса "Ты молоденький котик"', async () => {
-      await expect(profilePage.page.getByText('Ты молоденький котик')).toBeVisible();
+      await expect(profilePage.page.getByText('Ты молоденький котик'), 'Должен отображаться статус молодого котика').toBeVisible();
     });
 
     await test.step('Проверить, что кнопка выхода видна', async () => {
-      await expect(profilePage.page.getByTestId('user-logout-button')).toBeVisible();
+      await expect(profilePage.page.getByTestId('user-logout-button'), 'Кнопка выхода должна быть видимой').toBeVisible();
     });
   });
 
@@ -81,16 +81,16 @@ test.describe('Отображение возрастных статусов по
       await profilePage.open();
     });
 
-    await test.step('Проверить, что email input не виден', async () => {
-      await expect(profilePage.page.getByTestId('main-email-input')).not.toBeVisible();
+    await test.step('Проверить, что поле email не видно', async () => {
+      await expect(profilePage.page.getByTestId('main-email-input'), 'Поле Email не должно отображаться для взрослого котика').not.toBeVisible();
     });
 
     await test.step('Проверить отображение текста "Ты взрослый котик"', async () => {
-      await expect(profilePage.page.getByText('Ты взрослый котик')).toBeVisible();
+      await expect(profilePage.page.getByText('Ты взрослый котик'), 'Должен отображаться статус взрослого котика').toBeVisible();
     });
 
     await test.step('Проверить, что кнопка выхода видна', async () => {
-      await expect(profilePage.page.getByTestId('user-logout-button')).toBeVisible();
+      await expect(profilePage.page.getByTestId('user-logout-button'), 'Кнопка выхода должна быть видимой').toBeVisible();
     });
   });
 
@@ -103,16 +103,16 @@ test.describe('Отображение возрастных статусов по
       await profilePage.open();
     });
 
-    await test.step('Проверить, что email input не виден', async () => {
-      await expect(profilePage.page.getByTestId('main-email-input')).not.toBeVisible();
+    await test.step('Проверить, что поле email не видно', async () => {
+      await expect(profilePage.page.getByTestId('main-email-input'), 'Поле Email не должно отображаться для старого котика').not.toBeVisible();
     });
 
     await test.step('Проверить отображение текста "Ты старый котик"', async () => {
-      await expect(profilePage.page.getByText('Ты старый котик')).toBeVisible();
+      await expect(profilePage.page.getByText('Ты старый котик'), 'Должен отображаться статус старого котика').toBeVisible();
     });
 
     await test.step('Проверить, что кнопка выхода видна', async () => {
-      await expect(profilePage.page.getByTestId('user-logout-button')).toBeVisible();
+      await expect(profilePage.page.getByTestId('user-logout-button'), 'Кнопка выхода должна быть видимой').toBeVisible();
     });
   });
 });

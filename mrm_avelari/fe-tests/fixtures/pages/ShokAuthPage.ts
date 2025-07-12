@@ -59,23 +59,23 @@ export class ShokAuthPage {
 
   public async expectUI() {
     await test.step('Проверить видимость заголовка страницы', async () => {
-      await expect(this.title).toBeVisible();
+      await expect(this.title, 'Заголовок страницы должен быть видимым').toBeVisible();
     });
 
     await test.step('Проверить видимость поля ввода email и плейсхолдера', async () => {
-      await expect(this.emailInput).toBeVisible();
-      await expect(this.emailPlaceholder).toBeVisible();
+      await expect(this.emailInput, 'Поле ввода email должно быть видимым').toBeVisible();
+      await expect(this.emailPlaceholder, 'Плейсхолдер email должен быть видимым').toBeVisible();
     });
 
     await test.step('Проверить видимость поля ввода пароля и плейсхолдера', async () => {
-      await expect(this.passwordInput).toBeVisible();
-      await expect(this.passwordPlaceholder).toBeVisible();
+      await expect(this.passwordInput, 'Поле ввода пароля должно быть видимым').toBeVisible();
+      await expect(this.passwordPlaceholder, 'Плейсхолдер пароля должен быть видимым').toBeVisible();
     });
 
     await test.step('Проверить видимость кнопки входа, кнопки назад и кнопки регистрации', async () => {
-      await expect(this.loginButton).toBeVisible();
-      await expect(this.backButton).toBeVisible();
-      await expect(this.registerButton).toBeVisible();
+      await expect(this.loginButton, 'Кнопка входа должна быть видимой').toBeVisible();
+      await expect(this.backButton, 'Кнопка назад должна быть видимой').toBeVisible();
+      await expect(this.registerButton, 'Кнопка регистрации должна быть видимой').toBeVisible();
     });
   }
 }

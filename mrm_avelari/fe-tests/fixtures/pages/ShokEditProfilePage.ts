@@ -38,26 +38,26 @@ export class ShokEditProfilePage {
 
   public async expectUI() {
     await test.step('Проверить видимость заголовка страницы', async () => {
-      await expect(this.title).toBeVisible();
+      await expect(this.title, 'Заголовок страницы должен быть видимым').toBeVisible();
     });
 
     await test.step('Проверить видимость метки и плейсхолдера поля имени', async () => {
-      await expect(this.nameLabel).toBeVisible();
-      await expect(this.nameInputPlaceholder).toBeVisible();
+      await expect(this.nameLabel, 'Метка поля имени должна быть видимой').toBeVisible();
+      await expect(this.nameInputPlaceholder, 'Плейсхолдер поля имени должен быть видимым').toBeVisible();
     });
 
     await test.step('Проверить видимость поля для ввода имени', async () => {
-      await expect(this.nameInput).toBeVisible();
+      await expect(this.nameInput, 'Поле ввода имени должно быть видимым').toBeVisible();
     });
 
     await test.step('Проверить видимость кнопки "Сохранить" и ее надпись', async () => {
-      await expect(this.saveButtonLabel).toBeVisible();
-      await expect(this.saveButton).toBeVisible();
+      await expect(this.saveButtonLabel, 'Надпись на кнопке "Сохранить" должна быть видимой').toBeVisible();
+      await expect(this.saveButton, 'Кнопка "Сохранить" должна быть видимой').toBeVisible();
     });
 
     await test.step('Проверить видимость кнопки "Отмена" и ее надпись', async () => {
-      await expect(this.cancelButtonLabel).toBeVisible();
-      await expect(this.cancelButton).toBeVisible();
+      await expect(this.cancelButtonLabel, 'Надпись на кнопке "Отмена" должна быть видимой').toBeVisible();
+      await expect(this.cancelButton, 'Кнопка "Отмена" должна быть видимой').toBeVisible();
     });
   }
 }

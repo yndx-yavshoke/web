@@ -18,19 +18,15 @@ type ShokFixtures = {
 
 export const test = base.extend<ShokFixtures>({
   mainPage: async ({ page }, use) => {
-    const mainPage = new ShokMainPage(page);
-    await use(mainPage);
-  },
-
-  registerPage: async ({ page }, use) => {
-    const registerPage = new ShokRegisterPage(page);
-    await use(registerPage);
+    await use(new ShokMainPage(page));
   },
 
   authPage: async ({ page }, use) => {
-    const authPage = new ShokAuthPage(page);
+    await use(new ShokAuthPage(page));
+  },
 
-    await use(authPage);
+  registerPage: async ({ page }, use) => {
+    await use(new ShokRegisterPage(page));
   },
 
   profilePage: async ({ page }, use) => {

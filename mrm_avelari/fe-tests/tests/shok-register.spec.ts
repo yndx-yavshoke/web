@@ -20,7 +20,7 @@ test.describe('Регистрация пользователя', () => {
     });
 
     await test.step('Проверить, что пользователь залогинен (отображается кнопка выхода)', async () => {
-      await expect(registerPage.page.getByTestId('user-logout-button')).toBeVisible();
+      await expect(registerPage.page.getByTestId('user-logout-button'), 'Кнопка выхода должна быть видимой после успешной регистрации').toBeVisible();
     });
   });
 });
@@ -40,7 +40,7 @@ test.describe('Регистрация пользователя с уже сущ�
     });
 
     await test.step('Проверить отображение ошибки дублирующего email', async () => {
-      await expect(registerPage.page.getByText(REG_MSG.errDuplicateEmail)).toBeVisible();
+      await expect(registerPage.page.getByText(REG_MSG.errDuplicateEmail), 'Должна отображаться ошибка о дублирующемся email').toBeVisible();
     });
   });
 });
@@ -64,7 +64,7 @@ test.describe('Проверка UI элементов страницы реги�
     });
 
     await test.step(`Проверить, что URL соответствует ${BASE_URL}/login`, async () => {
-      await expect(registerPage.page).toHaveURL(/\/login/);
+      await expect(registerPage.page, `Ожидается переход на страницу логина ${BASE_URL}/login`).toHaveURL(/\/login/);
     });
   });
 });

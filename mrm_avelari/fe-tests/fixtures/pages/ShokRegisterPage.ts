@@ -73,32 +73,32 @@ export class ShokRegisterPage {
 
   public async expectUI() {
     await test.step('Проверить заголовок страницы регистрации', async () => {
-      await expect(this.title).toBeVisible();
+      await expect(this.title, 'Заголовок страницы должен быть видимым').toBeVisible();
     });
 
     await test.step('Проверить поле для ввода email и его плейсхолдер', async () => {
-      await expect(this.emailInput).toBeVisible();
-      await expect(this.emailPlaceholder).toBeVisible();
+      await expect(this.emailInput, 'Поле ввода email должно быть видимым').toBeVisible();
+      await expect(this.emailPlaceholder, 'Плейсхолдер email должен быть видимым').toBeVisible();
     });
 
     await test.step('Проверить поле для ввода пароля и его плейсхолдер', async () => {
-      await expect(this.passwordInput).toBeVisible();
-      await expect(this.passwordPlaceholder).toBeVisible();
+      await expect(this.passwordInput, 'Поле ввода пароля должно быть видимым').toBeVisible();
+      await expect(this.passwordPlaceholder, 'Плейсхолдер пароля должен быть видимым').toBeVisible();
     });
 
     await test.step('Проверить поле для ввода возраста и его плейсхолдер', async () => {
-      await expect(this.ageInput).toBeVisible();
-      await expect(this.agePlaceholder).toBeVisible();
+      await expect(this.ageInput, 'Поле ввода возраста должно быть видимым').toBeVisible();
+      await expect(this.agePlaceholder, 'Плейсхолдер возраста должен быть видимым').toBeVisible();
     });
 
     await test.step('Проверить кнопку регистрации и её надпись', async () => {
-      await expect(this.registerButton).toBeVisible();
-      await expect(this.registerButtonLabel).toBeVisible();
+      await expect(this.registerButton, 'Кнопка регистрации должна быть видимой').toBeVisible();
+      await expect(this.registerButtonLabel, 'Надпись кнопки регистрации должна быть видимой').toBeVisible();
     });
 
     await test.step('Проверить кнопку возврата и её надпись', async () => {
-      await expect(this.backButton).toBeVisible();
-      await expect(this.backButtonLabel).toBeVisible();
+      await expect(this.backButton, 'Кнопка возврата должна быть видимой').toBeVisible();
+      await expect(this.backButtonLabel, 'Надпись кнопки возврата должна быть видимой').toBeVisible();
     });
   }
 }

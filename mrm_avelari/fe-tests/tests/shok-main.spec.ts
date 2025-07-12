@@ -23,12 +23,12 @@ test.describe('Проверка UI элементов главной стран�
     });
 
     await test.step(`Проверяем, что произошёл переход на ${BASE_URL}/login`, async () => {
-      await expect(mainPage.page).toHaveURL(/\/login/);
+      await expect(mainPage.page, `Ожидался переход на страницу авторизации ${BASE_URL}/login`).toHaveURL(/\/login/);
     });
   });
 });
 
-test.describe('Проверка ШОКовости', () => {
+test.describe('Проверка email на ШОКовость', () => {
   test.beforeEach(async ({ mainPage }) => {
     await test.step(`Открыта главная страница: ${BASE_URL}`, async () => {
       await mainPage.open();
@@ -45,7 +45,7 @@ test.describe('Проверка ШОКовости', () => {
     });
 
     await test.step('Гифка с котиком отображается', async () => {
-      await expect(mainPage.catGif).toBeVisible();
+      await expect(mainPage.catGif, 'Гифка с котиком должна быть видимой для зарегистрированного email').toBeVisible();
     });
   });
 
@@ -59,7 +59,7 @@ test.describe('Проверка ШОКовости', () => {
     });
 
     await test.step('Гифка с котиком НЕ отображается', async () => {
-      await expect(mainPage.catGif).not.toBeVisible();
+      await expect(mainPage.catGif, 'Гифка не должна отображаться при незарегистрированном email').not.toBeVisible();
     });
   });
 });

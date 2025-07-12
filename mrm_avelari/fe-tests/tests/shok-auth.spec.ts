@@ -16,7 +16,7 @@ test.describe('Авторизация зарегистрированного п�
     });
 
     await test.step('Проверить, что пользователь залогинен (наличие кнопки выхода)', async () => {
-      await expect(authPage.page.getByTestId('user-logout-button')).toBeVisible();
+      await expect(authPage.page.getByTestId('user-logout-button'), 'Кнопка выхода должна быть видимой после авторизации').toBeVisible();
     });
   });
 });
@@ -33,9 +33,9 @@ test.describe('Авторизация незарегистрированного
 
     await test.step('Проверить отображение ошибки и красную рамку', async () => {
       const error = authPage.page.getByText(AUTH_MSG.INVALID_CREDENTIALS);
-      await expect(error).toBeVisible();
-      await expect(authPage.emailInput).toHaveCSS('border-color', COLORS.RED);
-      await expect(authPage.passwordInput).toHaveCSS('border-color', COLORS.RED);
+      await expect(error, 'Ожидалось сообщение об ошибке "Неверный логин или пароль"').toBeVisible();
+      await expect(authPage.emailInput, 'Поле email должно быть подсвечено красным цветом').toHaveCSS('border-color', COLORS.RED);
+      await expect(authPage.passwordInput, 'Поле пароля должно быть подсвечено красным цветом').toHaveCSS('border-color', COLORS.RED);
     });
   });
 });
@@ -51,11 +51,11 @@ test.describe('Обработка ошибок при пустых полях', 
     });
 
     await test.step('Проверить валидацию и выделение ошибок', async () => {
-      await expect(authPage.page.getByText(MSG.EMPTY_EMAIL)).toBeVisible();
-      await expect(authPage.emailInput).toHaveCSS('border-color', COLORS.RED);
+      await expect(authPage.page.getByText(MSG.EMPTY_EMAIL), 'Ожидалось сообщение об ошибке для пустого email').toBeVisible();
+      await expect(authPage.emailInput, 'Поле email должно быть подсвечено красным цветом').toHaveCSS('border-color', COLORS.RED);
 
-      await expect(authPage.page.getByText(MSG.EMPTY_PASSWORD)).toBeVisible();
-      await expect(authPage.passwordInput).toHaveCSS('border-color', COLORS.RED);
+      await expect(authPage.page.getByText(MSG.EMPTY_PASSWORD), 'Ожидалось сообщение об ошибке для пустого пароля').toBeVisible();
+      await expect(authPage.passwordInput, 'Поле пароля должно быть подсвечено красным цветом').toHaveCSS('border-color', COLORS.RED);
     });
   });
 });
@@ -71,9 +71,9 @@ test.describe('Обработка ошибок при неверном паро�
     });
 
     await test.step('Проверить сообщение об ошибке и стили полей', async () => {
-      await expect(authPage.page.getByText(AUTH_MSG.INVALID_CREDENTIALS)).toBeVisible();
-      await expect(authPage.emailInput).toHaveCSS('border-color', COLORS.RED);
-      await expect(authPage.passwordInput).toHaveCSS('border-color', COLORS.RED);
+      await expect(authPage.page.getByText(AUTH_MSG.INVALID_CREDENTIALS), 'Ожидалось сообщение об ошибке при неправильном пароле').toBeVisible();
+      await expect(authPage.emailInput, 'Поле email должно быть подсвечено красным цветом').toHaveCSS('border-color', COLORS.RED);
+      await expect(authPage.passwordInput, 'Поле пароля должно быть подсвечено красным цветом').toHaveCSS('border-color', COLORS.RED);
     });
   });
 });
@@ -97,7 +97,7 @@ test.describe('Проверка UI элементов страницы авто�
     });
 
     await test.step(`Отображается страница регистрации ${BASE_URL}/register`, async () => {
-      await expect(authPage.page).toHaveURL(/register/);
+      await expect(authPage.page, `После нажатия кнопки должен быть переход на ${BASE_URL}/register`).toHaveURL(/register/);
     });
 
   });
@@ -108,7 +108,7 @@ test.describe('Проверка UI элементов страницы авто�
     });
 
     await test.step(`Отображается главная страница ${BASE_URL}/`, async () => {
-      await expect(authPage.page).toHaveURL('/');
+      await expect(authPage.page, `После нажатия кнопки "Назад" должно произойти возвращение на главную ${BASE_URL}`).toHaveURL('/');
     });
   });
 });

@@ -21,26 +21,26 @@ test.describe('Проверка UI элементов страницы реда�
   test('Successful name change', async ({ editProfilePage }) => {
     const newName = faker.person.fullName();
 
-    await test.step(`Вводим новое имя пользователя: "${newName}"`, async () => {
+     await test.step(`Ввод нового имени пользователя: "${newName}"`, async () => {
       await editProfilePage.updateName(newName);
     });
 
-    await test.step('Нажимаем кнопку "Отмена"', async () => {
+    await test.step('Нажатие на кнопку "Отмена""', async () => {
       await editProfilePage.clickCancelButton();
     });
 
     await test.step(`Проверяем, что имя "${newName}" отображается на странице профиля`, async () => {
-      await expect(editProfilePage.page.getByText(newName)).toBeVisible();
+      await expect(editProfilePage.page.getByText(newName), `Имя "${newName}" должно быть отображено на странице профиля`).toBeVisible();
     });
   });
 
   test('Cancel button redirects back to profile page', async ({ editProfilePage }) => {
-    await test.step('Нажимаем кнопку "Отмена"', async () => {
+    await test.step('Нажатие на кнопку "Отмена""', async () => {
       await editProfilePage.clickCancelButton();
     });
 
     await test.step(`Проверяем, что URL соответствует странице профиля: ${BASE_URL}`, async () => {
-      await expect(editProfilePage.page).toHaveURL('/');
+      await expect(editProfilePage.page, `Ожидался возврат на главную страницу профиля: ${BASE_URL}`).toHaveURL('/');
     });
   });
 });
