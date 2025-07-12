@@ -6,6 +6,9 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /tests/setup/.auth
+/html-report/
+/allure-results/
+/allure-report/
 
 # Environment variables
 .env
