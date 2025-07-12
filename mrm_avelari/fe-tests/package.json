@@ -1,0 +1,22 @@
+{
+  "name": "fe-tests",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "report:allure": "npx allure generate ./allure-results --clean -o ./allure-report && npx allure open ./allure-report"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@faker-js/faker": "^9.9.0",
+    "@playwright/test": "^1.54.1",
+    "@types/node": "^24.0.11",
+    "allure-playwright": "^3.3.0",
+    "dotenv": "^17.2.0",
+    "html-reporter": "^10.18.7",
+    "typescript": "^5.8.3"
+  }
+}
