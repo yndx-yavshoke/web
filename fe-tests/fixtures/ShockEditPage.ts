@@ -5,9 +5,9 @@ export class ShockEditPage {
     public labelName: Locator;
     public nameInput: Locator;
     public namePlaceholder: Locator;
-    public toSaveButton: Locator;
+    public saveButton: Locator;
     public saveButtonText: Locator;
-    public toCancelButton: Locator;
+    public cancelButton: Locator;
     public cancelButtonText: Locator;
 
     constructor(public readonly page: Page) {
@@ -15,9 +15,9 @@ export class ShockEditPage {
         this.labelName = this.page.getByText('Name', { exact: true });
         this.nameInput = this.page.getByTestId('edit-name-input');
         this.namePlaceholder = this.page.getByPlaceholder('Enter your name');
-        this.toSaveButton = this.page.getByTestId('edit-save-button');
+        this.saveButton = this.page.getByTestId('edit-save-button');
         this.saveButtonText = this.page.getByText('Save Changes', { exact: true });
-        this.toCancelButton = this.page.getByTestId('edit-cancel-button');
+        this.cancelButton = this.page.getByTestId('edit-cancel-button');
         this.cancelButtonText = this.page.getByText('Cancel', { exact: true });
     }
 
@@ -25,10 +25,10 @@ export class ShockEditPage {
         await this.page.goto('/edit');
         await expect(this.page).toHaveURL(/\/edit/);
     }
-    public async toSaveButtonClick() {
-        await this.toSaveButton.click();
+    public async clickSaveButton() {
+        await this.saveButton.click();
     }
-    public async toCancelButtonClick() {
-        await this.toCancelButton.click();
+    public async clickCancelButton() {
+        await this.cancelButton.click();
     }
 }

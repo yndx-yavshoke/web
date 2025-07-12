@@ -8,8 +8,10 @@ export class ShockRegisterPage {
   public emailPlaceholder: Locator;
   public passwordPlaceholder: Locator;
   public agePlaceholder: Locator;
-  public toRegisterButton: Locator;
-  public toBackButton: Locator;
+  public registerButton: Locator;
+  public registerButtonText: Locator;
+  public backButton: Locator;
+  public backButtonText: Locator;
   public withoutEmailText: Locator;
   public withoutPasswordText: Locator;
   public withoutAgeText: Locator;
@@ -27,10 +29,10 @@ export class ShockRegisterPage {
     this.passwordInput = this.page.getByPlaceholder('Пароль');
     this.ageInput = this.page.getByTestId('register-age-input');
     this.ageInput = this.page.getByPlaceholder('Возраст');
-    this.toRegisterButton = this.page.getByTestId('register-submit-button');
-    this.toRegisterButton = this.page.getByText('Зарегистрироваться', { exact: true });
-    this.toBackButton = this.page.getByTestId('register-back-button');
-    this.toBackButton = this.page.getByText('Назад', { exact: true });
+    this.registerButton = this.page.getByTestId('register-submit-button');
+    this.registerButtonText = this.page.getByText('Зарегистрироваться', { exact: true });
+    this.backButton = this.page.getByTestId('register-back-button');
+    this.backButtonText = this.page.getByText('Назад', { exact: true });
     this.withoutEmailText = this.page.getByText('Введите email', { exact: true });
     this.withoutPasswordText = this.page.getByText('Введите пароль', { exact: true });
     this.withoutAgeText = this.page.getByText('Введите возраст', { exact: true });
@@ -43,15 +45,15 @@ export class ShockRegisterPage {
   public async open() {
     await this.page.goto('/register');
   }
-  public async toBackButtonClick() {
-    await this.toBackButton.click();
+  public async clickBackButton() {
+    await this.backButton.click();
   }
 
   public async register(email: string, password: string, age: string, valid: boolean) {
     await this.emailInput.fill(email);
     await this.passwordInput.fill(password);
     await this.ageInput.fill(age);
-    await this.toRegisterButton.click();
+    await this.registerButton.click();
     if (valid) {
       await expect(this.page).toHaveURL('/');
     } else {

@@ -9,7 +9,7 @@ test('Выход из профиля', async ({ profilePage, page }) => {
         await profilePage.open();
     });
     await allure.step('Нажать кнопку выхода из профиля', async () => {
-        await profilePage.toLogoutButtonClick();
+        await profilePage.clickLogoutButton();
     });
     await allure.step('Проверить перенаправление на страницу проверки шоковости', async () => {
         await expect(page).toHaveURL('/');
@@ -21,7 +21,7 @@ test('Редактирование профиля', async ({ profilePage, page }
         await profilePage.open();
     });
     await allure.step('Нажать кнопку редактирования профиля', async () => {
-        await profilePage.toEditProfileButtonClick();
+        await profilePage.clickEditProfileButton();
     });
     await allure.step('Проверить переход на страницу редактирования', async () => {
         await expect(page.url()).toContain('/edit');

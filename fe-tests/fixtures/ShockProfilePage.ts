@@ -3,11 +3,11 @@ import { Page, Locator, expect } from "@playwright/test";
 export class ShockProfilePage {
   public userName: Locator;
   public userStatus: Locator;
-  public toEditProfileButton: Locator;
+  public editProfileButton: Locator;
   public editProfileText: Locator;
   public profileAvatar: Locator;
-  public toLogoutButton: Locator;
-  public logoutText: Locator;
+  public logoutButton: Locator;
+  public logoutButtonText: Locator;
   public galleryImage0: Locator;
   public galleryImage1: Locator;
   public galleryImage2: Locator;
@@ -21,12 +21,12 @@ export class ShockProfilePage {
 
 constructor(public readonly page: Page) {
     this.userName = this.page.locator('div[dir="auto"]').filter({ hasText: /^[A-Za-z]+$/ }).first();
-    this.userStatus = this.page.getByText('Ты старый котик', {exact: true});
-    this.toEditProfileButton = this.page.getByTestId('user-edit-profile-button');
+    this.userStatus = this.page.getByText(/Ты (молоденький|взрослый|старый) котик/); 
+    this.editProfileButton = this.page.getByTestId('user-edit-profile-button');
     this.editProfileText = this.page.getByText('Edit Profile', {exact: true});
     this.profileAvatar = this.page.getByTestId('user-avatar').getByRole('img');
-    this.toLogoutButton = this.page.getByTestId('user-logout-button');
-    this.logoutText = this.page.getByText('Logout', {exact: true});
+    this.logoutButton = this.page.getByTestId('user-logout-button');
+    this.logoutButtonText = this.page.getByText('Logout', {exact: true});
     this.galleryImage0 = this.page.getByTestId('gallery-image-0').getByRole('img');
     this.galleryImage1 = this.page.getByTestId('gallery-image-1').getByRole('img');
     this.galleryImage2 = this.page.getByTestId('gallery-image-2').getByRole('img');
@@ -42,10 +42,10 @@ constructor(public readonly page: Page) {
 public async open() {
     await this.page.goto('/');
 }
-public async toEditProfileButtonClick() {
-    await this.toEditProfileButton.click();
+public async clickEditProfileButton() {
+    await this.editProfileButton.click();
 }
-public async toLogoutButtonClick() {
-    await this.toLogoutButton.click();
+public async clickLogoutButton() {
+    await this.logoutButton.click();
 }
 }

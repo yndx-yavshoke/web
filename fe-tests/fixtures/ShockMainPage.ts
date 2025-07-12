@@ -4,8 +4,9 @@ export class ShockMainPage {
   public title: Locator;
   public input: Locator;
   public checkButton: Locator;
-  public toLoginButton: Locator;
-  public toInputPlaceholder: Locator;
+  public loginButton: Locator;
+  public loginButtonText: Locator;
+  public inputPlaceholder: Locator;
   public happyCatImg: Locator;        
   public InShockText: Locator;        
   public notInShockText: Locator;
@@ -15,9 +16,9 @@ export class ShockMainPage {
     this.input = this.page.getByTestId('main-email-input');
     this.checkButton = this.page.getByTestId('main-check-button');
     this.checkButton = this.page.getByText('Я в шоке?', { exact: true });
-    this.toLoginButton = this.page.getByTestId('main-login-button');
-    this.toLoginButton = this.page.getByText('В шок', { exact: true });
-    this.toInputPlaceholder = this.page.getByPlaceholder('Введите email');
+    this.loginButton = this.page.getByTestId('main-login-button');
+    this.loginButtonText = this.page.getByText('В шок', { exact: true });
+    this.inputPlaceholder = this.page.getByPlaceholder('Введите email');
     this.happyCatImg = this.page.locator('img[src*="happyCat"]');
     this.InShockText = this.page.getByText('Ты уже в ШОКе', { exact: true });
     this.notInShockText = this.page.getByText('Ты еще не в ШОКе', { exact: true });
@@ -25,8 +26,8 @@ export class ShockMainPage {
   public async open() {
     await this.page.goto('/');
   }
-  public async toLoginButtonClick() {
-    await this.toLoginButton.click();
+  public async clickLoginButton() {
+    await this.loginButton.click();
   }
 
   public async checkEmail(email: string, valid: boolean) {

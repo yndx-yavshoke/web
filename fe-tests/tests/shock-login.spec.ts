@@ -1,12 +1,11 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/index';
-import { mock } from 'node:test';
 import { faker } from '@faker-js/faker';
 import { allure } from 'allure-playwright';
 
 test.use({ storageState: 'tests/setup/auth.json' })
 
-const mockYoung = {
+const YOUNG_MOCK = {
   "flags": {
         "age": {
             "enabled": true,
@@ -22,7 +21,7 @@ const mockYoung = {
                 "from": 69,
                 "to": 99
             },
-            "oldFrom": 35,
+            "oldFrom": 100,
             "youngFrom": 2
         }
     }
@@ -37,7 +36,7 @@ test('Статус молоденький котик', async ({ page }) => {
     await page.route('https://api.yavshok.ru/experiments', (route) => {
       route.fulfill({
         status: 200,
-        body: JSON.stringify(mockYoung)
+        body: JSON.stringify(YOUNG_MOCK)
       });
     });
   });
@@ -52,7 +51,7 @@ test('Статус молоденький котик', async ({ page }) => {
   });
 });
 
-// const mockAdult = {
+// const ADULT_MOCK = {
 //   "flags": {
 //         "age": {
 //             "enabled": true,
@@ -80,7 +79,7 @@ test('Статус молоденький котик', async ({ page }) => {
 //   await page.route('https://api.yavshok.ru/experiments', (route) => {
 //     route.fulfill({
 //       status: 200,
-//       body: JSON.stringify(mockAdult)
+//       body: JSON.stringify(ADULT_MOCK)
 //     });
 //   });
 //   await page.reload();
@@ -88,7 +87,7 @@ test('Статус молоденький котик', async ({ page }) => {
 //   await expect(page.getByText('Ты взрослый котик')).toBeVisible();
 // });
 
-const mockOld = {
+const OLD_MOCK = {
   "flags": {
         "age": {
             "enabled": true,
@@ -117,7 +116,7 @@ test('Статус старый котик', async ({ page }) => {
     await page.route('https://api.yavshok.ru/experiments', (route) => {
       route.fulfill({
         status: 200,
-        body: JSON.stringify(mockOld)
+        body: JSON.stringify(OLD_MOCK)
       });
     });
   });
@@ -130,7 +129,7 @@ test('Статус старый котик', async ({ page }) => {
 });
 
 test.describe('Негативные тесты', () => {
-  const email = 'anastasiagurtovykh@yandex.ru';
+  const email = 'g@yandex.ru';
 
   test('Попытка авторизации с незарегистрированным email', async ({ loginPage, page }) => {
     await allure.step('Настроить мок для ошибки авторизации', async () => {
@@ -278,45 +277,3 @@ test.describe('Негативные тесты', () => {
     });
   });
 });
-
-// Локаторы
-// test ('title test', async ({ loginPage }) => {
-//   await loginPage.open();
-//   await expect(loginPage.title).toBeVisible();
-// })
-// test ('input test', async ({ loginPage }) => {
-//   await loginPage.open();
-//   await expect(loginPage.emailInput).toBeVisible();
-// })
-// test ('email placeholder test', async ({ loginPage }) => {
-//   await loginPage.open();
-//   await expect(loginPage.emailPlaceholder).toBeVisible();
-// })
-// test ('password input test', async ({ loginPage }) => {
-//   await loginPage.open();
-//   await expect(loginPage.passwordInput).toBeVisible();
-// })
-// test ('password placeholder test', async ({ loginPage }) => {
-//   await loginPage.open();
-//   await expect(loginPage.passwordPlaceholder).toBeVisible();
-// })
-// test ('to login button test', async ({ loginPage }) => {
-//   await loginPage.open();
-//   await expect(loginPage.toLoginButton).toBeVisible();
-// })
-// test ('to back button test', async ({ loginPage }) => {
-//   await loginPage.open();
-//   await expect(loginPage.toBackButton).toBeVisible();
-// })
-// test ('to register button test', async ({ loginPage }) => {
-//   await loginPage.open();
-//   await expect(loginPage.toRegisterButton).toBeVisible();
-// })
-// test ('wrong input text test', async ({ loginPage }) => {
-//   await loginPage.open();
-//   await expect(loginPage.wrongInputText).toBeVisible();
-// })
-// test ('error text test', async ({ loginPage }) => {
-//   await loginPage.open();
-//   await expect(loginPage.errorText).toBeVisible();
-// })

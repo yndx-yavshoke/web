@@ -6,9 +6,12 @@ export class ShockLoginPage {
   public emailPlaceholder: Locator;
   public passwordInput: Locator;
   public passwordPlaceholder: Locator;
-  public toLoginButton: Locator;
-  public toBackButton: Locator;
-  public toRegisterButton: Locator;
+  public loginButton: Locator;
+  public loginButtonText: Locator;
+  public backButton: Locator;
+  public backButtonText: Locator;
+  public registerButton: Locator;
+  public registerButtonText: Locator;
   public invalidEmailText: Locator;
   public errorText: Locator;
   public withoutEmailText: Locator;
@@ -20,12 +23,12 @@ export class ShockLoginPage {
     this.emailPlaceholder = this.page.getByPlaceholder('Email');
     this.passwordInput = this.page.getByTestId('login-password-input');
     this.passwordPlaceholder = this.page.getByPlaceholder('Пароль');
-    this.toLoginButton = this.page.getByTestId('login-submit-button');
-    this.toLoginButton = this.page.getByText('В шок', { exact: true });
-    this.toBackButton = this.page.getByTestId('login-back-button');
-    this.toBackButton = this.page.getByText('Назад', { exact: true });
-    this.toRegisterButton = this.page.getByTestId('login-register-button');
-    this.toRegisterButton = this.page.getByText('Регистрация', { exact: true });
+    this.loginButton = this.page.getByTestId('login-submit-button');
+    this.loginButtonText = this.page.getByText('В шок', { exact: true });
+    this.backButton = this.page.getByTestId('login-back-button');
+    this.backButtonText = this.page.getByText('Назад', { exact: true });
+    this.registerButton = this.page.getByTestId('login-register-button');
+    this.registerButtonText = this.page.getByText('Регистрация', { exact: true });
     this.invalidEmailText = this.page.getByText('Неверный логин или пароль', { exact: true });
     this.errorText = this.page.getByText('Произошла ошибка', { exact: true });
     this.withoutEmailText = this.page.getByText('Введите email', { exact: true });
@@ -34,15 +37,15 @@ export class ShockLoginPage {
   public async open() {
     await this.page.goto('/login');
   }
-  public async toRegisterButtonClick() {
-    await this.toRegisterButton.click();
+  public async clickRegisterButton() {
+    await this.registerButton.click();
   }
-  public async toBackButtonClick() {
-    await this.toBackButton.click();
+  public async clickBackButton() {
+    await this.backButton.click();
   }
   async login(email: string, password: string) {
     await this.emailInput.fill(email);
     await this.passwordInput.fill(password);
-    await this.toLoginButton.click();
+    await this.loginButton.click();
   }
 }
