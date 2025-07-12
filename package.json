@@ -62,11 +62,13 @@
     "@types/jest": "^29.5.12",
     "@types/react": "~18.3.12",
     "@types/react-test-renderer": "^18.3.0",
+    "allure-playwright": "^3.3.0",
     "eslint": "^8.57.1",
     "eslint-config-expo": "~8.0.1",
     "jest": "^29.2.1",
     "jest-expo": "~52.0.6",
     "react-test-renderer": "18.3.1",
+    "testplane": "^8.29.5",
     "typescript": "^5.3.3"
   },
   "private": true
