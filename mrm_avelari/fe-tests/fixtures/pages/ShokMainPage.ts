@@ -2,60 +2,62 @@ import { Page, Locator, expect } from '@playwright/test';
 
 export class ShokMainPage {
   public title: Locator;
-  public input: Locator;
-  public inputPlaceholder: Locator;
-  public inShok: Locator;
-  public notInShok: Locator;
+  public emailInput: Locator;
+  public emailPlaceholder: Locator;
+  public statusInShok: Locator;
+  public statusNotInShok: Locator;
   public catGif: Locator;
-  public checkButton: Locator;
-  public toLoginButton: Locator;
+  public checkStatusButton: Locator;
+  public loginButton: Locator;
 
   constructor(public readonly page: Page) {
     this.title = this.page.getByText('Я в ШОКе', { exact: true });
-    this.input = this.page.getByTestId('main-email-input');
-    this.inputPlaceholder = this.page.getByPlaceholder('Введите email');
-    this.inShok = this.page.getByText('Ты уже в ШОКе');
-    this.notInShok = this.page.getByText('Ты еще не в ШОКе');
+    this.emailInput = this.page.getByTestId('main-email-input');
+    this.emailPlaceholder = this.page.getByPlaceholder('Введите email');
+    this.statusInShok = this.page.getByText('Ты уже в ШОКе');
+    this.statusNotInShok = this.page.getByText('Ты еще не в ШОКе');
     this.catGif = this.page.locator('img[src*="happyCat"]');
-    this.checkButton = this.page.getByTestId('main-check-button');
-    this.toLoginButton = this.page.getByTestId('main-login-button');
+    this.checkStatusButton = this.page.getByTestId('main-check-button');
+    this.loginButton = this.page.getByTestId('main-login-button');
   }
 
   public async open() {
     await this.page.goto('/');
   }
 
-  async clearAuth() {
-    await this.page.context().clearCookies();
-    await this.page.goto('/');
-    await this.page.evaluate(() => localStorage.clear());
+  public async clickLoginButton() {
+    await this.loginButton.click();
   }
 
-  public async toLoginButtonClick() {
-    await this.toLoginButton.click();
-  }
-
-  public async checkEmail(email: string, valid: boolean) {
-    await this.input.fill(email);
-    await expect(this.input).toHaveValue(email);
-    await this.checkButton.click();
+  public async checkEmailStatus(email: string, valid: boolean) {
+    await this.emailInput.fill(email);
+    await expect(this.emailInput).toHaveValue(email);
+    await this.checkStatusButton.click();
 
     if (valid) {
-      await expect(this.inShok).toBeVisible();
+      await expect(this.statusInShok).toBeVisible();
     } else {
-      await expect(this.notInShok).toBeVisible();
+      await expect(this.statusNotInShok).toBeVisible();
     }
   }
 
   public async checkColorOfPhrase(expectedColor: string, isGreen: boolean) {
-    const phrase = isGreen ? this.inShok : this.notInShok;
+    const phrase = isGreen ? this.statusInShok : this.statusNotInShok;
 
     await expect(phrase).toBeVisible();
 
-    const color = await phrase.evaluate((el) => {
+    const actualColor = await phrase.evaluate((el) => {
       return window.getComputedStyle(el).color;
     });
 
-    expect(color).toBe(expectedColor);
+    expect(actualColor).toBe(expectedColor);
   }
+
+  public async expectUI() {
+  await expect(this.title).toBeVisible();
+  await expect(this.emailInput).toBeVisible();
+  await expect(this.emailPlaceholder).toBeVisible();
+  await expect(this.checkStatusButton).toBeVisible();
+  await expect(this.loginButton).toBeVisible();
+}
 }

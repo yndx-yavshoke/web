@@ -1,18 +1,19 @@
-import { Page, Locator } from '@playwright/test';
+import { Page, Locator, expect } from '@playwright/test';
 
 export class ShokProfilePage {
   public avatar: Locator;
-  public name: Locator;
-  public status: Locator;
-  public toEditProfileButton: Locator;
+  public userName: Locator;
+  public ageStatusText: Locator;
+
+  public editProfileButton: Locator;
   public editProfileLabel: Locator;
-  public toLogoutButton: Locator;
+  public logoutButton: Locator;
   public logoutLabel: Locator;
 
-  public galleryImageFirst: Locator;
-  public galleryImageSecond: Locator;
-  public galleryImageThird: Locator;
-  public galleryImageFourth: Locator;
+  public galleryImage0: Locator;
+  public galleryImage1: Locator;
+  public galleryImage2: Locator;
+  public galleryImage3: Locator;
 
   public postsLabel: Locator;
   public followersLabel: Locator;
@@ -24,22 +25,19 @@ export class ShokProfilePage {
 
   constructor(public readonly page: Page) {
     this.avatar = this.page.getByTestId('user-avatar').getByRole('img');
-    this.name = this.page
-      .locator('[data-testid="user-avatar"] + div div.css-146c3p1.r-vw2c0b.r-15zivkp.r-evnaw')
-      .first(); //нужен id хоть какой-нибуудь((
-
-    this.status = this.page.getByText(/Ты молоденький котик|Ты взрослый котик|Ты старый котик/);
-    this.toEditProfileButton = this.page.getByTestId('user-edit-profile-button');
+    this.userName = this.page.locator("//div[@data-testid='user-edit-profile-button']/../div[1]");
+    this.ageStatusText = this.page.getByText(/Ты молоденький котик|Ты взрослый котик|Ты старый котик/);
+    this.editProfileButton = this.page.getByTestId('user-edit-profile-button');
     this.editProfileLabel = this.page.getByText('Edit Profile', {
       exact: true,
     });
-    this.toLogoutButton = this.page.getByTestId('user-logout-button');
+    this.logoutButton = this.page.getByTestId('user-logout-button');
     this.logoutLabel = this.page.getByText('Logout', { exact: true });
 
-    this.galleryImageFirst = this.page.getByTestId('gallery-image-0').getByRole('img');
-    this.galleryImageSecond = this.page.getByTestId('gallery-image-1').getByRole('img');
-    this.galleryImageThird = this.page.getByTestId('gallery-image-2').getByRole('img');
-    this.galleryImageFourth = this.page.getByTestId('gallery-image-3').getByRole('img');
+    this.galleryImage0 = this.page.getByTestId('gallery-image-0').getByRole('img');
+    this.galleryImage1 = this.page.getByTestId('gallery-image-1').getByRole('img');
+    this.galleryImage2 = this.page.getByTestId('gallery-image-2').getByRole('img');
+    this.galleryImage3 = this.page.getByTestId('gallery-image-3').getByRole('img');
 
     this.postsLabel = this.page.getByText('Постов', { exact: true });
     this.followersLabel = this.page.getByText('Подписчиков', { exact: true });
@@ -54,11 +52,34 @@ export class ShokProfilePage {
     await this.page.goto('/');
   }
 
-  public async toEditProfileButtonClick() {
-    await this.toEditProfileButton.click();
+  public async clickEditProfileButton() {
+    await this.editProfileButton.click();
   }
 
-  public async toLogoutButtonClick() {
-    await this.toLogoutButton.click();
+  public async clickLogoutButton() {
+    await this.logoutButton.click();
+  }
+
+  public async expectUI() {
+    await expect(this.avatar).toBeVisible();
+    await expect(this.userName).toBeVisible();
+    await expect(this.ageStatusText).toBeVisible();
+    await expect(this.editProfileButton).toBeVisible();
+    await expect(this.editProfileLabel).toBeVisible();
+    await expect(this.logoutButton).toBeVisible();
+    await expect(this.logoutLabel).toBeVisible();
+  
+    await expect(this.galleryImage0).toBeVisible();
+    await expect(this.galleryImage1).toBeVisible();
+    await expect(this.galleryImage2).toBeVisible();
+    await expect(this.galleryImage3).toBeVisible();
+  
+    await expect(this.postsLabel).toBeVisible();
+    await expect(this.followersLabel).toBeVisible();
+    await expect(this.likesLabel).toBeVisible();
+  
+    await expect(this.postsCount).toBeVisible();
+    await expect(this.followersCount).toBeVisible();
+    await expect(this.likesCount).toBeVisible();
   }
 }

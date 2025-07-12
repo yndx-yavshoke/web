@@ -1,7 +1,8 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/index';
 import { faker } from '@faker-js/faker';
-import { expectEditProfilePageUI } from '../utils/testHelpers';
+
+test.use({ storageState: 'tests/setup/.auth/user.json' })
 
 test.describe('Проверка UI элементов страницы редактирования профиля', () => {
   test.beforeEach(async ({ editProfilePage }) => {
@@ -9,20 +10,20 @@ test.describe('Проверка UI элементов страницы реда�
   });
 
   test('All main elements are visible and correct', async ({ editProfilePage }) => {
-    await expectEditProfilePageUI(editProfilePage);
+    await editProfilePage.expectUI();
   });
 
   test('Successful name change', async ({ editProfilePage }) => {
     const newName = faker.person.fullName();
 
-    await editProfilePage.changeName(newName);
-    await editProfilePage.toCancelButtonClick();
+    await editProfilePage.updateName(newName);
+    await editProfilePage.clickCancelButton();
 
     await expect(editProfilePage.page.getByText(newName)).toBeVisible();
   });
 
-  test('Cancel button redirects back to profile page', async ({ editProfilePage, page }) => {
-    await editProfilePage.toCancelButtonClick();
-    await expect(page).toHaveURL('/');
+  test('Cancel button redirects back to profile page', async ({ editProfilePage }) => {
+    await editProfilePage.clickCancelButton();
+    await expect(editProfilePage.page).toHaveURL('/');
   });
 });

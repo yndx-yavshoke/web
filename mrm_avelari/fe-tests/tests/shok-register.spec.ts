@@ -3,7 +3,6 @@ import { test } from '../fixtures';
 import { faker } from '@faker-js/faker';
 import { TEST_USER_EMAIL } from '../constants/env';
 import { REG_MSG } from '../constants/messages';
-import { expectRegisterPageUI } from '../utils/testHelpers';
 
 test.describe('Регистрация пользователя', () => {
   test.skip('Succesfull registration with valid user credentials', async ({ registerPage }) => {
@@ -39,12 +38,12 @@ test.describe('Проверка UI элементов страницы реги�
   });
 
   test('All main elements are visible and correct', async ({ registerPage }) => {
-    await expectRegisterPageUI(registerPage);
+    await registerPage.expectUI();
   });
 
-  test('Navigate back on clicking "Back" button', async ({ registerPage, page }) => {
-    await registerPage.toBackButtonClick();
+  test('Navigate back on clicking "Back" button', async ({ registerPage }) => {
+    await registerPage.clickBackButton();
 
-    await expect(page).toHaveURL(/login/);
+    await expect(registerPage.page).toHaveURL(/login/);
   });
 });

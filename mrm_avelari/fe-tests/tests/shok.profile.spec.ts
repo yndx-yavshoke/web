@@ -2,7 +2,6 @@ import { test } from '../fixtures/index';
 import { expect, Page } from '@playwright/test';
 import { YOUNG_MOCK, ADULT_MOCK, OLD_MOCK } from '../constants/mocks';
 import { API } from '../constants/api';
-import { expectProfilePageUI } from '../utils/testHelpers';
 
 export const mockAge = async (page: Page, mock: unknown) => {
   await page.route(API.EXPERIMENTS, (route) => {
@@ -13,23 +12,25 @@ export const mockAge = async (page: Page, mock: unknown) => {
   });
 };
 
+test.use({ storageState: 'tests/setup/.auth/user.json' })
+
 test.describe('Проверка UI элементов страницы профиля и навигации', () => {
   test.beforeEach(async ({ profilePage }) => {
     await profilePage.open();
   });
 
   test('All main UI elements are visible and correct', async ({ profilePage }) => {
-    await expectProfilePageUI(profilePage);
+    await profilePage.expectUI();
   });
 
-  test('Clicking "Edit Profile" button navigates to edit page', async ({ profilePage, page }) => {
-    await profilePage.toEditProfileButtonClick();
-    await expect(page).toHaveURL(/edit/);
+  test('Clicking "Edit Profile" button navigates to edit page', async ({ profilePage }) => {
+    await profilePage.clickEditProfileButton();
+    await expect(profilePage.page).toHaveURL(/edit/);
   });
 
-  test('Clicking "Logout" button navigates to login page', async ({ profilePage, page }) => {
-    await profilePage.toLogoutButtonClick();
-    await expect(page).toHaveURL('/');
+  test('Clicking "Logout" button navigates to login page', async ({ profilePage }) => {
+    await profilePage.clickLogoutButton();
+    await expect(profilePage.page).toHaveURL('/');
   });
 });
 

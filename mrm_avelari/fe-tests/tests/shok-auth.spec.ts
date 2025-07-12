@@ -3,14 +3,13 @@ import { test } from '../fixtures/index';
 import { TEST_UNREGISTERED_EMAIL, TEST_RANDOM_PASSWORD } from '../constants/env';
 import { COLORS } from '../constants/colors';
 import { AUTH_MSG, MSG } from '../constants/messages';
-import { expectAuthPageUI } from '../utils/testHelpers';
 
 test.describe('Авторизация зарегистрированного пользователя', () => {
-  test('Succesfull auth with valid user credentials', async ({ authPage, testEmail, testPassword, page }) => {
+  test('Succesfull auth with valid user credentials', async ({ authPage, testEmail, testPassword }) => {
     await authPage.open();
     await authPage.login(testEmail, testPassword);
 
-    await expect(page.getByTestId('user-logout-button')).toBeVisible();
+    await expect(authPage.page.getByTestId('user-logout-button')).toBeVisible();
   });
 });
 
@@ -56,18 +55,18 @@ test.describe('Проверка UI элементов страницы авто�
   });
 
   test('All main elements are visible and correct', async ({ authPage }) => {
-    await expectAuthPageUI(authPage);
+    await authPage.expectUI();
   });
 
-  test('Navigate to registration page on clicking "Register" button', async ({ authPage, page }) => {
-    await authPage.toRegisterButtonClick();
+  test('Navigate to registration page on clicking "Register" button', async ({ authPage }) => {
+    await authPage.clickRegisterButton();
 
-    await expect(page).toHaveURL(/register/);
+    await expect(authPage.page).toHaveURL(/register/);
   });
 
-  test('Navigate back on clicking "Back" button', async ({ authPage, page }) => {
-    await authPage.toBackButtonClick();
+  test('Navigate back on clicking "Back" button', async ({ authPage }) => {
+    await authPage.clickBackButton();
 
-    await expect(page).toHaveURL('/');
+    await expect(authPage.page).toHaveURL('/');
   });
 });

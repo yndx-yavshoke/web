@@ -2,23 +2,23 @@ import { Page, Locator, expect } from '@playwright/test';
 
 export class ShokEditProfilePage {
   public title: Locator;
-  public labelName: Locator;
-  public inputPlaceholder: Locator;
-  public input: Locator;
+  public nameLabel: Locator;
+  public nameInputPlaceholder: Locator;
+  public nameInput: Locator;
   public saveButtonLabel: Locator;
-  public toSaveButton: Locator;
+  public saveButton: Locator;
   public cancelButtonLabel: Locator;
-  public toCancelButton: Locator;
+  public cancelButton: Locator;
 
   constructor(public readonly page: Page) {
     this.title = this.page.getByText('Edit Profile', { exact: true });
-    this.labelName = this.page.getByText('Name', { exact: true });
-    this.inputPlaceholder = this.page.getByPlaceholder('Enter your name');
-    this.input = this.page.getByTestId('edit-name-input');
+    this.nameLabel = this.page.getByText('Name', { exact: true });
+    this.nameInputPlaceholder = this.page.getByPlaceholder('Enter your name');
+    this.nameInput = this.page.getByTestId('edit-name-input');
     this.saveButtonLabel = this.page.getByText('Save Changes', { exact: true });
-    this.toSaveButton = this.page.getByTestId('edit-save-button');
+    this.saveButton = this.page.getByTestId('edit-save-button');
     this.cancelButtonLabel = this.page.getByText('Cancel', { exact: true });
-    this.toCancelButton = this.page.getByTestId('edit-cancel-button');
+    this.cancelButton = this.page.getByTestId('edit-cancel-button');
   }
 
   public async open() {
@@ -26,13 +26,24 @@ export class ShokEditProfilePage {
     await expect(this.page).toHaveURL(/edit/);
   }
 
-  public async changeName(newName: string) {
-    await this.input.fill(newName);
-    await this.toSaveButton.click();
-    await this.page.waitForTimeout(500);
+  public async updateName(newName: string) {
+    await this.nameInput.fill(newName);
+    await this.saveButton.click();
+    await this.saveButtonLabel.waitFor();
   }
 
-  public async toCancelButtonClick() {
-    await this.toCancelButton.click();
+  public async clickCancelButton() {
+    await this.cancelButton.click();
   }
+
+  public async expectUI() {
+  await expect(this.title).toBeVisible();
+  await expect(this.nameLabel).toBeVisible();
+  await expect(this.nameInputPlaceholder).toBeVisible();
+  await expect(this.nameInput).toBeVisible();
+  await expect(this.saveButtonLabel).toBeVisible();
+  await expect(this.saveButton).toBeVisible();
+  await expect(this.cancelButtonLabel).toBeVisible();
+  await expect(this.cancelButton).toBeVisible();
+}
 }

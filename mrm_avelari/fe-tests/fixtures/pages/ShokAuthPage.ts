@@ -1,4 +1,4 @@
-import { Page, Locator } from '@playwright/test';
+import { Page, Locator, expect } from '@playwright/test';
 
 export class ShokAuthPage {
   public title: Locator;
@@ -9,9 +9,9 @@ export class ShokAuthPage {
   public passwordInput: Locator;
   public passwordPlaceholder: Locator;
 
-  public toLoginButton: Locator;
-  public toBackButton: Locator;
-  public toRegisterButton: Locator;
+  public loginButton: Locator;
+  public backButton: Locator;
+  public registerButton: Locator;
 
   public errorInvalidCredentials: Locator;
   public errorEmailRequired: Locator;
@@ -26,9 +26,9 @@ export class ShokAuthPage {
     this.passwordInput = this.page.getByTestId('login-password-input');
     this.passwordPlaceholder = this.page.getByPlaceholder('Пароль');
 
-    this.toLoginButton = this.page.getByTestId('login-submit-button');
-    this.toBackButton = this.page.getByTestId('login-back-button');
-    this.toRegisterButton = this.page.getByTestId('login-register-button');
+    this.loginButton = this.page.getByTestId('login-submit-button');
+    this.backButton = this.page.getByTestId('login-back-button');
+    this.registerButton = this.page.getByTestId('login-register-button');
 
     this.errorInvalidCredentials = this.page.getByText('Неверный логин или пароль', { exact: true });
     this.errorEmailRequired = this.page.getByText('Введите email', {
@@ -46,14 +46,29 @@ export class ShokAuthPage {
   public async login(email: string, password: string) {
     await this.emailInput.fill(email);
     await this.passwordInput.fill(password);
-    await this.toLoginButton.click();
+    await this.loginButton.click();
   }
 
-  public async toBackButtonClick() {
-    await this.toBackButton.click();
+  public async clickBackButton() {
+    await this.backButton.click();
   }
 
-  public async toRegisterButtonClick() {
-    await this.toRegisterButton.click();
+  public async clickRegisterButton() {
+    await this.registerButton.click();
   }
+
+  public async expectUI() {
+    await expect(this.title).toBeVisible();
+  
+    await expect(this.emailInput).toBeVisible();
+    await expect(this.emailPlaceholder).toBeVisible();
+  
+    await expect(this.passwordInput).toBeVisible();
+    await expect(this.passwordPlaceholder).toBeVisible();
+  
+    await expect(this.loginButton).toBeVisible();
+    await expect(this.backButton).toBeVisible();
+    await expect(this.registerButton).toBeVisible();
+  }
+  
 }

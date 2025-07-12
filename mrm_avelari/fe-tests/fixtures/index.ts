@@ -17,9 +17,8 @@ type ShokFixtures = {
 };
 
 export const test = base.extend<ShokFixtures>({
-  mainPage: async ({ page, storageState }, use) => {
+  mainPage: async ({ page }, use) => {
     const mainPage = new ShokMainPage(page);
-    await mainPage.clearAuth();
     await use(mainPage);
   },
 

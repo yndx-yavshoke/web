@@ -13,9 +13,9 @@ export class ShokRegisterPage {
   public ageInput: Locator;
   public agePlaceholder: Locator;
 
-  public toRegisterButton: Locator;
+  public registerButton: Locator;
   public registerButtonLabel: Locator;
-  public toBackButton: Locator;
+  public backButton: Locator;
   public backButtonLabel: Locator;
 
   public errorEmailRequired: Locator;
@@ -38,10 +38,10 @@ export class ShokRegisterPage {
     this.ageInput = this.page.getByTestId('register-age-input');
     this.agePlaceholder = this.page.getByPlaceholder('Возраст');
 
-    this.toRegisterButton = this.page.getByTestId('register-submit-button');
+    this.registerButton = this.page.getByTestId('register-submit-button');
     this.registerButtonLabel = this.page.getByText(REG_MSG.regBtnText, { exact: true });
 
-    this.toBackButton = this.page.getByTestId('register-back-button');
+    this.backButton = this.page.getByTestId('register-back-button');
     this.backButtonLabel = this.page.getByText(REG_MSG.backBtnText, { exact: true });
 
     this.errorEmailRequired = this.page.getByText(MSG.EMPTY_EMAIL, { exact: true });
@@ -64,10 +64,28 @@ export class ShokRegisterPage {
     await this.passwordInput.fill(password);
     await this.ageInput.fill(age);
 
-    await this.toRegisterButton.click();
+    await this.registerButton.click();
   }
 
-  public async toBackButtonClick() {
-    await this.toBackButton.click();
+  public async clickBackButton() {
+    await this.backButton.click();
   }
+
+  public async expectUI() {
+  await expect(this.title).toBeVisible();
+
+  await expect(this.emailInput).toBeVisible();
+  await expect(this.emailPlaceholder).toBeVisible();
+
+  await expect(this.passwordInput).toBeVisible();
+  await expect(this.passwordPlaceholder).toBeVisible();
+
+  await expect(this.ageInput).toBeVisible();
+  await expect(this.agePlaceholder).toBeVisible();
+
+  await expect(this.registerButton).toBeVisible();
+  await expect(this.registerButtonLabel).toBeVisible();
+  await expect(this.backButton).toBeVisible();
+  await expect(this.backButtonLabel).toBeVisible();
+}
 }
