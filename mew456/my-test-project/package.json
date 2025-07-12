@@ -1,0 +1,21 @@
+{
+  "name": "my-test-project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "testplane",
+    "test:gui": "testplane gui"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "hermione": "^8.9.6",
+    "testplane": "^8.29.5",
+    "@testplane/screenshot-utils": "^2.3.0",
+    "html-reporter": "^10.18.7",
+    "ts-node": "^10.9.2",
+    "@types/node": "^20.0.0"
+  }
+}
