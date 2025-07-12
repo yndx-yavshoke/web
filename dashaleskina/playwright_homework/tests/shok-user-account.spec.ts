@@ -1,78 +1,16 @@
 import { expect } from "@playwright/test";
 import { test } from "../fixtures/index";
+import { MOCK_FOR_OLD, MOCK_FOR_YOUNG, MOCK_FOR_ADULT } from "../mock/ageMocks";
 
 test.use({ storageState: "tests/setup/.auth/user.json" });
 
 test.describe("Profile age status validation", () => {
-  const mockForOld = {
-    flags: {
-      age: {
-        enabled: true,
-        young: {
-          from: 0,
-          to: 21,
-        },
-        adult: {
-          from: 22,
-          to: 68,
-        },
-        old: {
-          from: 69,
-          to: 99,
-        },
-        oldFrom: 0,
-      },
-    },
-  };
-
-  const mockForYoung = {
-    flags: {
-      age: {
-        enabled: true,
-        young: {
-          from: 0,
-          to: 21,
-        },
-        adult: {
-          from: 22,
-          to: 68,
-        },
-        old: {
-          from: 69,
-          to: 99,
-        },
-        youngFrom: 0,
-      },
-    },
-  };
-
-  const mockForAdult = {
-    flags: {
-      age: {
-        enabled: true,
-        young: {
-          from: 0,
-          to: 21,
-        },
-        adult: {
-          from: 22,
-          to: 68,
-        },
-        old: {
-          from: 69,
-          to: 99,
-        },
-        youngFrom: 0,
-      },
-    },
-  };
-
   test("Check 'old' status", async ({ page, userPage, loginPage }) => {
     await page.goto("/");
     await page.route("https://api.yavshok.ru/experiments", (route) => {
       route.fulfill({
         status: 200,
-        body: JSON.stringify(mockForOld),
+        body: JSON.stringify(MOCK_FOR_OLD),
       });
     });
     await expect(loginPage.emailInput).not.toBeVisible();
@@ -84,7 +22,7 @@ test.describe("Profile age status validation", () => {
     await page.route("https://api.yavshok.ru/experiments", (route) => {
       route.fulfill({
         status: 200,
-        body: JSON.stringify(mockForYoung),
+        body: JSON.stringify(MOCK_FOR_YOUNG),
       });
     });
     await expect(loginPage.emailInput).not.toBeVisible();
@@ -96,7 +34,7 @@ test.describe("Profile age status validation", () => {
     await page.route("https://api.yavshok.ru/experiments", (route) => {
       route.fulfill({
         status: 200,
-        body: JSON.stringify(mockForAdult),
+        body: JSON.stringify(MOCK_FOR_ADULT),
       });
     });
     await expect(loginPage.emailInput).not.toBeVisible();
