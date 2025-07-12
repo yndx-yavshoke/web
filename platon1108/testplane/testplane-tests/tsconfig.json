@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "types": [
+            "testplane"
+        ],
+        "resolveJsonModule": true,
+        "esModuleInterop": true
+    }
+}

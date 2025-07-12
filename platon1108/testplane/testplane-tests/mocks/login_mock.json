@@ -1,0 +1,9 @@
+{
+    "token": "eyJ0eXAiOiJKV2QiLCJhbGciOiJIUfI1NiJ9.eyJ1c2VySWQiOjExNzUsImlhdCI6MTc1MaMyNjI2OCwiZXhwIjoxNzUyNDEyNjY4fQ.eseiL6q5aw1UmWBoSTRkyUYwLhoI3Y8wfwunlb9v-jg",
+    "user": {
+        "id": 1175,
+        "email": "lol10@kek.ru",
+        "name": "CustomName",
+        "age": 20
+    }
+}
