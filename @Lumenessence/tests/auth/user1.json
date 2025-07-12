@@ -1,0 +1,18 @@
+{
+  "cookies": [],
+  "origins": [
+    {
+      "origin": "https://yavshok.ru",
+      "localStorage": [
+        {
+          "name": "UserData",
+          "value": "{\"id\":2366,\"email\":\"731@731.ru\",\"name\":\"А глаза как космос\",\"age\":28}"
+        },
+        {
+          "name": "AuthToken",
+          "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjIzNjYsImlhdCI6MTc1MjMzNzY4MSwiZXhwIjoxNzUyNDI0MDgxfQ.KhOmMjrnpS-DHrXA7P70_rdpZ4dsj3-uHwbW2obgjtc"
+        }
+      ]
+    }
+  ]
+}
