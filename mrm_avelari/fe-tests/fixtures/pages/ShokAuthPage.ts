@@ -1,4 +1,4 @@
-import { Page, Locator, expect } from '@playwright/test';
+import { Page, Locator, expect, test } from '@playwright/test';
 
 export class ShokAuthPage {
   public title: Locator;
@@ -58,17 +58,24 @@ export class ShokAuthPage {
   }
 
   public async expectUI() {
-    await expect(this.title).toBeVisible();
-  
-    await expect(this.emailInput).toBeVisible();
-    await expect(this.emailPlaceholder).toBeVisible();
-  
-    await expect(this.passwordInput).toBeVisible();
-    await expect(this.passwordPlaceholder).toBeVisible();
-  
-    await expect(this.loginButton).toBeVisible();
-    await expect(this.backButton).toBeVisible();
-    await expect(this.registerButton).toBeVisible();
+    await test.step('Проверить видимость заголовка страницы', async () => {
+      await expect(this.title).toBeVisible();
+    });
+
+    await test.step('Проверить видимость поля ввода email и плейсхолдера', async () => {
+      await expect(this.emailInput).toBeVisible();
+      await expect(this.emailPlaceholder).toBeVisible();
+    });
+
+    await test.step('Проверить видимость поля ввода пароля и плейсхолдера', async () => {
+      await expect(this.passwordInput).toBeVisible();
+      await expect(this.passwordPlaceholder).toBeVisible();
+    });
+
+    await test.step('Проверить видимость кнопки входа, кнопки назад и кнопки регистрации', async () => {
+      await expect(this.loginButton).toBeVisible();
+      await expect(this.backButton).toBeVisible();
+      await expect(this.registerButton).toBeVisible();
+    });
   }
-  
 }

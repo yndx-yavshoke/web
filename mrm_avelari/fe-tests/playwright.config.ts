@@ -7,10 +7,21 @@ export default defineConfig({
   fullyParallel: false,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : 2,
-  reporter: 'html',
+  reporter: [
+    ['list'],
+    ['html'],
+    ['allure-playwright'],
+    ['html-reporter/playwright', {
+      enabled: true,
+      defaultView: 'failed',
+      path: 'html-report',
+    }]
+  ],
   use: {
     baseURL: process.env.BASE_URL,
     trace: 'on-first-retry',
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
   },
 
   projects: [

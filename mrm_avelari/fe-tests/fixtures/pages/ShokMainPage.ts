@@ -1,4 +1,4 @@
-import { Page, Locator, expect } from '@playwright/test';
+import { Page, Locator, expect, test } from '@playwright/test';
 
 export class ShokMainPage {
   public title: Locator;
@@ -54,10 +54,21 @@ export class ShokMainPage {
   }
 
   public async expectUI() {
-  await expect(this.title).toBeVisible();
-  await expect(this.emailInput).toBeVisible();
-  await expect(this.emailPlaceholder).toBeVisible();
-  await expect(this.checkStatusButton).toBeVisible();
-  await expect(this.loginButton).toBeVisible();
-}
+    await test.step('Проверить видимость заголовка страницы', async () => {
+      await expect(this.title).toBeVisible();
+    });
+
+    await test.step('Проверить видимость поля для ввода email и его плейсхолдера', async () => {
+      await expect(this.emailInput).toBeVisible();
+      await expect(this.emailPlaceholder).toBeVisible();
+    });
+
+    await test.step('Проверить видимость кнопки проверки email на ШОКовость', async () => {
+      await expect(this.checkStatusButton).toBeVisible();
+    });
+
+    await test.step('Проверить видимость кнопки входа', async () => {
+      await expect(this.loginButton).toBeVisible();
+    });
+  }
 }

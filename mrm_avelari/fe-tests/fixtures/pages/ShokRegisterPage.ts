@@ -1,4 +1,4 @@
-import { Page, Locator, expect } from '@playwright/test';
+import { Page, Locator, expect, test } from '@playwright/test';
 import { REG_MSG, MSG } from '../../constants/messages';
 
 export class ShokRegisterPage {
@@ -72,20 +72,33 @@ export class ShokRegisterPage {
   }
 
   public async expectUI() {
-  await expect(this.title).toBeVisible();
+    await test.step('Проверить заголовок страницы регистрации', async () => {
+      await expect(this.title).toBeVisible();
+    });
 
-  await expect(this.emailInput).toBeVisible();
-  await expect(this.emailPlaceholder).toBeVisible();
+    await test.step('Проверить поле для ввода email и его плейсхолдер', async () => {
+      await expect(this.emailInput).toBeVisible();
+      await expect(this.emailPlaceholder).toBeVisible();
+    });
 
-  await expect(this.passwordInput).toBeVisible();
-  await expect(this.passwordPlaceholder).toBeVisible();
+    await test.step('Проверить поле для ввода пароля и его плейсхолдер', async () => {
+      await expect(this.passwordInput).toBeVisible();
+      await expect(this.passwordPlaceholder).toBeVisible();
+    });
 
-  await expect(this.ageInput).toBeVisible();
-  await expect(this.agePlaceholder).toBeVisible();
+    await test.step('Проверить поле для ввода возраста и его плейсхолдер', async () => {
+      await expect(this.ageInput).toBeVisible();
+      await expect(this.agePlaceholder).toBeVisible();
+    });
 
-  await expect(this.registerButton).toBeVisible();
-  await expect(this.registerButtonLabel).toBeVisible();
-  await expect(this.backButton).toBeVisible();
-  await expect(this.backButtonLabel).toBeVisible();
-}
+    await test.step('Проверить кнопку регистрации и её надпись', async () => {
+      await expect(this.registerButton).toBeVisible();
+      await expect(this.registerButtonLabel).toBeVisible();
+    });
+
+    await test.step('Проверить кнопку возврата и её надпись', async () => {
+      await expect(this.backButton).toBeVisible();
+      await expect(this.backButtonLabel).toBeVisible();
+    });
+  }
 }

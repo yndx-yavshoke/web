@@ -1,4 +1,4 @@
-import { Page, Locator, expect } from '@playwright/test';
+import { Page, Locator, expect, test } from '@playwright/test';
 
 export class ShokEditProfilePage {
   public title: Locator;
@@ -37,13 +37,27 @@ export class ShokEditProfilePage {
   }
 
   public async expectUI() {
-  await expect(this.title).toBeVisible();
-  await expect(this.nameLabel).toBeVisible();
-  await expect(this.nameInputPlaceholder).toBeVisible();
-  await expect(this.nameInput).toBeVisible();
-  await expect(this.saveButtonLabel).toBeVisible();
-  await expect(this.saveButton).toBeVisible();
-  await expect(this.cancelButtonLabel).toBeVisible();
-  await expect(this.cancelButton).toBeVisible();
-}
+    await test.step('Проверить видимость заголовка страницы', async () => {
+      await expect(this.title).toBeVisible();
+    });
+
+    await test.step('Проверить видимость метки и плейсхолдера поля имени', async () => {
+      await expect(this.nameLabel).toBeVisible();
+      await expect(this.nameInputPlaceholder).toBeVisible();
+    });
+
+    await test.step('Проверить видимость поля для ввода имени', async () => {
+      await expect(this.nameInput).toBeVisible();
+    });
+
+    await test.step('Проверить видимость кнопки "Сохранить" и ее надпись', async () => {
+      await expect(this.saveButtonLabel).toBeVisible();
+      await expect(this.saveButton).toBeVisible();
+    });
+
+    await test.step('Проверить видимость кнопки "Отмена" и ее надпись', async () => {
+      await expect(this.cancelButtonLabel).toBeVisible();
+      await expect(this.cancelButton).toBeVisible();
+    });
+  }
 }

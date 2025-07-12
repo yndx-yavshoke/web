@@ -2,38 +2,64 @@ import { expect } from '@playwright/test';
 import { test } from '../fixtures/index';
 import { TEST_USER_EMAIL, TEST_UNREGISTERED_EMAIL } from '../constants/env';
 import { COLORS } from '../constants/colors';
+import { BASE_URL } from '../constants/env';
 
 test.describe('Проверка UI элементов главной страницы и навигации', () => {
   test.beforeEach(async ({ mainPage }) => {
-    await mainPage.open();
+    await test.step(`Открыта главная страница: ${BASE_URL}`, async () => {
+      await mainPage.open();
+    });
   });
 
   test('All main elements are visible and correct', async ({ mainPage }) => {
-    await mainPage.expectUI();
+    await test.step('Проверяем наличие всех ключевых UI-элементов', async () => {
+      await mainPage.expectUI();
+    });
   });
 
   test('Navigate to login page on clicking "Login" button', async ({ mainPage }) => {
-    await mainPage.open();
-    await mainPage.clickLoginButton();
+    await test.step('Нажимаем кнопку "Войти"', async () => {
+      await mainPage.clickLoginButton();
+    });
 
-    await expect(mainPage.page).toHaveURL(/login/);
+    await test.step(`Проверяем, что произошёл переход на ${BASE_URL}/login`, async () => {
+      await expect(mainPage.page).toHaveURL(/\/login/);
+    });
   });
 });
 
 test.describe('Проверка ШОКовости', () => {
   test.beforeEach(async ({ mainPage }) => {
-    await mainPage.open();
+    await test.step(`Открыта главная страница: ${BASE_URL}`, async () => {
+      await mainPage.open();
+    });
   });
 
   test('Check existing email - valid email shows green message', async ({ mainPage }) => {
-    await mainPage.checkEmailStatus(TEST_USER_EMAIL, true);
-    await mainPage.checkColorOfPhrase(COLORS.GREEN, true);
-    await expect(mainPage.catGif).toBeVisible();
+    await test.step(`Вводим email зарегистрированного пользователя: ${TEST_USER_EMAIL}`, async () => {
+      await mainPage.checkEmailStatus(TEST_USER_EMAIL, true);
+    });
+
+    await test.step('Фраза отображается зелёным цветом', async () => {
+      await mainPage.checkColorOfPhrase(COLORS.GREEN, true);
+    });
+
+    await test.step('Гифка с котиком отображается', async () => {
+      await expect(mainPage.catGif).toBeVisible();
+    });
   });
 
   test('Check existing email - invalid email shows red message', async ({ mainPage }) => {
-    await mainPage.checkEmailStatus(TEST_UNREGISTERED_EMAIL, false);
-    await mainPage.checkColorOfPhrase(COLORS.RED, false);
-    await expect(mainPage.catGif).not.toBeVisible();
+    await test.step(`Вводим незарегистрированный email: ${TEST_UNREGISTERED_EMAIL}`, async () => {
+      await mainPage.checkEmailStatus(TEST_UNREGISTERED_EMAIL, false);
+    });
+
+    await test.step('Фраза отображается красным цветом', async () => {
+      await mainPage.checkColorOfPhrase(COLORS.RED, false);
+    });
+
+    await test.step('Гифка с котиком НЕ отображается', async () => {
+      await expect(mainPage.catGif).not.toBeVisible();
+    });
   });
 });

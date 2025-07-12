@@ -1,4 +1,4 @@
-import { Page, Locator, expect } from '@playwright/test';
+import { Page, Locator, expect, test } from '@playwright/test';
 
 export class ShokProfilePage {
   public avatar: Locator;
@@ -61,25 +61,36 @@ export class ShokProfilePage {
   }
 
   public async expectUI() {
-    await expect(this.avatar).toBeVisible();
-    await expect(this.userName).toBeVisible();
-    await expect(this.ageStatusText).toBeVisible();
-    await expect(this.editProfileButton).toBeVisible();
-    await expect(this.editProfileLabel).toBeVisible();
-    await expect(this.logoutButton).toBeVisible();
-    await expect(this.logoutLabel).toBeVisible();
-  
-    await expect(this.galleryImage0).toBeVisible();
-    await expect(this.galleryImage1).toBeVisible();
-    await expect(this.galleryImage2).toBeVisible();
-    await expect(this.galleryImage3).toBeVisible();
-  
-    await expect(this.postsLabel).toBeVisible();
-    await expect(this.followersLabel).toBeVisible();
-    await expect(this.likesLabel).toBeVisible();
-  
-    await expect(this.postsCount).toBeVisible();
-    await expect(this.followersCount).toBeVisible();
-    await expect(this.likesCount).toBeVisible();
+    await test.step('Проверить видимость аватара, имени и статуса пользователя', async () => {
+      await expect(this.avatar).toBeVisible();
+      await expect(this.userName).toBeVisible();
+      await expect(this.ageStatusText).toBeVisible();
+    });
+
+    await test.step('Проверить видимость кнопок редактирования профиля и выхода и их надписи', async () => {
+      await expect(this.editProfileButton).toBeVisible();
+      await expect(this.editProfileLabel).toBeVisible();
+      await expect(this.logoutButton).toBeVisible();
+      await expect(this.logoutLabel).toBeVisible();
+    });
+
+    await test.step('Проверить видимость изображений галереи', async () => {
+      await expect(this.galleryImage0).toBeVisible();
+      await expect(this.galleryImage1).toBeVisible();
+      await expect(this.galleryImage2).toBeVisible();
+      await expect(this.galleryImage3).toBeVisible();
+    });
+
+    await test.step('Проверить видимость лейблов постов, подписчиков и лайков', async () => {
+      await expect(this.postsLabel).toBeVisible();
+      await expect(this.followersLabel).toBeVisible();
+      await expect(this.likesLabel).toBeVisible();
+    });
+
+    await test.step('Проверить видимость счётчиков постов, подписчиков и лайков', async () => {
+      await expect(this.postsCount).toBeVisible();
+      await expect(this.followersCount).toBeVisible();
+      await expect(this.likesCount).toBeVisible();
+    });
   }
 }
