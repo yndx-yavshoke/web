@@ -1,0 +1,74 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+# Общие исключения
+.DS_Store
+*.log
+npm-debug.log*
+
+# Node.js
+node_modules/
+
+# Expo
+.expo/
+.expo-shared/
+
+# Android/iOS сборки
+android/app/build/
+ios/build/
+
+# Environment files
+.env
+*.env.local
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Build output
+/dist/
+/build/
+
+# Testplane/Allure/Playwright/Cypress/Other test artifacts
+allure-results/
+allure-report/
+playwright-report/
+cypress/videos/
+cypress/screenshots/
+coverage/
+
+# Testplane report artifacts
+/testplane-report/*.db
+/testplane-report/*.js
+/testplane-report/*.css
+/testplane-report/*.wasm
+/testplane-report/*.png
+/testplane-report/*.svg
+/testplane-report/*.json
+/testplane-report/images/
+/testplane-report/
+
+# Local env files
+.env*
+
+# VSCode
+.vscode/
+
+# Misc
+*.swp
+*.swo
+.idea/ 
+echo ".expo/
+node_modules/
+*.log
+*.tmp
+.DS_Store
+dist/
+coverage/
+.env"
