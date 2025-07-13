@@ -52,3 +52,18 @@ ssl/
 
 expo-env.d.ts
 # @end expo-cli
+
+
+# Playwright
+/ui-tests/node_modules/
+/ui-tests/test-results/
+/ui-tests/playwright-report/
+/ui-tests/blob-report/
+/ui-tests/playwright/.cache/
+
+/ui-tests/secrets/
+/ui-tests/storage/.auth/
+
+/ui-tests/allure-report/
+/ui-tests/allure-results/
+/ui-tests/html-report/
