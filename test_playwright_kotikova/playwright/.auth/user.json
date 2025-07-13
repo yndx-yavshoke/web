@@ -1,0 +1,19 @@
+{
+  "email": "test-1abcd159-adf1-439b-ae1e-583feabb5b86@ya.com",
+  "cookies": [],
+  "origins": [
+    {
+      "origin": "https://yavshok.ru",
+      "localStorage": [
+        {
+          "name": "UserData",
+          "value": "{\"id\":2730,\"email\":\"test-1abcd159-adf1-439b-ae1e-583feabb5b86@ya.com\",\"name\":\"Neko\",\"age\":11}"
+        },
+        {
+          "name": "AuthToken",
+          "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjI3MzAsImlhdCI6MTc1MjQyMDQ1NSwiZXhwIjoxNzUyNTA2ODU1fQ.541jW9pIewtb9EFH_GH1k276DobkMq4vq-x6XYENuDM"
+        }
+      ]
+    }
+  ]
+}
