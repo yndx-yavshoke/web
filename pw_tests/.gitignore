@@ -1,0 +1,26 @@
+/tmp
+/out-tsc
+
+/node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+/.pnp
+.pnp.js
+
+.vscode/*
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
+tests/setup/auth.json
+.env
+.cache/
+.vscode/
+*.log
+html-report/
+allure-results/
