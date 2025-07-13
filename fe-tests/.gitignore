@@ -1,0 +1,14 @@
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/tests/setup/auth
+/html-report/
+/playwright-report/
+/allure-results/
+
+package-lock.json
+package.json
