@@ -11,3 +11,4 @@ node_modules/
 /package.json
 /allure-report
 /allure-results
+/html-report

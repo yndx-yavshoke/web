@@ -23,7 +23,12 @@ export default defineConfig({
   reporter: [ 
               ['list'],
               ['html'],
-              ['allure-playwright', { outputFolder: 'allure-results' }]
+              ['allure-playwright', { outputFolder: 'allure-results' }],
+              ['html-reporter/playwright', {
+             enabled: true,
+             defaultView: 'failed',
+             path: 'html-report',
+              }]
             ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
