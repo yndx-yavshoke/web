@@ -1,0 +1,18 @@
+{
+  "cookies": [],
+  "origins": [
+    {
+      "origin": "http://localhost:8081",
+      "localStorage": [
+        {
+          "name": "UserData",
+          "value": "{\"id\":1,\"email\":\"test0@yandex.ru\",\"name\":\"Neko\",\"age\":21}"
+        },
+        {
+          "name": "AuthToken",
+          "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc1MjQ0NDc3OCwiZXhwIjoxNzUyNTMxMTc4fQ.B8sG7ii2M-0ICOmi6hlpyrWP6KCB-KN3w72adATsm2g"
+        }
+      ]
+    }
+  ]
+}

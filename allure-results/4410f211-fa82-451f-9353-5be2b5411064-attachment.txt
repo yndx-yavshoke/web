@@ -1,0 +1,3 @@
+🔥 YOUNG FORCE: oldFrom=50, youngFrom=15, возраст=18
+🔥 Логика: 18 >= youngFrom(15) AND 18 < oldFrom(50) = молодой
+📝 YOUNG FORCE результат: UwU

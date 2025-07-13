@@ -1,0 +1,4 @@
+🔥 ADULT: oldFrom=50, youngFrom=20, возраст=18 → взрослый
+🔥 Логика: 18 < youngFrom(20) AND 18 < oldFrom(50) = взрослый
+📦 ADULT response: {"flags":{"age":{"enabled":true,"oldFrom":50,"youngFrom":20}}}
+📝 ADULT статус: Ты молоденький котик
