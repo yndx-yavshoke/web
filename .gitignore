@@ -52,3 +52,5 @@ ssl/
 
 expo-env.d.ts
 # @end expo-cli
+
+./playwright-report
