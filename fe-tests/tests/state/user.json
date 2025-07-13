@@ -1,0 +1,18 @@
+{
+  "cookies": [],
+  "origins": [
+    {
+      "origin": "https://yavshok.ru",
+      "localStorage": [
+        {
+          "name": "UserData",
+          "value": "{\"id\":128,\"email\":\"test@mail.ru\",\"name\":\"newName\",\"age\":19}"
+        },
+        {
+          "name": "AuthToken",
+          "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjEyOCwiaWF0IjoxNzUyMzc4NjMyLCJleHAiOjE3NTI0NjUwMzJ9.QtaLbrm_BK_9nmghE8YrtsOqYRty8e7VyRtemz2B1Wc"
+        }
+      ]
+    }
+  ]
+}
