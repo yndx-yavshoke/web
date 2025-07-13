@@ -1,5 +1,5 @@
 {
-  "extends": "expo/tsconfig.base",
+  "extends": "./fe-tests/tsconfig.json",
   "compilerOptions": {
     "strict": true,
     "paths": {
@@ -13,5 +13,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-  ]
+, "fe-tests/tests/setup.ts/env.sample"  ]
 }
