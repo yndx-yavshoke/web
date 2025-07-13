@@ -9,9 +9,7 @@ export class ShokUserPage {
     public shokEmail: Locator;
     public shokTitle: Locator;
     public editPageTitle: Locator;
-    public youngCat: Locator;
-    public adultCat: Locator;
-    public oldCat: Locator;
+    public youAreCat: Locator;
 
 
     constructor(public readonly page: Page) {
@@ -23,11 +21,8 @@ export class ShokUserPage {
         this.shokTitle = this.page.getByText("Я в ШОКе", {exact: true});
         this.editPageTitle = this.page.getByText('Edit Profile', {exact: true}).nth(1);
 
-        this.youngCat = this.page.getByText("Ты молоденький котик", { exact: true });
-        this.adultCat = this.page.getByText("Ты взрослый котик", { exact: true });
-        this.oldCat = this.page.getByText("Ты старый котик", { exact: true });
+        this.youAreCat = this.page.getByText(/Ты (молоденький|взрослый|старый) котик/);
     }
-
     public async open() {
         await this.page.goto('');
     }

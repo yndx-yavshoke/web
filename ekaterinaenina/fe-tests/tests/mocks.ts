@@ -1,0 +1,57 @@
+export const mockExperiments20isYoung = {
+    "flags":{
+        "age":{
+        "enabled":true,
+        "young":{
+            "from":0,
+            "to":21
+        },
+        "adult":{
+            "from":22,
+            "to":68
+        },
+        "old":{
+            "from":69,
+            "to":99
+        },
+        "oldFrom":30,
+        "youngFrom":2
+}}};
+export const mockExperiments20isAdult = {
+    "flags":{
+        "age":{
+        "enabled":true,
+        "young":{
+            "from":0,
+            "to":4
+        },
+        "adult":{
+            "from":5,
+            "to":29
+        },
+        "old":{
+            "from":30,
+            "to":99
+        },
+        "oldFrom":30,
+        "youngFrom":2
+}}};
+export const mockExperiments20isOld = {
+    "flags":{
+        "age":{
+        "enabled":true,
+        "young":{
+            "from":0,
+            "to":4
+        },
+        "adult":{
+            "from":5,
+            "to":14
+        },
+        "old":{
+            "from":15,
+            "to":99
+        },
+        "oldFrom":15,
+        "youngFrom":2
+}}};

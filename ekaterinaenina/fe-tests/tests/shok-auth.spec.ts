@@ -4,7 +4,7 @@ import {test} from "../fixture/index";
 
 //тесты для страницы авторизации
 test.beforeEach(async ({authPage}) => {
-    await test.step("Отображается страница https://yavshok.ru/login", async () => {
+    await test.step("Открывается страница авторизации (/login)", async () => {
         await authPage.open();
     })
 })

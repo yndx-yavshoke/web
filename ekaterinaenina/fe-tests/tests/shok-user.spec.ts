@@ -6,7 +6,7 @@ test.use({storageState: 'tests/setup/.auth/user.json'});
 
 //тесты для страницы пользователя
 test.beforeEach(async ({userPage}) => {
-    await test.step("Отображается страница пользователя https://yavshok.ru/", async () => {
+    await test.step("Открывается страница пользователя", async () => {
         await userPage.open();
     });
 })
@@ -21,8 +21,8 @@ test('Видимость страницы пользователя', async ({use
     await test.step("Отображается кнопка выхода", async () => {
         await expect(userPage.logoutButton).toBeVisible();
     });
-    await test.step("Отображается надпись 'Ты молодой котик'", async () => {
-        await expect(userPage.youngCat).toBeVisible();
+    await test.step("Отображается надпись про статус котика", async () => {
+        await expect(userPage.youAreCat).toBeVisible();
     });
 })
 

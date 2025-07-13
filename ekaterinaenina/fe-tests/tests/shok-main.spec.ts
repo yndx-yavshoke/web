@@ -4,7 +4,7 @@ import {test} from "../fixture/index";
 
 //тесты для стартовой страницы
 test.beforeEach(async ({mainPage}) => {
-    await test.step("Отображается страница https://yavshok.ru", async () => {
+    await test.step("Открывается страница https://yavshok.ru", async () => {
         await mainPage.open();
     });
 })
@@ -43,7 +43,7 @@ test('Работа кнопки В ШОК', async ({mainPage}) => {
     await test.step("Нажатие на кнопку В ШОК", async () => {
         await mainPage.goToLoginPage();
     });
-    await test.step("Отображается страница https://yavshok.ru/login", async () => {
+    await test.step("Открывается страница входа (/login)", async () => {
         await expect(mainPage.page).toHaveURL("/login");
     });
 })

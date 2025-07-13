@@ -4,7 +4,7 @@ import { faker } from '@faker-js/faker';
 
 //тесты для страницы регистрации
 test.beforeEach(async ({registerPage}) => {
-    await test.step("Отображается страница https://yavshok.ru/register", async () => {
+    await test.step("Открывается страница регистрации(/register)", async () => {
         await registerPage.open();
     })
 })
@@ -61,7 +61,7 @@ test('Работа кнопки Назад', async ({registerPage}) => {
     await test.step("Нажатие на кнопку Назад", async () => {
         await registerPage.goToBackPage();
     });
-    await test.step("Отображается страница авторизации", async () => {
+    await test.step("Открывается страница авторизации", async () => {
         await expect(registerPage.page).toHaveURL("/login");
     });
 })

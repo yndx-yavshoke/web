@@ -1,5 +1,6 @@
 import { expect } from "@playwright/test";
 import {test} from "../fixture/index";
+import { mockExperiments20isAdult, mockExperiments20isOld, mockExperiments20isYoung } from "./mocks";
 
 
 test.use({storageState: 'tests/setup/.auth/user.json'});
@@ -12,11 +13,11 @@ test('Отображение надписи для молодого котика
             body: JSON.stringify(mockExperiments20isYoung)
         });
     })
-    await test.step("Отображается страница пользователя https://yavshok.ru/", async () => {
+    await test.step("Открывается страница пользователя", async () => {
         await userPage.open();
     });
     await test.step("Отображается надпись 'Ты молодой котик'", async () => {
-        await expect(userPage.youngCat).toBeVisible();
+        await expect(userPage.youAreCat).toContainText("молоденький");
     });
 })
 
@@ -27,11 +28,11 @@ test.skip('Отображение надписи для взрослого ко�
             body: JSON.stringify(mockExperiments20isAdult)
         });
     })
-    await test.step("Отображается страница пользователя https://yavshok.ru/", async () => {
+    await test.step("Открывается страница пользователя", async () => {
         await userPage.open();
     });
     await test.step("Отображается надпись 'Ты взрослый котик'", async () => {
-        await expect(userPage.adultCat).toBeVisible();
+        await expect(userPage.youAreCat).toContainText("взрослый");
     });
 })
 
@@ -42,68 +43,10 @@ test('Отображение надписи для старого котика',
             body: JSON.stringify(mockExperiments20isOld)
         });
     })
-    await test.step("Отображается страница пользователя https://yavshok.ru/", async () => {
+    await test.step("Открывается страница пользователя", async () => {
         await userPage.open();
     });
     await test.step("Отображается надпись 'Ты старый котик'", async () => {
-        await expect(userPage.oldCat).toBeVisible();
+        await expect(userPage.youAreCat).toContainText("старый");
     });
 })
-
-const mockExperiments20isYoung = {
-    "flags":{
-        "age":{
-        "enabled":true,
-        "young":{
-            "from":0,
-            "to":21
-        },
-        "adult":{
-            "from":22,
-            "to":68
-        },
-        "old":{
-            "from":69,
-            "to":99
-        },
-        "oldFrom":30,
-        "youngFrom":2
-}}};
-const mockExperiments20isAdult = {
-    "flags":{
-        "age":{
-        "enabled":true,
-        "young":{
-            "from":0,
-            "to":4
-        },
-        "adult":{
-            "from":5,
-            "to":29
-        },
-        "old":{
-            "from":30,
-            "to":99
-        },
-        "oldFrom":30,
-        "youngFrom":2
-}}};
-const mockExperiments20isOld = {
-    "flags":{
-        "age":{
-        "enabled":true,
-        "young":{
-            "from":0,
-            "to":4
-        },
-        "adult":{
-            "from":5,
-            "to":14
-        },
-        "old":{
-            "from":15,
-            "to":99
-        },
-        "oldFrom":15,
-        "youngFrom":2
-}}};
