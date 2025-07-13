@@ -1,0 +1,5 @@
+
+# Playwright
+node_modules/
+/testplane-report/
+/.testplane/
