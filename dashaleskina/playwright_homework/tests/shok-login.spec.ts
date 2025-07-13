@@ -3,34 +3,100 @@ import { test } from "../fixtures/index";
 import { faker } from "@faker-js/faker";
 
 test.beforeEach(async ({ loginPage }) => {
-  await loginPage.open();
-  await expect(loginPage.title).toBeVisible();
+  await test.step("Открыть страницу входа", async () => {
+    await loginPage.open();
+  });
+  await test.step("Заголовок страницы входа отображается", async () => {
+    await expect(loginPage.title).toBeVisible();
+  });
 });
 
-test("Successful login", async ({ loginPage, userPage }) => {
-  await loginPage.emailInput.fill(process.env.TEST_USER_EMAIL!);
-  await loginPage.passwordInput.fill(process.env.TEST_USER_PASSWORD!);
-  await loginPage.loginButton.click();
-  await expect(userPage.logoutButton).toBeVisible();
+test("Успешный вход в систему", async ({ loginPage, userPage }) => {
+  await test.step("Поле email отображается", async () => {
+    await expect(loginPage.emailInput).toBeVisible();
+  });
+  await test.step("Заполнить поле email значением", async () => {
+    await loginPage.emailInput.fill(process.env.TEST_USER_EMAIL!);
+  });
+  await test.step("Поле пароля отображается", async () => {
+    await expect(loginPage.passwordInput).toBeVisible();
+  });
+  await test.step("Заполнить поле пароля значением", async () => {
+    await loginPage.passwordInput.fill(process.env.TEST_USER_PASSWORD!);
+  });
+  await test.step("Кнопка входа отображается", async () => {
+    await expect(loginPage.loginButton).toBeVisible();
+  });
+  await test.step("Нажать на кнопку входа", async () => {
+    await loginPage.loginButton.click();
+  });
+  await test.step("Кнопка выхода отображается на странице пользователя", async () => {
+    await expect(userPage.logoutButton).toBeVisible();
+  });
 });
 
-test("Login with wrong password", async ({ loginPage }) => {
-  await loginPage.emailInput.fill(process.env.TEST_USER_EMAIL!);
-  await loginPage.passwordInput.fill(faker.internet.password({ length: 7 }));
-  await loginPage.loginButton.click();
-  await expect(loginPage.authErrorMessage).toBeVisible();
+test("Вход с неверным паролем", async ({ loginPage }) => {
+  await test.step("Поле email отображается", async () => {
+    await expect(loginPage.emailInput).toBeVisible();
+  });
+  await test.step("Заполнить поле email значением", async () => {
+    await loginPage.emailInput.fill(process.env.TEST_USER_EMAIL!);
+  });
+  await test.step("Поле пароля отображается", async () => {
+    await expect(loginPage.passwordInput).toBeVisible();
+  });
+  await test.step("Заполнить поле пароля случайным значением", async () => {
+    await loginPage.passwordInput.fill(faker.internet.password({ length: 7 }));
+  });
+  await test.step("Кнопка входа отображается", async () => {
+    await expect(loginPage.loginButton).toBeVisible();
+  });
+  await test.step("Нажать на кнопку входа", async () => {
+    await loginPage.loginButton.click();
+  });
+  await test.step("Сообщение об ошибке отображается на странице", async () => {
+    await expect(loginPage.authErrorMessage).toBeVisible();
+  });
 });
 
-test("Login with empty fields", async ({ loginPage }) => {
-  await expect(loginPage.emailInput).toBeEmpty();
-  await expect(loginPage.passwordInput).toBeEmpty();
-  await loginPage.loginButton.click({ force: true });
-  await expect(loginPage.emailRequiredMessage).toBeVisible();
-  await expect(loginPage.passwordRequiredMessage).toBeVisible();
+test("Вход с пустыми полями", async ({ loginPage }) => {
+  await test.step("Поле email отображается", async () => {
+    await expect(loginPage.emailInput).toBeVisible();
+  });
+  await test.step("Поле email пустое", async () => {
+    await expect(loginPage.emailInput).toBeEmpty();
+  });
+  await test.step("Поле пароля отображается", async () => {
+    await expect(loginPage.passwordInput).toBeVisible();
+  });
+  await test.step("Поле пароля пустое", async () => {
+    await expect(loginPage.passwordInput).toBeEmpty();
+  });
+  await test.step("Кнопка входа отображается", async () => {
+    await expect(loginPage.loginButton).toBeVisible();
+  });
+  await test.step("Нажать на кнопку входа", async () => {
+    await loginPage.loginButton.click({ force: true });
+  });
+  await test.step("Сообщение о необходимости заполнения email отображается", async () => {
+    await expect(loginPage.emailRequiredMessage).toBeVisible();
+  });
+  await test.step("Сообщение о необходимости заполнения пароля отображается", async () => {
+    await expect(loginPage.passwordRequiredMessage).toBeVisible();
+  });
 });
 
-test("Push 'Регистрация' button", async ({ loginPage, registerPage }) => {
-  await loginPage.registerButton.click();
-  await expect(registerPage.title).toBeVisible();
-  await expect(registerPage.page).toHaveURL("/register");
+test("Переход на страницу регистрации по кнопке 'Регистрация'", async ({ loginPage, registerPage }) => {
+  await test.step("Кнопка 'Регистрация' отображается", async () => {
+    await expect(loginPage.registerButton).toBeVisible();
+  });
+  await test.step("Нажать на кнопку 'Регистрация'", async () => {
+    await loginPage.registerButton.click();
+  });
+  await test.step("Заголовок страницы регистрации отображается", async () => {
+    await expect(registerPage.title).toBeVisible();
+  });
+  await test.step("URL страницы регистрации корректен", async () => {
+    await expect(registerPage.page).toHaveURL("/register");
+  });
 });

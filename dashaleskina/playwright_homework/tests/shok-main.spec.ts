@@ -3,29 +3,82 @@ import { test } from "../fixtures/index";
 import { faker } from "@faker-js/faker";
 
 test.beforeEach(async ({ mainPage }) => {
-  await mainPage.open();
-  await expect(mainPage.title).toBeVisible();
+  await test.step("Открыть главную страницу", async () => {
+    await mainPage.open();
+  });
+  await test.step("Заголовок главной страницы отображается", async () => {
+    await expect(mainPage.title).toBeVisible();
+  });
 });
 
-test("User exists", async ({ mainPage }) => {
-  await mainPage.checkEmail(process.env.TEST_USER_EMAIL!);
-  await expect(mainPage.successGIF).toBeVisible();
-  await expect(mainPage.successTextMessage).toBeVisible();
+test("Пользователь существует", async ({ mainPage }) => {
+  await test.step("Поле ввода email отображается", async () => {
+    await expect(mainPage.input).toBeVisible();
+  });
+  await test.step("Заполнить поле email значением", async () => {
+    await mainPage.input.fill(process.env.TEST_USER_EMAIL!);
+  });
+  await test.step("Кнопка проверки отображается", async () => {
+    await expect(mainPage.checkButton).toBeVisible();
+  });
+  await test.step("Нажать на кнопку проверки", async () => {
+    await mainPage.checkButton.click();
+  });
+  await test.step("GIF отображается", async () => {
+    await expect(mainPage.successGIF).toBeVisible();
+  });
+  await test.step("Сообщение об успехе отображается", async () => {
+    await expect(mainPage.successTextMessage).toBeVisible();
+  });
 });
 
-test("User does not exists", async ({ mainPage }) => {
-  await mainPage.checkEmail(faker.internet.email());
-  await expect(mainPage.failedTextMessage).toBeVisible();
+test("Пользователь не существует", async ({ mainPage }) => {
+  await test.step("Поле ввода email отображается", async () => {
+    await expect(mainPage.input).toBeVisible();
+  });
+  await test.step("Заполнить поле email случайным значением", async () => {
+    await mainPage.input.fill(faker.internet.email());
+  });
+  await test.step("Кнопка проверки отображается", async () => {
+    await expect(mainPage.checkButton).toBeVisible();
+  });
+  await test.step("Нажать на кнопку проверки", async () => {
+    await mainPage.checkButton.click();
+  });
+  await test.step("Сообщение об ошибке отображается", async () => {
+    await expect(mainPage.failedTextMessage).toBeVisible();
+  });
 });
 
-test("Check button disabled when input empty", async ({ mainPage }) => {
-  await expect(mainPage.input).toBeEmpty();
-  await mainPage.checkButton.click({ force: true });
-  await expect(mainPage.successTextMessage).not.toBeVisible();
-  await expect(mainPage.failedTextMessage).not.toBeVisible();
+test("Кнопка проверки неактивна при пустом поле ввода", async ({ mainPage }) => {
+  await test.step("Поле ввода email отображается", async () => {
+    await expect(mainPage.input).toBeVisible();
+  });
+  await test.step("Поле ввода email пустое", async () => {
+    await expect(mainPage.input).toBeEmpty();
+  });
+  await test.step("Кнопка проверки отображается", async () => {
+    await expect(mainPage.checkButton).toBeVisible();
+  });
+  await test.step("Нажать на кнопку проверки", async () => {
+    await mainPage.checkButton.click({ force: true });
+  });
+  await test.step("Сообщение об успехе не отображается", async () => {
+    await expect(mainPage.successTextMessage).not.toBeVisible();
+  });
+  await test.step("Сообщение об ошибке не отображается", async () => {
+    await expect(mainPage.failedTextMessage).not.toBeVisible();
+  });
 });
 
-test("Clicking toLoginButton navigates to login page", async ({ mainPage }) => {
-  await mainPage.toLoginButton.click();
-  await expect(mainPage.page).toHaveURL("/login");
+test("Переход на страницу входа по кнопке 'Войти'", async ({ mainPage }) => {
+  await test.step("Кнопка 'Войти' отображается", async () => {
+    await expect(mainPage.toLoginButton).toBeVisible();
+  });
+  await test.step("Нажать на кнопку 'Войти'", async () => {
+    await mainPage.toLoginButton.click();
+  });
+  await test.step("URL страницы входа корректен", async () => {
+    await expect(mainPage.page).toHaveURL("/login");
+  });
 });
