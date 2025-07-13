@@ -1,0 +1,15 @@
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/tests/auth/storageState.json/
+/dist/
+/html-report/
+/allure-results/
+/allure-report/
+/venv/
+/yavshok-testpane-tests/
+
+.env

@@ -1,0 +1,23 @@
+{
+  "name": "yavshok-ui-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@faker-js/faker": "^9.9.0",
+    "@playwright/test": "^1.53.2",
+    "@swc/core": "^1.12.11",
+    "@types/node": "^24.0.10",
+    "allure-playwright": "^3.3.0",
+    "html-reporter": "^10.18.7",
+    "testplane": "^8.29.5"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.0",
+    "gif-frames": "^1.0.1"
+  }
+}
