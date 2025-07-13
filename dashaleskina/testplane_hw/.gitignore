@@ -1,0 +1,40 @@
+# Node.js
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Logs
+logs/
+*.log
+
+# Runtime data
+pids/
+*.pid
+*.pid.lock
+
+# Environment variables
+.env*
+!.env.example
+
+# Testplane screenshots & reports
+hermione-report/
+/testplane-report/
+test-results/
+screenshots/
+report/
+*.diff.png
+*.fail.png
+*.png
+gemini-report/
+*.actual.png
+*.expected.png
+
+# IDE configs
+.vscode/
+.idea/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
