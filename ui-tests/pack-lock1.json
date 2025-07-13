@@ -1,0 +1,123 @@
+{
+    "name": "ui-tests",
+    "version": "1.0.0",
+    "lockfileVersion": 3,
+    "requires": true,
+    "packages": {
+        "": {
+            "name": "ui-tests",
+            "version": "1.0.0",
+            "license": "ISC",
+            "dependencies": {
+                "@faker-js/faker": "^9.9.0",
+                "dotenv": "^17.0.1"
+            },
+            "devDependencies": {
+                "@playwright/test": "^1.53.2",
+                "@types/node": "^24.0.10",
+                "allure-playwright": "^3.3.0",
+                "html-reporter": "^10.18.7"
+            }
+        },
+        "node_modules/@babel/runtime": {
+            "version": "7.27.6",
+            "resolved": "https://registry.npmjs.org/@babel/runtime/-/runtime-7.27.6.tgz",
+            "integrity": "sha512-vbavdySgbTTrmFE+EsiqUTzlOr5bzlnJtUv9PynGCAKvfQqjIXbvFdumPM/GxMDfyuGMJaJAU6TO4zc1Jf1i8Q==",
+            "dev": true,
+            "license": "MIT",
+            "engines": {
+                "node": ">=6.9.0"
+            }
+        },
+        "node_modules/@faker-js/faker": {
+            "version": "9.9.0",
+            "resolved": "https://registry.npmjs.org/@faker-js/faker/-/faker-9.9.0.tgz",
+            "integrity": "sha512-OEl393iCOoo/z8bMezRlJu+GlRGlsKbUAN7jKB6LhnKoqKve5DXRpalbItIIcwnCjs1k/FOPjFzcA6Qn+H+YbA==",
+            "funding": [
+                {
+                    "type": "opencollective",
+                    "url": "https://opencollective.com/fakerjs"
+                }
+            ],
+            "license": "MIT",
+            "engines": {
+                "node": ">=18.0.0",
+                "npm": ">=9.0.0"
+            }
+        },
+        "node_modules/@gemini-testing/commander": {
+            "version": "2.15.4",
+            "resolved": "https://registry.npmjs.org/@gemini-testing/commander/-/commander-2.15.4.tgz",
+            "integrity": "sha512-GIvIknEbJccKMv2KCgYOOZPy4QgR3/8csvds/WCUGEJPkghHz6VrziG7cBaB4n91PsFEpOwU+uJqXun5sEBpwg==",
+            "dev": true,
+            "license": "MIT"
+        },
+        "node_modules/@gemini-testing/sql.js": {
+            "version": "2.0.0",
+            "resolved": "https://registry.npmjs.org/@gemini-testing/sql.js/-/sql.js-2.0.0.tgz",
+            "integrity": "sha512-FoslR6S5cxObp0fNtiFkQ6TvGZ5sd7+KomY7Hm3sH51uAHxyzJSQGvpsaiw5dmO/HHYEBF/bJMXHVWEQGfot7A==",
+            "dev": true,
+            "license": "MIT"
+        },
+        "node_modules/@nodelib/fs.scandir": {
+            "version": "2.1.5",
+            "resolved": "https://registry.npmjs.org/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz",
+            "integrity": "sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==",
+            "dev": true,
+            "license": "MIT",
+            "dependencies": {
+                "@nodelib/fs.stat": "2.0.5",
+                "run-parallel": "^1.1.9"
+            },
+            "engines": {
+                "node": ">= 8"
+            }
+        },
+        "node_modules/@nodelib/fs.stat": {
+            "version": "2.0.5",
+            "resolved": "https://registry.npmjs.org/@nodelib/fs.stat/-/fs.stat-2.0.5.tgz",
+            "integrity": "sha512-RkhPPp2zrqDAQA/2jNhnztcPAlv64XdhIp7a7454A5ovI7Bukxgt7MX7udwAu3zg1DcpPU0rz3VV1SeaqvY4+A==",
+            "dev": true,
+            "license": "MIT",
+            "engines": {
+                "node": ">= 8"
+            }
+        },
+        "node_modules/@nodelib/fs.walk": {
+            "version": "1.2.8",
+            "resolved": "https://registry.npmjs.org/@nodelib/fs.walk/-/fs.walk-1.2.8.tgz",
+            
+            "integrity": "sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==",
+            "dev": true,
+            "license": "MIT",
+            "dependencies": {
+                "@nodelib/fs.scandir": "2.1.5",
+                "fastq": "^1.6.0"
+            },
+            "engines": {
+                "node": ">= 8"
+            }
+        },
+        "node_modules/@playwright/test": {
+            "version": "1.53.2",
+            "resolved": "https://registry.npmjs.org/@playwright/test/-/test-1.53.2.tgz",
+            "integrity": "sha512-tEB2U5z74ebBeyfGNZ3Jfg29AnW+5HlWhvHtb/Mqco9pFdZU1ZLNdVb2UtB5CvmiilNr2ZfVH/qMmAROG/XTzw==",
+            "dev": true,
+            "license": "Apache-2.0",
+            "dependencies": {
+                "playwright": "1.53.2"
+            },
+            "bin": {
+                "playwright": "cli.js"
+            },
+            "engines": {
+                "node": ">=18"
+            }
+        },
+        "node_modules/@types/node": {
+            "version": "24.0.10",
+            "resolved": "https://registry.npmjs.org/@types/node/-/node-24.0.10.tgz"
+        }
+    }
+}
+
