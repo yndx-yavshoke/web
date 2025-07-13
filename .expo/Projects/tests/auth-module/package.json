@@ -1,0 +1,9 @@
+{
+  "name": "shok-auth-helper",
+  "version": "1.0.0",
+  "main": "./auth-helper.ts",
+  "types": "./auth-helper.ts",
+  "peerDependencies": {
+    "@playwright/test": "^1.53.2"
+  }
+}
