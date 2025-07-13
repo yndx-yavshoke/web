@@ -1,0 +1,15 @@
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
+/html-report/
+/allure-results/
+/allure-report/
+/tests-examples/
+
+auth/cookies.json
+
+
