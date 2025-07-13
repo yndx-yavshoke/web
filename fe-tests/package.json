@@ -1,0 +1,22 @@
+{
+  "name": "fe-tests",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {"test": "playwright test"},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.53.2",
+    "@types/node": "^24.0.10",
+    "allure-playwright": "^3.3.0",
+    "html-reporter": "^10.18.7",
+    "playwright": "^1.53.2",
+    "testplane": "^8.29.5",
+    "ts-node": "^10.9.2"
+  },
+  "dependencies": {
+    "allure": "^3.0.0-beta.15"
+  }
+}
