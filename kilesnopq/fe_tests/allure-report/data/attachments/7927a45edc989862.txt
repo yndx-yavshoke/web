@@ -1,0 +1,7 @@
+# Page snapshot
+
+```yaml
+- text: Edit Profile Name
+- textbox "Enter your name": WjlfMhWBNb
+- text: Save Changes Cancel
+```
