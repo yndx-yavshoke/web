@@ -1,0 +1,24 @@
+{
+    "name": "my-test-project",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "devDependencies": {
+        "@faker-js/faker": "^9.9.0",
+        "dotenv": "^17.2.0",
+        "html-reporter": "^9.16.0",
+        "jest": "^30.0.4",
+        "mocha": "^11.7.1",
+        "testplane": "^0.0.1",
+        "ts-node": "^10.9.2"
+    },
+    "dependencies": {
+        "playwright": "^1.54.1"
+    }
+}
