@@ -1,0 +1,5 @@
+#TESTPLAIN
+.env
+node_modules/
+/testplane-report/
+/.testplane/

@@ -1,0 +1,11 @@
+
+# Playwright
+node_modules/
+/allure-report/
+/allure-results/
+/html-report/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/tests/setup/.auth
