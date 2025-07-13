@@ -1,0 +1,21 @@
+{
+  "name": "scr-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "testplane run",
+    "test:open": "testplane open"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@swc/core": "^1.12.11",
+    "@types/mocha": "^10.0.10",
+    "dotenv": "^17.2.0",
+    "html-reporter": "^10.18.7",
+    "testplane": "^8.29.5",
+    "ts-node": "^10.9.2"
+  }
+}
