@@ -63,3 +63,7 @@ expo-env.d.ts
 
 /ui-tests/secrets/
 /ui-tests/storage/.auth/
+
+/ui-tests/allure-report/
+/ui-tests/allure-results/
+/ui-tests/html-report/

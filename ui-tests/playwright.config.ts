@@ -6,7 +6,18 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
-  reporter: "html",
+  reporter: [
+    ["line"],
+    ["allure-playwright"],
+    [
+      "html-reporter/playwright",
+      {
+        enabled: true,
+        defaultView: "failed",
+        path: "html-report",
+      },
+    ],
+  ],
   use: {
     baseURL: "https://yavshok.ru",
     trace: "on-first-retry",

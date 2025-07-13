@@ -1,18 +1,26 @@
-import setup from "@playwright/test";
 import { test, expect } from "../../fixtures";
+import * as path from "path";
 
-const userFile = "storage/.auth/user.json";
+const userFile = path.join("storage", ".auth", "user.json");
 
 test("Авторизация пользователя", async ({ loginPage }) => {
-  // Perform authentication steps. Replace these actions with your own.
-  await loginPage.open();
-  await loginPage.loginWithRegisteredUser();
-  // Wait until the page receives the cookies.
-  await loginPage.page.getByTestId("user-logout-button").toBeVisible;
-  // Sometimes login flow sets cookies in the process of several redirects.
-  // Wait for the final URL to ensure that the cookies are actually set.
-  await loginPage.page.waitForURL("https://yavshok.ru/");
+  await test.step("Открываем страницу логина", async () => {
+    await loginPage.open();
+  });
 
-  // End of authentication steps.
-  await loginPage.page.context().storageState({ path: userFile });
+  await test.step("Выполняем вход с зарегистрированным пользователем", async () => {
+    await loginPage.loginWithRegisteredUser();
+  });
+
+  await test.step("Ждём появления кнопки выхода (проверка успешного входа)", async () => {
+    await expect(loginPage.page.getByTestId("user-logout-button")).toBeVisible();
+  });
+
+  await test.step("Ждём переход на главную страницу", async () => {
+    await loginPage.page.waitForURL("https://yavshok.ru/");
+  });
+
+  await test.step("Сохраняем состояние в файл", async () => {
+    await loginPage.page.context().storageState({ path: userFile });
+  });
 });
