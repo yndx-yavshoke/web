@@ -9,3 +9,5 @@ node_modules/
 /tests-examples
 /package-lock.json
 /package.json
+/allure-report
+/allure-results

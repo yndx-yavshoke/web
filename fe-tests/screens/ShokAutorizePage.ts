@@ -1,4 +1,5 @@
-import { Page, Locator } from "@playwright/test"
+import { Page, Locator, expect, test} from "@playwright/test"
+import { ENDPOINTS } from "../constants/testData"
 
 export class ShokAutorizePage{
     public title: Locator;
@@ -26,15 +27,30 @@ export class ShokAutorizePage{
     }
 
     public async open(){
-        await this.page.goto("/login", {timeout : 45000});
+        await this.page.goto(ENDPOINTS.endpointLogin, {timeout : 45000});
     }
 
     public async logIn(email: string, password: string){
-        this.inputEmail.fill(email, {timeout : 15000});
-        await this.inputEmail.press('Tab');
-        this.inputPassword.fill(password, {timeout : 15000});
-        await this.inputPassword.press('Tab');
-        this.buttonEnter.click({timeout : 15000});
+        await test.step('Поле ввода email отоброжается', async () => {
+            await expect(this.inputEmail).toBeVisible();
+        })
+        await test.step('Ввод в поле email: ' + email , async () => {
+            await this.inputEmail.fill(email, {timeout : 15000});
+        })
+        await test.step('Табуляция между строками ввода', async () => {
+            await this.inputEmail.press('Tab');
+        })
+        await test.step('Ввод в поле пароля: ' + password, async () => {
+            await this.inputPassword.fill(password, {timeout : 15000});
+        })
+        await test.step('Табуляция между строками ввода', async () => {
+            await this.inputPassword.press('Tab');
+        })
+        await test.step('Кнопка входа отоброжается', async () => {
+            await expect(this.buttonEnter).toBeVisible();
+        })
+        await test.step("Нажатие на кнопку входа", async () => {
+            await this.buttonEnter.click({timeout : 15000});
+        })        
     }
-
 }

@@ -1,5 +1,5 @@
-import { Page, Locator, expect } from "@playwright/test";
-import { endpoints } from "../constants/testData"
+import { Page, Locator, expect, test } from "@playwright/test";
+import { ENDPOINTS } from "../constants/testData"
 
 export class ShokMainPage{
     public title: Locator;
@@ -21,22 +21,35 @@ export class ShokMainPage{
     }
 
     public async open() {
-        await this.page.goto(endpoints.enpointMain);
+        await this.page.goto(ENDPOINTS.enpointMain);
     }
 
     public async checkEmail(email: string) {
-        await this.input.fill(email);
-        await this.checkButton.click();
+        await test.step('вставка в поле email: ' + email, async () => {
+            await this.input.fill(email);
+        })
+        await test.step('кнопка проверить email отображается', async () => {
+            await expect(this.checkButton).toBeVisible();
+        })
+        await test.step('нажатие на кнопку - проверить email', async () => {
+            await this.checkButton.click();
+        })        
     }
 
     public async checkEmailTrue(email: string) {
-        this.checkEmail(email)
-        await expect(this.inShockGif).toBeVisible();
-        await expect(this.youInShokText).toBeVisible();
+        await this.checkEmail(email)
+        await test.step('Отображение анимации, что ты в шоке', async () => {
+            await expect(this.inShockGif).toBeVisible();
+        })
+        await test.step('Отображение текста, что ты в шоке', async () => {
+            await expect(this.youInShokText).toBeVisible();
+        })        
     }
 
     public async checkEmailFalse(email: string) {
-        this.checkEmail(email)
-        await expect(this.youNotInShokText).toBeVisible();
+        await this.checkEmail(email)
+        await test.step('Отображение текста, что ты еще не в шоке', async () => {
+            await expect(this.youNotInShokText).toBeVisible();
+        })           
     }
 }

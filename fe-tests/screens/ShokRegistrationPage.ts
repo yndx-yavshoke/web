@@ -1,4 +1,5 @@
 import { Page, Locator } from '@playwright/test'
+import { ENDPOINTS } from "../constants/testData"
 
 export class ShokRegistrationPage{
     public title: Locator;
@@ -14,8 +15,6 @@ export class ShokRegistrationPage{
     public lineErrorLenPassword: Locator;
     public lineErrorAgeNumber: Locator;
     public lineErrorEmail: Locator;
-
-
 
     constructor(public readonly page: Page) {
         this.title = this.page.getByText("Регистрация в ШОКе", { exact : true});
@@ -34,14 +33,7 @@ export class ShokRegistrationPage{
     }
 
     public async open() {
-        await this.page.goto('/register');
-    }
-
-    public async registNewUser(email: string, password: string, age: string) {
-        await this.inputEmail.fill(email);
-        await this.inputPassword.fill(password);
-        await this.inputAge.fill(age);
-        await this.registerButon.click();
+        await this.page.goto(ENDPOINTS.endpointRegistration);
     }
 
 }

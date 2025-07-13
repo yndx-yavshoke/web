@@ -1,5 +1,5 @@
-import { Page, Locator, expect } from "@playwright/test"
-import { endpoints } from "../constants/testData"
+import { Page, Locator, expect, test } from "@playwright/test"
+import { ENDPOINTS } from "../constants/testData"
 
 export class ShokEditPage {
     public title: Locator;
@@ -21,18 +21,31 @@ export class ShokEditPage {
     }
 
     public async open() {
-        await this.page.goto(endpoints.endpointEdit);
+        await this.page.goto(ENDPOINTS.endpointEdit);
     }
 
     public async newName(name: string){
-        await this.open()
-
-        await expect(this.inputName).toBeVisible();
-        await this.inputName.fill(name);
-        await expect(this.buttonSaveChanges).toBeVisible();
-        await this.buttonSaveChanges.click();
-        await expect(this.buttonCancle).toBeVisible();
-        await this.buttonCancle.click();
-
+        await test.step('Переход на страницу /edit', async () => {
+            await this.open()
+        })
+        await test.step('Поле ввода имени отображается', async () => {
+            await expect(this.inputName).toBeVisible();
+        })
+        await test.step('Ввод в поле имени: ' + name, async () => {
+            await this.inputName.fill(name);
+        })        
+        await test.step('Кнопка сохранить изменения отображается', async () => {
+            await expect(this.buttonSaveChanges).toBeVisible();
+        })
+        await test.step('Нажатие на кнопку сохранить изменения', async () => {
+            await this.buttonSaveChanges.click();
+        })
+        await test.step('Кнопка назад отображается', async () => {
+            await expect(this.buttonCancle).toBeVisible();
+        })
+        await test.step('Нажатие на кнопку назад', async () => {
+            await this.buttonCancle.click({timeout : 45000});
+        })
+        
     }
 }
