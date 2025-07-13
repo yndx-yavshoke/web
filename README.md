@@ -1,8 +1,8 @@
-# Welcome to your Expo app 👋
+# Yavshok Web Application
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
-## Get started
+## 🚀 Get started
 
 1. Install dependencies
 
@@ -25,6 +25,92 @@ In the output, you'll find options to open the app in a
 
 You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
+## 🧪 Testing
+
+### Unit Tests (Jest)
+```bash
+npm test
+```
+
+### E2E Tests (Playwright)
+
+#### Prerequisites
+```bash
+# Install Playwright browsers
+npm run test:e2e:install
+```
+
+#### Run Tests
+```bash
+# All E2E tests
+npm run test:e2e
+
+# Tests with UI interface (recommended for development)
+npm run test:e2e:ui
+
+# Tests in headed mode (visible browsers)
+npm run test:e2e:headed
+
+# Show HTML report
+npm run test:e2e:report
+```
+
+#### Allure Reports
+```bash
+# Run tests with Allure
+npm run test:e2e:allure
+
+# Generate Allure report
+npm run test:e2e:allure:generate
+
+# Open Allure report
+npm run test:e2e:allure:open
+```
+
+## 📁 Project Structure
+
+```
+├── app/                    # Expo Router pages
+├── src/
+│   ├── features/          # Feature modules
+│   │   ├── auth/         # Authentication
+│   │   ├── experiments/  # Experiments
+│   │   └── user/         # User management
+│   ├── layouts/          # Page layouts
+│   └── shared/           # Shared components and utilities
+│       ├── config/       # Configuration
+│       ├── constants/    # Constants
+│       ├── lib/          # Utilities
+│       ├── testing/      # Testing utilities
+│       └── ui/           # UI components
+├── tests/                # E2E tests (Playwright)
+│   ├── pages/           # Page Object models
+│   ├── mocks/           # API mocks
+│   └── *.spec.ts        # Test files
+├── android/             # Android configuration
+├── ios/                 # iOS configuration
+└── assets/              # Static assets
+```
+
+## 🎯 Features
+
+### Testing
+- **Unit tests**: Jest + React Testing Library
+- **E2E tests**: Playwright with Page Object pattern
+- **API mocks**: Built-in mocks for testing
+- **Allure reports**: Detailed reporting
+
+### Cross-platform
+- Mobile and desktop support
+- Responsive design
+- Universal app development
+
+### Architecture
+- Feature-based structure
+- Shared components
+- TypeScript support
+- Expo Router for navigation
+
 ## Get a fresh project
 
 When you're ready, run:
@@ -41,6 +127,7 @@ To learn more about developing your project with Expo, look at the following res
 
 - [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
 - [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- [Playwright documentation](https://playwright.dev/): Learn about E2E testing with Playwright.
 
 ## Join the community
 
