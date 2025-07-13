@@ -11,7 +11,9 @@ node_modules
 .env.development.local
 .env.test.local
 .env.production.local
-
+./fe-tests/tests/state/
+./fe-tests/tests/state/user.json
+./fe-tests/tests/state/stateMaker.spec.ts
 .vscode/
 
 # Testing
