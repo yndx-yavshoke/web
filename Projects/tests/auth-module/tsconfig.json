@@ -1,8 +1,0 @@
-{
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "shok-auth-helper": ["./auth-module/auth-helper.ts"]
-    }
-  }
-}
