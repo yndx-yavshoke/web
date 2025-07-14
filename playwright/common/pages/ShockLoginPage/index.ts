@@ -22,7 +22,7 @@ class ShockLoginPage extends ShockBasePage<ShockLoginPageModel> implements IShoc
         await this.model.submitButton.click();
 
         // Ждем загрузки стора
-        await this.page.waitForTimeout(100);
+        await this.page.waitForTimeout(500);
 
         await this.page.context().storageState({ path: AUTH_PATH_STORAGE });
     }
