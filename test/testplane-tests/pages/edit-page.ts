@@ -9,7 +9,7 @@ export class EditPage {
     }
 
     get title() {
-        return this.browser.$('["Edit Profile"]');
+        return this.browser.$('[class="css-146c3p1 r-vw2c0b r-1yflyrw r-q4m81j r-1ui5ee8"]');
     }
 
     get nameInput() {

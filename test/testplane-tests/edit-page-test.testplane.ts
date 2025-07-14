@@ -1,7 +1,7 @@
 import {LoginPage} from "./pages/login-page";
 import {EditPage} from "./pages/edit-page";
 
-describe("Edit page", () => {
+describe.only("Edit page", () => {
 
     beforeEach(async ({browser}) => {
         const loginPage = new LoginPage(browser);
