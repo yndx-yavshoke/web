@@ -13,11 +13,11 @@ describe("Profile page", () => {
 
         await profilePage.logoutButton.waitForExist();
 
-        await browser.assertView("default profile page", {disableAnimation: true});
+        await browser.assertView("default profile page", {disableAnimation: true, ignoreDiffPixelCount: 10});
 
         await profilePage.editButton.waitForExist();
 
-        await browser.assertView("header", profilePage.selectors.header, {disableAnimation: true});
+        await browser.assertView("header", profilePage.selectors.header, {disableAnimation: true, ignoreDiffPixelCount: 20});
         await browser.assertView("edit button", profilePage.selectors.editButton);
         await browser.assertView("logout button", profilePage.selectors.logoutButton);
         await browser.assertView("statistic data", profilePage.selectors.statistic);

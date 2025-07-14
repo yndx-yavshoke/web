@@ -20,7 +20,8 @@ export default {
             headless: true,
             desiredCapabilities: {
                 browserName: "chrome"
-            }
+            },
+            windowSize: "1920x1080"
         },
     },
     plugins: {

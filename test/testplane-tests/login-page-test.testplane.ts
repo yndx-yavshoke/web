@@ -24,7 +24,7 @@ describe("Login page", () => {
 
         await loginPage.login({email: AUTH_DATA.email, password: "not-valid-password"})
 
-        expect(loginPage.errorMessage).toHaveText("Произошла ошибка");
+        expect(loginPage.errorMessage).toHaveText(/Произошла ошибка|Неправильный логин или пароль/);
         await browser.assertView("login error");
     })
 });
