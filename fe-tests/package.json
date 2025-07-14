@@ -1,0 +1,24 @@
+{
+  "name": "fe-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "allure:generate": "allure generate allure-results -o allure-report --clean",
+    "allure:open": "allure open allure-report",
+    "test:with-report": "playwright test && npm run allure:generate && npm run allure:open"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.54.1",
+    "@types/node": "^24.0.13",
+    "allure-commandline": "^2.34.1",
+    "allure-playwright": "^3.3.0",
+    "html-reporter": "^10.18.7",
+    "playwright": "^1.54.1"
+  }
+}
