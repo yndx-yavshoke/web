@@ -20,7 +20,7 @@ class ShockChangeNamePage extends ShockBasePage<ShockChangeNamePageModel> implem
         await this.model.saveButton.click();
 
         // Ждем обновление данных стора
-        await this.page.waitForTimeout(100);
+        await this.page.waitForTimeout(500);
     }
 }
 
