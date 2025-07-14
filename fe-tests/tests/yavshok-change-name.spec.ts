@@ -27,12 +27,14 @@ test('Внешний вид и атрибуты элементов', async ({ ch
 test('Успешная смена имени', async ({ changeNamePage }) => {
     await changeNamePage.open();
 
-    const oldName = String(changeNamePage.nameInput.inputValue());
+    //const oldName = String(changeNamePage.nameInput.inputValue());
+    const oldName = 'Fan'
     await changeNamePage.changeName(newName);
 
     await expect(changeNamePage.nameInput, 'Не удалось ввести имя в поле ввода имени').toHaveValue(newName);
+    await expect(changeNamePage.saveButton, 'Не удалось сохранить имя').toHaveText('Save Changes');
     await changeNamePage.cancelButton.click();
-    await expect(changeNamePage.cancelButton, 'Не произошел переход на страницу профиля').not.toBeVisible();
+    await expect(changeNamePage.page.getByTestId('user-logout-button'), 'Не произошел переход на страницу профиля').toBeVisible();
     await expect(changeNamePage.page.getByText(newName), 'На странице профиля не отображается новое имя').toBeVisible();
 
     // и вернем на место для будущих тестов
