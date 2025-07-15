@@ -57,3 +57,4 @@ my-test-project/testplane-report
 my-test-project/testplane
 my-test-project/node_modules
 my-test-project/.testplane
+my-test-project/package-lock.json
