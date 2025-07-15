@@ -28,7 +28,9 @@ describe('login page static', function () {
     })
 
     it ('should show title', async ({browser}) => {
+
         await browser.assertView('screen title', '.css-146c3p1.r-1x35g6.r-vw2c0b')
+        
     })
 
 })

@@ -41,7 +41,9 @@ describe('profile page', function () {
   );
 });
     it('should show hard code - number of posts', async({ browser}) => {
+
       await browser.assertView('screen of number posts', '.css-175oi2r.r-1awozwy.r-lcslpx')
+      
     })
 
 })

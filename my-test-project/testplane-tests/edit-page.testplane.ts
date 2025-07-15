@@ -39,9 +39,22 @@ describe('edit page', function () {
     it('should show focus on input name', async ({ browser }) => {
 
         const inputName = browser.$('[data-testid="edit-name-input"]');
-        inputName.click();
+        await inputName.click();
 
         await browser.assertView('screen focus input name', '[data-testid="edit-name-input"]')
+
+    })
+
+    it('should show error message if empty name', async ({ browser}) => {
+        const inputName = browser.$('[data-testid="edit-name-input"]');
+        await inputName.click();
+
+        await inputName.setValue("");
+        
+        const saveButton = browser.$('[data-testid="edit-save-button"]');
+        await saveButton.click();
+
+        await browser.assertView('error message screen', '.css-146c3p1.r-kb0oh3.r-1b43r93.r-14gqq1x');
 
     })
 
