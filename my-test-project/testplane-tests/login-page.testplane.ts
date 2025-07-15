@@ -1,5 +1,6 @@
 describe('login page static', function () {
   beforeEach(async function () {
+    
      await this.browser.openAndWait('https://yavshok.ru/login');
 
   });
@@ -30,7 +31,7 @@ describe('login page static', function () {
     it ('should show title', async ({browser}) => {
 
         await browser.assertView('screen title', '.css-146c3p1.r-1x35g6.r-vw2c0b')
-        
+
     })
 
 })
@@ -64,6 +65,7 @@ describe('login page error', function () {
   });
 
   it('should show warn messages about empty feelds', async ({browser}) => {
+
         const loginButton = await browser.$('[data-testid="login-submit-button"]');
         await loginButton.click();
 

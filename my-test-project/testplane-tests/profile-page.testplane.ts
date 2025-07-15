@@ -32,6 +32,7 @@ describe('profile page', function () {
 
   
     await browser.assertView(
+      
         'profile-picture-static',
     'img[src*="profile.4c9412d0fd7b6d90111faab09c8f6c4a"]',
     {
@@ -43,7 +44,7 @@ describe('profile page', function () {
     it('should show hard code - number of posts', async({ browser}) => {
 
       await browser.assertView('screen of number posts', '.css-175oi2r.r-1awozwy.r-lcslpx')
-      
+
     })
 
 })
