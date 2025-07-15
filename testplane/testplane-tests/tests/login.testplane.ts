@@ -1,6 +1,6 @@
 import { SCREENSHOT_OPTS } from '../helpers/creds';
 import { LoginPage } from '../pages/login.page';
-import { clearCookies, clearStorage } from '../helpers/browser.utils';
+import { clearStorage } from '../helpers/browser.utils';
 
 
 describe('Страница авторизации', () => {
@@ -8,6 +8,8 @@ describe('Страница авторизации', () => {
 
      beforeEach(async function ({ browser }) {
           page = new LoginPage(browser);
+
+          await clearStorage(browser);
 
           await page.open();
      });

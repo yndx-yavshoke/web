@@ -1,4 +1,4 @@
-export const PROFILE_URL = '/profile';
+export const PROFILE_URL = '/';
 
 export class ProfilePage {
      constructor(private browser: any) {
@@ -18,19 +18,15 @@ export class ProfilePage {
      }
 
      get gallery() {
-          return this.browser.$('[data-testid^="gallery-item-0"]').parentElement().parentElement();
+          return this.browser.$('.r-150rngu.r-eqz5dr.r-16y2uox.r-1wbh5a2.r-11yh6sk.r-1rnoaur.r-agouwx');
+     }
+
+     get avatar() {
+          return '[data-testid="user-avatar"]';
      }
 
      async open() {
           await this.browser.url(PROFILE_URL);
      }
 
-     // async hideGif() {
-     //      await this.browser.execute(() => {
-     //           const avatar = document.querySelector('[data-testid="user-avatar"] img');
-     //           if (avatar && avatar instanceof HTMLElement) {
-     //                avatar.style.visibility = 'hidden';
-     //           }
-     //      });
-     // }
 } 

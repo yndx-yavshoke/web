@@ -1,9 +1,6 @@
-import config from '../../testplane.config';
 import { ProfilePage } from '../pages/profile.page';
 import { LoginPage } from '../pages/login.page';
 import { EMAIL, PASSWORD, SCREENSHOT_OPTS } from '../helpers/creds';
-import { clearCookies, clearStorage } from '../helpers/browser.utils';
-
 
 describe('Профиль', () => {
      let profilePage: ProfilePage;
@@ -15,7 +12,12 @@ describe('Профиль', () => {
           await loginPage.open();
           await loginPage.login(EMAIL, PASSWORD);
 
-          await profilePage.open();
+          await browser.$(profilePage.avatar).waitForExist({ timeout: 5000 });
+
+          await browser.execute(() => {
+               const avatar = document.querySelector('[data-testid="user-avatar"]');
+               if (avatar && avatar instanceof HTMLElement) avatar.style.visibility = 'hidden';
+          });
      });
 
      it('Весь header профиля', async function () {

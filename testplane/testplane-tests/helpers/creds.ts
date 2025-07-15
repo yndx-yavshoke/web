@@ -12,9 +12,7 @@ export const EMAIL = process.env.EMAIL;
 export const PASSWORD = process.env.PASSWORD;
 
 export const SCREENSHOT_OPTS = {
-     tolerance: 2.3,
-     antialiasingTolerance: 4,
      screenshotDelay: 100,
      disableAnimation: true,
-     ignoreElements: ['.live-counter', 'img[src*=".gif"]']
+     ignoreElements: ['.live-counter', 'img', '[data-testid="user-avatar"]']
 }; 

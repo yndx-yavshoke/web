@@ -1,8 +1,6 @@
-import config from '../../testplane.config';
 import { ProfileEditPage } from '../pages/profile-edit.page';
 import { LoginPage } from '../pages/login.page';
 import { EMAIL, PASSWORD, SCREENSHOT_OPTS } from '../helpers/creds';
-import { clearCookies, clearStorage } from '../helpers/browser.utils';
 
 
 describe('Редактирование профиля', () => {
@@ -10,11 +8,11 @@ describe('Редактирование профиля', () => {
 
      beforeEach(async function ({ browser }) {
           page = new ProfileEditPage(browser);
-
           const loginPage = new LoginPage(browser);
           await loginPage.open();
 
           await loginPage.login(EMAIL, PASSWORD);
+
           await page.open();
      });
 

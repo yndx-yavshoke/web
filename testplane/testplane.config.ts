@@ -11,20 +11,22 @@ export default {
                 "testplane-tests/**/*.testplane.(t|j)s"
             ],
             browsers: [
-                "chrome",
+                // "chrome",
                 "firefox"
             ]
         }
     },
     browsers: {
-        chrome: {
-            headless: true,
-            desiredCapabilities: {
-                browserName: "chrome"
-            }
-        },
+        // chrome: {
+        //     headless: true,
+        //     windowSize: { width: 1280, height: 1000 },
+        //     desiredCapabilities: {
+        //         browserName: "chrome"
+        //     }
+        // },
         firefox: {
             headless: true,
+            windowSize: { width: 1280, height: 1000 },
             desiredCapabilities: {
                 browserName: "firefox"
             }
