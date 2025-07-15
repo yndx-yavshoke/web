@@ -1,0 +1,16 @@
+{
+  "name": "test_plane_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "../../../OneDrive/Desktop/фулл рабочийэ/test_plane_project/node_modules/.bin/tsc"
+  },
+  "devDependencies": {
+    "html-reporter": "^10.18.7",
+    "testplane": "^8.29.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.3"
+  },
+  "private": true
+}
