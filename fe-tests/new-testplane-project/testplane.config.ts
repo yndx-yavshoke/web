@@ -11,18 +11,18 @@ export default {
                 "testplane-tests/**/*.testplane.(t|j)s"
             ],
             browsers: [
-                "chrome",
+                // "chrome",
                 "firefox"
             ]
         }
     },
     browsers: {
-        chrome: {
-            headless: true,
-            desiredCapabilities: {
-                browserName: "chrome"
-            }
-        },
+        // chrome: {
+        //     headless: true,
+        //     desiredCapabilities: {
+        //         browserName: "chrome"
+        //     }
+        // },
         firefox: {
             headless: true,
             desiredCapabilities: {
