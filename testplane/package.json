@@ -1,0 +1,23 @@
+{
+  "name": "testplane",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "testplane run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^24.0.14",
+    "chai": "^5.2.1",
+    "html-reporter": "^10.18.7",
+    "testplane": "^8.29.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.0"
+  }
+}
