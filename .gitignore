@@ -61,9 +61,14 @@ expo-env.d.ts
 /ui-tests/blob-report/
 /ui-tests/playwright/.cache/
 
-/ui-tests/secrets/
+/**/secrets/
 /ui-tests/storage/.auth/
 
 /ui-tests/allure-report/
 /ui-tests/allure-results/
 /ui-tests/html-report/
+
+/screenshot-tests/.testplane
+/screenshot-tests/testplane-report
+/screenshot-tests/testplane
+/**/package-lock.json
