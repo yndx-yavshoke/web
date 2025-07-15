@@ -1,6 +1,9 @@
+import * as dotenv from 'dotenv';
+dotenv.config();
+
 export default {
     gridUrl: "local",
-    baseUrl: "https://yavshok.ru",
+    baseUrl: process.env.BASE_URL,
     pageLoadTimeout: 0,
     httpTimeout: 60000,
     testTimeout: 90000,
@@ -36,7 +39,7 @@ export default {
             enabled: true,
             path: "testplane-report",
             defaultView: "all",
-            diffMode: "3-up-scaled"
+            diffMode: "3-up-scaled",
         }
     }
 };
