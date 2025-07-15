@@ -1,0 +1,9 @@
+# Testplane
+node_modules/
+.testplane/
+testplane/
+testplane-report/
+
+
+# Environment variables
+.env

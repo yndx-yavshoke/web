@@ -1,0 +1,21 @@
+{
+  "name": "hexlet-playwright",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@faker-js/faker": "^9.9.0",
+    "@playwright/test": "^1.54.1",
+    "@testplane/storybook": "^1.7.1",
+    "@types/node": "^24.0.10",
+    "allure-playwright": "^3.3.0",
+    "html-reporter": "^10.18.7",
+    "playwright": "^1.53.2",
+    "testplane": "^8.29.5",
+    "ts-node": "^10.9.2"
+  }
+}
