@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "CommonJS",
+    "lib": ["ES2020", "DOM"],
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "strict": false,
+    "types": ["node", "mocha", "webdriverio"]
+  },
+  "include": ["./**/*.ts"]
+}
