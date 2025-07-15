@@ -1,0 +1,7 @@
+testplane-report/
+node_modules/
+.testplane/
+
+.env
+
+testplane-global-hook/
