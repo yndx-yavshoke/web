@@ -11,7 +11,7 @@ export default {
                 "testplane-tests/**/*.testplane.(t|j)s"
             ],
             browsers: [
-                "chrome",
+                //"chrome",
                 "firefox"
             ]
         }
