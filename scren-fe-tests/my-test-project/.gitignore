@@ -1,0 +1,8 @@
+# Playwright
+node_modules/
+/.testplane/
+/testplane-report
+/package-lock.json
+/package.json
+/testplane.config.ts
+testplane-tests/tsconfig.json
