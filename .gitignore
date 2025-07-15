@@ -15,6 +15,10 @@ node_modules
 .vscode/
 
 # Testing
+testplane-tests/shok-test-project/testplane-tests/auth.json
+testplane-tests/shok-test-project/.testplane/failed.json
+testplane-tests/shok-test-project/testplane/screens
+testplane-tests/shok-test-project/testplane-report
 coverage
 
 # Turbo
@@ -52,3 +56,4 @@ ssl/
 
 expo-env.d.ts
 # @end expo-cli
+
