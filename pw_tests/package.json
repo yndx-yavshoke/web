@@ -1,0 +1,19 @@
+{
+  "name": "testautopw",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.54.1",
+    "@types/node": "^24.0.13",
+    "allure-commandline": "^2.34.1",
+    "allure-playwright": "^3.3.0",
+    "html-reporter": "^10.18.7",
+    "testplane": "^8.29.5",
+    "typescript": "^5.5.3"
+  },
+  "private": true
+}
