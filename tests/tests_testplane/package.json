@@ -1,0 +1,25 @@
+{
+  "name": "tests_testplane",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "testplane": "^8.29.5",
+    "html-reporter": "^10.18.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3",
+    "@testplane/types": "^9.5.0",
+    "@types/dotenv": "^6.1.1",
+    "@types/node": "^24.0.13",
+    "testplane-global-hook": "file:./testplane-global-hook"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.0"
+  }
+}
