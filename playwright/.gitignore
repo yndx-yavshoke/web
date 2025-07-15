@@ -1,0 +1,12 @@
+.env
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/tests/setup/.auth
+/allure-results
+/package-lock.json
+/html-report
+/playwright-report
+/test-results
