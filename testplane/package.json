@@ -1,0 +1,19 @@
+{
+  "name": "testplane",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": ".testplane.conf.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "testplane": "testplane"
+  },
+  "dependencies": {
+    "testplane": "^8.29.5"
+  }
+}
