@@ -21,7 +21,6 @@ TG: [@danya639](https://t.me/danya639)
 ```
 ALLURE_RESULTS_FOLDER="allure-results"
 
-# Креденшлы для тестовых пользователей (примеры)
 EMAIL='example@example.com'
 PASSWORD='password'
 

@@ -5,7 +5,15 @@ export default defineConfig({
   fullyParallel: true,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : 2,
-  reporter: [["html"], ["allure-playwright"]],
+  reporter: [
+    ["html"],
+    ["allure-playwright"],
+    ['html-reporter/playwright', {
+      enabled: true,
+      defaultView: 'failed',
+      path: 'html-report',
+    }],
+  ],
   use: {
     baseURL: 'https://yavshok.ru/',
     trace: 'on-first-retry',
