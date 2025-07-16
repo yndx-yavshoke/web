@@ -1,0 +1,22 @@
+# Node.js
+node_modules/
+
+# Logs
+logs/
+*.log
+
+# dotenv environment files
+.env
+.env.*
+
+# Testplane/Allure/other test reports
+testplane-report/
+allure-results/
+coverage/
+*.png
+*.diff.png
+.testplane/
+
+# VSCode/IDE
+.vscode/
+.idea/ 
