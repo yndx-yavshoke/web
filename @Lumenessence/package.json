@@ -1,0 +1,18 @@
+{
+  "name": "Playwright",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^9.9.0",
+    "@playwright/test": "^1.54.1",
+    "@types/node": "^24.0.13",
+    "allure-commandline": "^2.25.0",
+    "allure-playwright": "^3.3.0",
+    "typescript": "^5.5.3"
+  },
+  "private": true
+}
