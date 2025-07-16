@@ -20,20 +20,19 @@ describe('Профиль', () => {
           });
      });
 
-     it('Весь header профиля', async function () {
-          // await profilePage.hideGif();
-          await this.browser.assertView('profile-header', await profilePage.header, SCREENSHOT_OPTS);
+     it('Весь header профиля', async ({ browser }) => {
+          await browser.assertView('profile-header', await profilePage.header, SCREENSHOT_OPTS);
      });
 
-     it('Блок статистики', async function () {
-          await this.browser.assertView('profile-stats', await profilePage.stats, SCREENSHOT_OPTS);
+     it('Блок статистики', async ({ browser }) => {
+          await browser.assertView('profile-stats', await profilePage.stats, SCREENSHOT_OPTS);
      });
 
-     it('Статус пользователя', async function () {
-          await this.browser.assertView('profile-status', await profilePage.status, SCREENSHOT_OPTS);
+     it('Статус пользователя', async ({ browser }) => {
+          await browser.assertView('profile-status', await profilePage.status, SCREENSHOT_OPTS);
      });
 
-     it('Блок галереи', async function () {
-          await this.browser.assertView('profile-gallery', await profilePage.gallery, SCREENSHOT_OPTS);
+     it('Блок галереи', async ({ browser }) => {
+          await browser.assertView('profile-gallery', await profilePage.gallery, SCREENSHOT_OPTS);
      });
 }); 

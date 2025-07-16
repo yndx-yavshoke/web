@@ -14,27 +14,27 @@ describe('Страница авторизации', () => {
           await page.open();
      });
 
-     it('Состояние по умолчанию', async function ({ browser }) {
+     it('Состояние по умолчанию', async ({ browser }) => {
           await browser.assertView('default', 'body', SCREENSHOT_OPTS);
      });
 
-     it('Фокус на поле ввода email', async function () {
+     it('Фокус на поле ввода email', async ({ browser }) => {
           await page.emailInput.click();
 
-          await this.browser.assertView('focus-email', 'body', SCREENSHOT_OPTS);
+          await browser.assertView('focus-email', 'body', SCREENSHOT_OPTS);
      });
 
-     it('Фокус на поле ввода пароля', async function () {
+     it('Фокус на поле ввода пароля', async ({ browser }) => {
           await page.passwordInput.click();
 
-          await this.browser.assertView('focus-password', 'body', SCREENSHOT_OPTS);
+          await browser.assertView('focus-password', 'body', SCREENSHOT_OPTS);
      });
 
-     it('Ошибка авторизации', async function () {
+     it('Ошибка авторизации', async ({ browser }) => {
           await page.emailInput.setValue('wrong@mail.ru');
           await page.passwordInput.setValue('wrongpass');
           await page.submitButton.click();
 
-          await this.browser.assertView('error', 'body', SCREENSHOT_OPTS);
+          await browser.assertView('error', 'body', SCREENSHOT_OPTS);
      });
 }); 

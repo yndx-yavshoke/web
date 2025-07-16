@@ -16,27 +16,27 @@ describe('Редактирование профиля', () => {
           await page.open();
      });
 
-     it('Дефолтное состояние', async function () {
-          await this.browser.assertView('edit-default', 'body', SCREENSHOT_OPTS);
+     it('Дефолтное состояние', async ({ browser }) => {
+          await browser.assertView('edit-default', 'body', SCREENSHOT_OPTS);
      });
 
-     it('Фокус на поле имени', async function () {
+     it('Фокус на поле имени', async ({ browser }) => {
           await page.nameInput.click();
 
-          await this.browser.assertView('focus-name', 'body', SCREENSHOT_OPTS);
+          await browser.assertView('focus-name', 'body', SCREENSHOT_OPTS);
      });
 
-     it('Ошибка валидации (пустое имя)', async function () {
+     it('Ошибка валидации (пустое имя)', async ({ browser }) => {
           await page.setName('');
           await page.save();
 
-          await this.browser.assertView('validation-error', 'body', SCREENSHOT_OPTS);
+          await browser.assertView('validation-error', 'body', SCREENSHOT_OPTS);
      });
 
-     it('Успешное сохранение', async function () {
+     it('Успешное сохранение', async ({ browser }) => {
           await page.setName('Larry Test');
           await page.save();
 
-          await this.browser.assertView('success', 'body', SCREENSHOT_OPTS);
+          await browser.assertView('success', 'body', SCREENSHOT_OPTS);
      });
 }); 

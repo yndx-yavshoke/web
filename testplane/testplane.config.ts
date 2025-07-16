@@ -22,7 +22,8 @@ export default {
         //     windowSize: { width: 1280, height: 1000 },
         //     desiredCapabilities: {
         //         browserName: "chrome"
-        //     }
+        //     },
+        //     automationProtocol: 'devtools',
         // },
         firefox: {
             headless: true,
