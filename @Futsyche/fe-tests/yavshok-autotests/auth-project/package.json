@@ -1,0 +1,9 @@
+{
+  "name": "auth-project",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "dependencies": {
+    "@playwright/test": "^1.40.0"
+  }
+}
