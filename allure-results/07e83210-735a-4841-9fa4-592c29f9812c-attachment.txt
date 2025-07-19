@@ -1,0 +1,28 @@
+🎯 EXPERIMENTS REQUEST: http://localhost:3000/experiments
+🔥 МОК СРАБОТАЛ! URL: http://localhost:3000/experiments
+🔥 Возвращаем: {
+  "flags": {
+    "age": {
+      "enabled": true,
+      "young": {
+        "from": 0,
+        "to": 21
+      },
+      "adult": {
+        "from": 22,
+        "to": 68
+      },
+      "old": {
+        "from": 69,
+        "to": 99
+      },
+      "oldFrom": 20,
+      "youngFrom": 2
+    }
+  }
+}
+🎯 EXPERIMENTS RESPONSE: 200
+🎯 EXPERIMENTS RESPONSE BODY: {"flags":{"age":{"enabled":true,"young":{"from":0,"to":21},"adult":{"from":22,"to":68},"old":{"from":69,"to":99},"oldFrom":20,"youngFrom":2}}}
+🤔 Мок вызывался? true
+📝 Текущий статус: Ты старый котик
+🐱 Все тексты с "котик": [ 'Ты старый котик' ]
