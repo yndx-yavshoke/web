@@ -97,4 +97,14 @@ export class UserProfilePage {
         await this.page.waitForURL('/');
         await expect(this.page).toHaveURL('/');
     }
+
+    public async mockLoginResponse(mockData: any) {
+        await this.page.route('https://api.yavshok.ru/login', route =>
+          route.fulfill({
+            status: 200,
+            contentType: 'application/json',
+            body: JSON.stringify(mockData),
+          })
+        );
+      }
 }

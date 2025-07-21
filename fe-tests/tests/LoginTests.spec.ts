@@ -1,57 +1,54 @@
-import { test, expect } from '@playwright/test';
-import { UserLoginPage } from './fixtures/UserLoginPage';
-import { faker } from '@faker-js/faker';
+import { test } from './fixtures/ShokFixtures'
+import { DataGenerator } from './utils/DataGenerator';
 
 test.use({ storageState: { cookies: [], origins: [] } });
 
 test.describe('Проверка авторизации', () => {
-    let loginPage: UserLoginPage;
     let email: string;
     let password: string;
     
-    test.beforeEach(async ({ page }) => {
-        loginPage = new UserLoginPage(page);
+    test.beforeEach(async ({ userLoginPage }) => {
         await test.step('Открываем страницу авторизации', async () => {
-                await loginPage.Open();
+                await userLoginPage.Open();
         });
         await test.step('Проверяем поля ввода и заголовок', async () => {
-                await loginPage.CheckTitle();
-                await loginPage.CheckInputEmail();
-                await loginPage.CheckInputPassword();
+                await userLoginPage.CheckTitle();
+                await userLoginPage.CheckInputEmail();
+                await userLoginPage.CheckInputPassword();
         });
     });
 
-    test('Попытка авторизации незарегистрированного пользователя (FAKER TEST)', async ({ page }) => {
+    test('Попытка авторизации незарегистрированного пользователя (FAKER TEST)', async ({ userLoginPage }) => {
         await test.step('Вводим несуществующий email и пароль (сгенерированные faker)', async () => {
-            email = faker.internet.email();
-            password = faker.internet.password();
+            email = DataGenerator.GenerateEmail();
+            password = DataGenerator.GeneratePassword();
             console.log(`Generated email: ${email}`);
             console.log(`Generated password: ${password}`);
         });
         await test.step('Проверяем, что ошибка о неверном логине или пароле появилась', async () => {
-            await loginPage.LoginWithInvalidEmailOrPassword(email, password);
+            await userLoginPage.LoginWithInvalidEmailOrPassword(email, password);
         });
     });
 
-    test('Попытка авторизации c пустыми полями', async ({ page }) => {
-        await loginPage.LoginWithEmptyData();
+    test('Попытка авторизации c пустыми полями', async ({ userLoginPage }) => {
+        await userLoginPage.LoginWithEmptyData();
     });
 
-    test('Проверка работоспособности кнопки "Назад"', async ({ page }) => {
+    test('Проверка работоспособности кнопки "Назад"', async ({ userLoginPage }) => {
         await test.step('Проверяем, что кнопка "Назад" присутствует на странице', async () => {
-            await loginPage.CheckBackButton();
+            await userLoginPage.CheckBackButton();
         });
         await test.step('Проверяем, что кнопка "Назад" переводит на главную страницу', async () => {
-            await loginPage.Back();
+            await userLoginPage.Back();
         });
     });
 
-    test('Проверка работоспособности кнопки "Регистрация"', async ({ page }) => {
+    test('Проверка работоспособности кнопки "Регистрация"', async ({ userLoginPage }) => {
         await test.step('Проверяем, что кнопка "Регистрация" присутствует на странице', async () => {
-            await loginPage.CheckRegisterButton();
+            await userLoginPage.CheckRegisterButton();
         });
         await test.step('Проверяем, что кнопка "Регистрация" переводит на страницу регистрации', async () => {
-            await loginPage.Register();
+            await userLoginPage.Register();
         });
     });
 });

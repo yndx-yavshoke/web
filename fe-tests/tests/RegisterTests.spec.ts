@@ -1,61 +1,58 @@
-import { test, expect } from '@playwright/test';
-import { UserRegisterPage } from './fixtures/UserRegisterPage';
-
+import { test } from './fixtures/ShokFixtures';
+import { DataGenerator } from './utils/DataGenerator';
 
 test.use({ storageState: { cookies: [], origins: [] } });
 
 test.describe('Проверка регистрации', () => {
-    let registerPage: UserRegisterPage;
     var userData: { email: string; password: string; age: string };
     
-    test.beforeEach(async ({ page }) => {
-        registerPage = new UserRegisterPage(page);
+    test.beforeEach(async ({ userRegisterPage }) => {
         await test.step('Открываем страницу регистрации', async () => {
-            await registerPage.Open();
+            await userRegisterPage.Open();
         });
         await test.step('Проверяем отображение UI-элементов', async () => {
-            await registerPage.CheckTitle();
-            await registerPage.CheckInputEmail();
-            await registerPage.CheckInputPassword();
-            await registerPage.CheckInputAge();
-            await registerPage.CheckRegisterButton();
-            await registerPage.CheckBackButton();
+            await userRegisterPage.CheckTitle();
+            await userRegisterPage.CheckInputEmail();
+            await userRegisterPage.CheckInputPassword();
+            await userRegisterPage.CheckInputAge();
+            await userRegisterPage.CheckRegisterButton();
+            await userRegisterPage.CheckBackButton();
         });
     });
     
-    test('Проверка регистрации с валидными данными', async ({ page }) => {
+    test('Проверка регистрации с валидными данными', async ({ userRegisterPage }) => {
         await test.step('Генерируем валидные данные', async () => {
-            userData = registerPage.GenerateFakeUserData();
+            userData = DataGenerator.GenerateFakeUserData();
         });
         await test.step('Вводим валидные данные и переходим в профиль', async () => {
-            await registerPage.Register(userData.email, userData.password, userData.age, true);
+            await userRegisterPage.Register(userData.email, userData.password, userData.age, true);
         });
     });
     
-    test('Проверка регистрации с невалидными данными', async ({ page }) => {
+    test('Проверка регистрации с невалидными данными', async ({ userRegisterPage }) => {
         await test.step('Генерируем невалидные данные', async () => {
-            userData = registerPage.GenerateInvalidUserData();
+            userData = DataGenerator.GenerateInvalidUserData();
         });
         await test.step('Вводим невалидные данные и проверяем отображение ошибок', async () => {
-            await registerPage.Register(userData.email, userData.password, userData.age, false);
+            await userRegisterPage.Register(userData.email, userData.password, userData.age, false);
         });
     });
 
-    test('Проверка регистрации с пустыми данными', async ({ page }) => {
+    test('Проверка регистрации с пустыми данными', async ({ userRegisterPage }) => {
         await test.step('Генерируем пустые данные', async () => {
-            userData = registerPage.GenerateEmptyUserData();
+            userData = DataGenerator.GenerateEmptyUserData();
         });
         await test.step('Вводим пустые данные и проверяем отображение ошибок', async () => {
-            await registerPage.RegisterWithEmptyData(userData.email, userData.password, userData.age);
+            await userRegisterPage.RegisterWithEmptyData(userData.email, userData.password, userData.age);
         });
     });
 
-    test('Проверка перехода на страницу авторизации по кнопке "Назад"', async ({ page }) => {
+    test('Проверка перехода на страницу авторизации по кнопке "Назад"', async ({ userRegisterPage }) => {
         await test.step('Проверяем, что кнопка "Назад" присутствует на странице', async () => {
-            await registerPage.CheckBackButton();
+            await userRegisterPage.CheckBackButton();
         });
         await test.step('Проверяем, что кнопка "Назад" переводит на страницу авторизации', async () => {
-            await registerPage.Back();
+            await userRegisterPage.Back();
         });
     });
 });

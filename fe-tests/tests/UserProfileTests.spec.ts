@@ -1,36 +1,28 @@
-import { test, expect } from '@playwright/test';
-import { UserProfilePage } from './fixtures/UserProfilePage';
-import { UserNameUpdatePage } from './fixtures/UserNameUpdatePage';
-import auth from './setup/auth.json';
+import { test } from './fixtures/ShokFixtures';
 
-test.use({ storageState: auth });
+test.use({ storageState: './tests/setup/auth.json' });
 
 test.describe('Проверка профиля пользователя', () => {
-    let profilePage: UserProfilePage;
-    let userNameUpdatePage: UserNameUpdatePage;
 
-    test.beforeEach(async ({ page }) => {
-        profilePage = new UserProfilePage(page);
+    test.beforeEach(async ({ userProfilePage }) => {
 
         await test.step('Открываем страницу профиля', async () => {
-            await profilePage.Open();
+            await userProfilePage.Open();
         });
         await test.step('Проверяем отображение UI-элементов', async () => {
-            await profilePage.CheckUserAvatar();
-            await profilePage.CheckUserName();
-            await profilePage.CheckUserStatus();
-            await profilePage.CheckButtonEditProfile();
-            await profilePage.CheckLogoutButton();
-            await profilePage.CheckGallery();
+            await userProfilePage.CheckUserAvatar();
+            await userProfilePage.CheckUserName();
+            await userProfilePage.CheckUserStatus();
+            await userProfilePage.CheckButtonEditProfile();
+            await userProfilePage.CheckLogoutButton();
+            await userProfilePage.CheckGallery();
         });
     });
 
-    test('Проверка возможности изменения имени пользователя', async ({ page }) => {
+    test('Проверка возможности изменения имени пользователя', async ({ userProfilePage, userNameUpdatePage }) => {
         await test.step('Сохраняем старое имя пользователя', async () => {
-            await profilePage.SaveOldName();
+            await userProfilePage.SaveOldName();
         });
-
-        userNameUpdatePage = new UserNameUpdatePage(page);
 
         await test.step('Проверяем, что кнопка "Изменить имя" переводит на страницу изменения имени', async () => {
             await userNameUpdatePage.Open();
@@ -44,17 +36,15 @@ test.describe('Проверка профиля пользователя', () => 
             await userNameUpdatePage.UpdateName();
         });
         await test.step('Проверяем, что имя пользователя изменилось', async () => {
-            await profilePage.SaveChangedName();
-            await profilePage.CheckIsChangedName();
+            await userProfilePage.SaveChangedName();
+            await userProfilePage.CheckIsChangedName();
         });
     });
 
-    test('При пустом имени пользователя не происходит изменение имени', async ({ page }) => {
+    test('При пустом имени пользователя не происходит изменение имени', async ({ userProfilePage, userNameUpdatePage }) => {
         await test.step('Сохраняем старое имя пользователя', async () => {
-            await profilePage.SaveOldName();
+            await userProfilePage.SaveOldName();
         });
-
-        userNameUpdatePage = new UserNameUpdatePage(page);
 
         await test.step('Проверяем, что кнопка "Изменить имя" переводит на страницу изменения имени', async () => {
             await userNameUpdatePage.Open();
@@ -68,13 +58,13 @@ test.describe('Проверка профиля пользователя', () => 
             await userNameUpdatePage.UpdateNameEmpty();
         });
         await test.step('Проверяем, что имя пользователя не изменилось', async () => {
-            await profilePage.CheckIsNotChangedNameWhenEmpty();
+            await userProfilePage.CheckIsNotChangedNameWhenEmpty();
         });
     });
 
-    test('Проверка возможности выхода из аккаунта', async ({ page }) => {
+    test('Проверка возможности выхода из аккаунта', async ({ userProfilePage }) => {
         await test.step('Выходим из аккаунта', async () => {
-            await profilePage.Logout();
+            await userProfilePage.Logout();
         });
     });
 });

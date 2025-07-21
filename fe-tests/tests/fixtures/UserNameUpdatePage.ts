@@ -1,5 +1,6 @@
 import { Page, Locator, expect } from '@playwright/test';
 import { faker } from '@faker-js/faker';
+import { DataGenerator } from '../utils/DataGenerator';
 
 export class UserNameUpdatePage {
 
@@ -10,8 +11,6 @@ export class UserNameUpdatePage {
     private readonly cancelButton : Locator;
     private readonly textNameIsEmpty : Locator;
    
-
-
     constructor(public readonly page: Page) {
         this.title = this.page.getByText('Edit Profile', { exact: true });
         this.textName = this.page.getByText('Name');
@@ -20,7 +19,6 @@ export class UserNameUpdatePage {
         this.cancelButton = this.page.getByTestId('edit-cancel-button');
         this.textNameIsEmpty = this.page.getByText('Name is required', { exact: true });
     }
-
 
     public async Open() {
         await this.page.goto('/edit');
@@ -55,7 +53,7 @@ export class UserNameUpdatePage {
     }
 
     public async UpdateName() {
-        const name = faker.person.fullName();
+        const name = DataGenerator.GenerateFullUsername();
         await this.inputName.fill(name);
         await this.saveChangesButton.click();
         await expect(this.saveChangesButton).toHaveText('Save Changes');

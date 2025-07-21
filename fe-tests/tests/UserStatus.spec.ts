@@ -1,35 +1,31 @@
-import { test, expect } from '@playwright/test';
-import { UserProfilePage } from './fixtures/UserProfilePage';
+import { test } from './fixtures/ShokFixtures';
 import adultCat from './constants/mocks/AdultCat.json';
 import oldCat from './constants/mocks/OldCat.json';
 import youngCat from './constants/mocks/youngCat.json';
 import uwu from './constants/mocks/UwuCat.json';
-import auth from './setup/auth.json';
 
-test.use({ storageState: auth });
+test.use({ storageState: { cookies: [], origins: [] } });
 
 test.describe('Проверка статуса пользователя', () => {
-    let profilePage: UserProfilePage;
 
-    test('Проверка отображения статуса молодого котика', async ({ page }) => {
-        page.route('https://api.yavshok.ru/experiments', (route, request) => {
+    test('Проверка отображения статуса молодого котика', async ({ page, userProfilePage }) => {
+        page.route('https://api.yavshok.ru/login', (route, request) => {
             return route.fulfill({
                 status: 200,
                 body: JSON.stringify(youngCat)
             });
         });
 
-        profilePage = new UserProfilePage(page);
         await test.step('Открываем страницу профиля', async () => {
-            await profilePage.Open();
+            await userProfilePage.Open();
         });
         await test.step('Проверяем статус пользователя - "Ты молоденький котик"', async () => {
-            await profilePage.CheckUserStatus();
-            await profilePage.CheckYoungCat();
+            await userProfilePage.CheckUserStatus();
+            await userProfilePage.CheckYoungCat();
         });
     });
 
-    test.skip('Проверка отображения статуса взрослого котика', async ({ page }) => {
+    test.skip('Проверка отображения статуса взрослого котика', async ({ page, userProfilePage }) => {
         page.route('https://api.yavshok.ru/experiments', (route, request) => {
             return route.fulfill({
                 status: 200,
@@ -37,17 +33,16 @@ test.describe('Проверка статуса пользователя', () => 
             });
         });
 
-        profilePage = new UserProfilePage(page);
         await test.step('Открываем страницу профиля', async () => {
-            await profilePage.Open();
+            await userProfilePage.Open();
         });
         await test.step('Проверяем статус пользователя - "Ты взрослый котик"', async () => {
-            await profilePage.CheckUserStatus();
-            await profilePage.CheckAdultCat();
+            await userProfilePage.CheckUserStatus();
+            await userProfilePage.CheckAdultCat();
         });
     });
 
-    test('Проверка отображения статуса старого котика', async ({ page }) => {
+    test('Проверка отображения статуса старого котика', async ({ page, userProfilePage }) => {
         page.route('https://api.yavshok.ru/experiments', (route, request) => {
             return route.fulfill({
                 status: 200,
@@ -55,17 +50,16 @@ test.describe('Проверка статуса пользователя', () => 
             });
         });
 
-        profilePage = new UserProfilePage(page);
         await test.step('Открываем страницу профиля', async () => {
-            await profilePage.Open();
+            await userProfilePage.Open();
         });
         await test.step('Проверяем статус пользователя - "Ты старый котик"', async () => {
-            await profilePage.CheckUserStatus();
-            await profilePage.CheckOldCat();
+            await userProfilePage.CheckUserStatus();
+            await userProfilePage.CheckOldCat();
         });
     });
 
-    test('Проверка отображения статуса UwU', async ({ page }) => {
+    test('Проверка отображения статуса UwU', async ({ page, userProfilePage }) => {
         page.route('https://api.yavshok.ru/experiments', (route, request) => {
             return route.fulfill({
                 status: 200,
@@ -73,13 +67,12 @@ test.describe('Проверка статуса пользователя', () => 
             });
         });
 
-        profilePage = new UserProfilePage(page);
         await test.step('Открываем страницу профиля', async () => {
-            await profilePage.Open();
+            await userProfilePage.Open();
         });
         await test.step('Проверяем статус пользователя - "UwU"', async () => {
-            await profilePage.CheckUserStatus();
-            await profilePage.CheckUwU();
+            await userProfilePage.CheckUserStatus();
+            await userProfilePage.CheckUwU();
         });
     });
 })

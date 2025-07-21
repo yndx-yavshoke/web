@@ -1,5 +1,4 @@
 import { Page, Locator, expect } from '@playwright/test';
-import { faker } from '@faker-js/faker';
 
 export class UserRegisterPage {
     private readonly title : Locator;
@@ -28,30 +27,6 @@ export class UserRegisterPage {
         this.invalidEmail = this.page.getByText('Неправильный email-адрес', { exact: true });
         this.invalidPassword = this.page.getByText('Пароль должен содержать минимум 6 символов', { exact: true });
         this.invalidAge = this.page.getByText('Возраст должен быть числом', { exact: true });
-    }
-
-    public GenerateFakeUserData() {
-        return {
-            email: faker.internet.email(),
-            password: faker.internet.password({ length: 6, pattern: /[A-Za-z0-9!@#$%^&*]/ }),
-            age: faker.number.int({ min: 0, max: 100 }).toString()
-        };
-    }
-
-    public GenerateInvalidUserData() {
-        return {
-            email: faker.internet.username(), 
-            password: faker.internet.password({ length: 3 }), 
-            age: faker.string.alpha(3), 
-        };
-    }
-
-    public GenerateEmptyUserData() {
-        return {
-            email: '',
-            password: '',
-            age: ''
-        };
     }
 
     public async Open() {
