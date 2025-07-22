@@ -1,0 +1,24 @@
+{
+  "name": "tests",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:allure": "playwright test --reporter=allure-playwright",
+    "report:generate": "allure generate allure-results --clean",
+    "report:open": "allure open",
+    "test:report": "npm run test:allure && npm run report:generate && npm run report:open"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@faker-js/faker": "^9.9.0",
+    "@playwright/test": "^1.54.1",
+    "@types/node": "^24.0.12",
+    "allure-playwright": "^3.3.0"
+  }
+}
