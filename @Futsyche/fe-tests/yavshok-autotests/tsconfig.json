@@ -10,6 +10,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
+    "types": ["@playwright/test", "allure-playwright"],
     "paths": {
       "auth-project": ["./auth-project/src"]
     }

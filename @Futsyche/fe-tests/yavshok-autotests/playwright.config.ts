@@ -1,6 +1,7 @@
-import { PlaywrightTestConfig } from '@playwright/test';
+import { defineConfig } from '@playwright/test';
+import  PluginAllure  from 'allure-playwright';
 
-const config: PlaywrightTestConfig = {
+const config = {
     testDir: './tests',
     timeout: 30 * 1000,
     expect: {
@@ -10,12 +11,19 @@ const config: PlaywrightTestConfig = {
     forbidOnly: !!process.env.CI,
     retries: process.env.CI ? 2 : 0,
     workers: process.env.CI ? 1 : undefined,
-    reporter: 'html',
+    reporter: [
+        ['list'], // Консольный вывод
+        ['html'], // HTML отчет Playwright
+        ['allure-playwright', { outputFolder: 'allure-results' }], // Allure отчет
+        
+    ],
     use: {
         actionTimeout: 0,
         trace: 'on-first-retry',
         baseURL: 'https://yavshok.ru',
-        headless: false, // Для отладки можно включить браузер
+        headless: false,
+        screenshot: 'only-on-failure',
+        video: 'retain-on-failure'
     },
     projects: [
         {
