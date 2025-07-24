@@ -1,0 +1,30 @@
+{
+  "name": "yavshok-autotests",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "playwright test",
+    "test:login": "playwright test tests/login.spec.ts",
+    "test:reg": "playwright test tests/registration.spec.ts",
+    "test:smoke": "playwright test --grep @smoke",
+    "report:allure": "allure generate allure-results --clean && allure open allure-report",
+    "report:serve": "allure serve allure-results"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.54.1",
+    "@testplane/storybook": "^1.7.2",
+    "@types/node": "^24.0.14",
+    "allure-playwright": "^3.3.2"
+  }
+}

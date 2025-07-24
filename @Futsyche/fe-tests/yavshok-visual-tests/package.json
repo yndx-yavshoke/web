@@ -1,0 +1,25 @@
+{
+  "name": "yavshok-visual-tests",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@testplane/webdriverio": "^9.5.21"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.15",
+    "@wdio/cli": "^9.18.1",
+    "@wdio/types": "^9.16.2",
+    "html-reporter": "^10.18.7",
+    "testplane": "^8.29.6",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3",
+    "webdriverio": "^9.18.1"
+  }
+}
